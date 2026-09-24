@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a1114;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e50914;
+}
+
+/* Cyber gaming background grid pattern */
+.cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(229, 9, 20, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(229, 9, 20, 0.05) 1px, transparent 1px);
+}
+
+.cyber-dots {
+  background-image: radial-gradient(rgba(229, 9, 20, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.glow-text-red {
+  text-shadow: 0 0 15px rgba(229, 9, 20, 0.7), 0 0 30px rgba(229, 9, 20, 0.3);
+}
+
+.glow-border-red {
+  box-shadow: 0 0 20px rgba(229, 9, 20, 0.35);
+}
+
+.clip-angle {
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+}
+
+.clip-angle-sm {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
