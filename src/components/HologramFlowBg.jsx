@@ -92,20 +92,18 @@ export default function HologramFlowBg() {
       const images = imagesRef.current;
 
       if (images.length > 0) {
-        if (flowMode === 'auto' || (!s.isUserScrolling && (flowMode === 'hybrid'))) {
+        if (!s.isUserScrolling || flowMode === 'auto') {
           if (isPlaying) {
-            // Smooth ambient hologram flow (18 frames per second)
-            s.targetFrame = (s.targetFrame + delta * 18) % TOTAL_FRAMES;
+            // Smooth natural video playback (20 frames per second)
+            s.currentFrame = (s.currentFrame + delta * 20) % TOTAL_FRAMES;
+            s.targetFrame = s.currentFrame;
           }
+        } else {
+          // Smooth interpolation when scrolling
+          const lerpFactor = 0.15;
+          const diff = s.targetFrame - s.currentFrame;
+          s.currentFrame = (s.currentFrame + diff * lerpFactor + TOTAL_FRAMES) % TOTAL_FRAMES;
         }
-
-        // Smooth interpolation (lerp) for silky flow effect
-        const lerpFactor = s.isUserScrolling ? 0.15 : 0.08;
-        s.currentFrame += (s.targetFrame - s.currentFrame) * lerpFactor;
-        
-        // Wrap around smoothly
-        if (s.currentFrame < 0) s.currentFrame = TOTAL_FRAMES - 1;
-        if (s.currentFrame >= TOTAL_FRAMES) s.currentFrame = 0;
 
         const frameIndex = Math.floor(s.currentFrame) % TOTAL_FRAMES;
         const img = images[frameIndex];
