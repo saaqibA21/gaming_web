@@ -89,7 +89,7 @@ Please arrange a diagnostic consultation / walk-in slot.`;
   };
 
   return (
-    <section id="laptop-service" className="py-16 sm:py-20 bg-[#070709]/85 backdrop-blur-md border-b border-gw-border relative blueprint-grid assemble-on-scroll">
+    <section id="laptop-service" className="py-16 sm:py-20 bg-transparent border-b border-gw-border relative assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -109,7 +109,7 @@ Please arrange a diagnostic consultation / walk-in slot.`;
         {/* ========================================================================= */}
         {/* SURGICAL TEARDOWN PIPELINE SCHEMATIC */}
         {/* ========================================================================= */}
-        <div className="mb-14 p-5 sm:p-7 rounded-2xl bg-black/85 border border-red-900/50 shadow-2xl relative overflow-hidden backdrop-blur-md assemble-down assemble-delay-3">
+        <div className="mb-14 p-5 sm:p-7 rounded-2xl bg-[#0a0a10]/95 border border-red-900/50 shadow-2xl relative overflow-hidden assemble-down assemble-delay-3">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-gw-border/80 mb-6">
             <div className="flex items-center gap-3">
               <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>

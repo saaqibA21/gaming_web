@@ -6,7 +6,7 @@ export default function StickyWhatsApp() {
   return (
     <aside aria-label="Quick contact" className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
       {/* Tooltip bubble on hover */}
-      <div className="hidden md:flex items-center px-3 py-1.5 rounded-xl bg-black/90 border border-gw-border text-xs text-gray-200 shadow-xl backdrop-blur-sm">
+      <div className="hidden md:flex items-center px-3 py-1.5 rounded-xl bg-black/95 border border-gw-border text-xs text-gray-200 shadow-xl">
         <span className="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-ping"></span>
         <span>Chat with PC Architect</span>
       </div>

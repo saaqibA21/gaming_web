@@ -36,7 +36,7 @@ Please connect me with a hardware specialist for build guidance.`;
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 animate-fadeIn">
       <div className="bg-[#0f0f16] border border-red-600/50 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
         <button 
           onClick={onClose}

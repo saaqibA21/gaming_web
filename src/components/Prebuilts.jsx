@@ -61,7 +61,7 @@ export default function Prebuilts({ onAddToCart }) {
   };
 
   return (
-    <section id="prebuilts" className="py-16 sm:py-20 bg-[#070709]/85 backdrop-blur-md border-b border-gw-border relative assemble-on-scroll">
+    <section id="prebuilts" className="py-16 sm:py-20 bg-transparent border-b border-gw-border relative assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -134,10 +134,10 @@ export default function Prebuilts({ onAddToCart }) {
 
                   {/* GPU Pill */}
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs">
-                    <span className="px-2 py-1 rounded bg-black/80 backdrop-blur-sm text-red-400 font-tech font-bold border border-red-900/40 text-[11px]">
+                    <span className="px-2 py-1 rounded bg-black/90 text-red-400 font-tech font-bold border border-red-900/40 text-[11px]">
                       {pc.specs.gpu}
                     </span>
-                    <span className="px-2 py-1 rounded bg-black/80 backdrop-blur-sm text-gray-300 text-[10px] font-sans">
+                    <span className="px-2 py-1 rounded bg-black/90 text-gray-300 text-[10px] font-sans">
                       {pc.specs.cpu.split(' (')[0]}
                     </span>
                   </div>

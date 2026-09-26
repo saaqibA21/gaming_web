@@ -19,7 +19,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems = [], onRemoveIt
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-black/75 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-black/85 animate-fadeIn">
       <div className="absolute inset-y-0 right-0 max-w-full flex pl-10">
         <div className="w-screen max-w-md bg-[#0f0f16] border-l border-gw-border p-6 shadow-2xl flex flex-col justify-between font-sans">
           

@@ -82,7 +82,7 @@ export default function Hero({ onOpenConsultation }) {
             className="group flex flex-col items-center gap-2 cursor-pointer transition-all hover:scale-105"
             aria-label="Scroll to construct system"
           >
-            <div className="flex items-center gap-2.5 px-6 py-3 rounded-full bg-black/80 hover:bg-black border border-red-700/70 backdrop-blur-md shadow-2xl shadow-red-950/50 transition-all">
+            <div className="flex items-center gap-2.5 px-6 py-3 rounded-full bg-black/90 hover:bg-black border border-red-700/70 shadow-2xl shadow-red-950/50 transition-all">
               <span className="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
               <span className="text-xs font-tech font-bold uppercase tracking-widest-plus text-gray-200 group-hover:text-white">
                 PULL TO ASSEMBLE // SCROLL TO CONSTRUCT
@@ -100,7 +100,7 @@ export default function Hero({ onOpenConsultation }) {
       </section>
 
       {/* 2. All Hero Details Below the Video Screen - Styled as Workbench Overview */}
-      <section id="hero-details" className="relative py-16 sm:py-24 border-b border-gw-border bg-[#070709]/85 backdrop-blur-md assemble-on-scroll">
+      <section id="hero-details" className="relative py-16 sm:py-24 border-b border-gw-border bg-transparent assemble-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           
           {/* Main Grid: Left Ad Copy, Right Hardware Showcase */}
@@ -128,7 +128,7 @@ export default function Hero({ onOpenConsultation }) {
               </p>
 
               {/* Slogan Banner with Official Founder Details */}
-              <div className="p-4 rounded-xl bg-black/75 border border-red-900/60 backdrop-blur-md shadow-solid-dark space-y-1 assemble-left assemble-delay-4">
+              <div className="p-4 rounded-xl bg-black/90 border border-red-900/60 shadow-solid-dark space-y-1 assemble-left assemble-delay-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="text-sm sm:text-base font-tech font-bold text-red-400 uppercase tracking-wide">
                     "{COMPANY_INFO.slogan}"
@@ -201,7 +201,7 @@ export default function Hero({ onOpenConsultation }) {
               <div className="relative w-full max-w-md">
                 
                 {/* Solid Card container */}
-                <div className="rounded-2xl bg-[#0d0d14]/95 p-6 border border-red-600/50 shadow-2xl space-y-5 backdrop-blur-md">
+                <div className="rounded-2xl bg-[#0d0d14] p-6 border border-red-600/50 shadow-2xl space-y-5">
                   
                   {/* Header row with Logo and Live Status */}
                   <div className="flex items-center justify-between border-b border-gw-border pb-4">
@@ -226,7 +226,7 @@ export default function Hero({ onOpenConsultation }) {
                     <img 
                       src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=800&auto=format&fit=crop&q=80" 
                       alt="Games World Gaming PC Build" 
-                      className="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-500" 
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
                     <div className="absolute bottom-3 left-3 right-3">
@@ -291,7 +291,7 @@ export default function Hero({ onOpenConsultation }) {
                 return (
                   <div 
                     key={pillar.id}
-                    className={`p-5 rounded-2xl bg-gw-card/90 border border-gw-border hover:border-red-600/60 transition-all duration-300 assemble-up ${delayClass} assemble-card backdrop-blur-sm`}
+                    className={`p-5 rounded-2xl bg-gw-card border border-gw-border hover:border-red-600/60 transition-all duration-300 assemble-up ${delayClass} assemble-card`}
                   >
                     <div className="w-12 h-12 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center mb-4">
                       <IconComp className="w-6 h-6" />

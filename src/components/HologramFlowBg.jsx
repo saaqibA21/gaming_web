@@ -154,12 +154,11 @@ export default function HologramFlowBg() {
         />
 
         {/* Subtle Edge Vignette only at the very bottom to transition smoothly */}
-        <div className="absolute inset-0 bg-black/15 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#070709] to-transparent pointer-events-none"></div>
       </div>
 
       {/* Discreet Flow Effect Control Widget */}
-      <aside aria-label="Hologram Controls" className="fixed bottom-6 left-6 z-40 hidden sm:flex items-center gap-2 p-1.5 px-3 rounded-full bg-black/85 backdrop-blur-md border border-red-900/60 shadow-lg shadow-black/80 text-xs">
+      <aside aria-label="Hologram Controls" className="fixed bottom-6 left-6 z-40 hidden sm:flex items-center gap-2 p-1.5 px-3 rounded-full bg-black/90 border border-red-900/60 shadow-lg shadow-black/80 text-xs">
         <div className="flex items-center gap-1.5 text-red-500 font-gamer font-bold tracking-wider text-[10px] uppercase">
           <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
           <span>HOLOGRAM FLOW</span>

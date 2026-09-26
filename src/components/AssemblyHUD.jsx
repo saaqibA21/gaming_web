@@ -50,7 +50,7 @@ export default function AssemblyHUD() {
       aria-label="Assembly Telemetry HUD" 
       className="fixed top-20 right-4 z-40 hidden md:flex items-center gap-3 select-none pointer-events-auto"
     >
-      <div className="flex items-center gap-3 p-2 px-3.5 rounded-xl bg-black/85 border border-red-900/60 backdrop-blur-md shadow-2xl shadow-black/90">
+      <div className="flex items-center gap-3 p-2 px-3.5 rounded-xl bg-[#0a0a10] border border-red-900/60 shadow-2xl shadow-black/90">
         
         {/* Assembly Stage Progress indicator */}
         <div className="flex items-center gap-2">

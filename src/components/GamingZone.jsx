@@ -86,7 +86,7 @@ Please reserve our station/booth.`;
   };
 
   return (
-    <section id="gaming-zone" className="py-16 sm:py-20 bg-[#0a0a0f]/85 backdrop-blur-md border-b border-gw-border relative cyber-grid assemble-on-scroll">
+    <section id="gaming-zone" className="py-16 sm:py-20 bg-transparent border-b border-gw-border relative assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -105,7 +105,7 @@ Please reserve our station/booth.`;
         {/* ========================================================================= */}
         {/* INTERACTIVE BATTLE STATION BAY TELEMETRY */}
         {/* ========================================================================= */}
-        <div className="mb-14 p-5 sm:p-7 rounded-2xl bg-black/85 border border-red-900/50 shadow-2xl relative overflow-hidden backdrop-blur-md assemble-socket assemble-delay-3">
+        <div className="mb-14 p-5 sm:p-7 rounded-2xl bg-[#0a0a10]/95 border border-red-900/50 shadow-2xl relative overflow-hidden assemble-socket assemble-delay-3">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-gw-border/80 mb-6">
             <div className="flex items-center gap-3">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -249,7 +249,7 @@ Please reserve our station/booth.`;
 
       {/* Booking Modal */}
       {bookingModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 animate-fadeIn">
           <div className="bg-[#101017] border border-red-600/50 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
             <button 
               onClick={() => setBookingModalOpen(false)}

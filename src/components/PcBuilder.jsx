@@ -222,7 +222,7 @@ Contact: ${COMPANY_INFO.primaryPhone}`;
   };
 
   return (
-    <section id="pc-builder" className="py-16 sm:py-24 bg-[#0a0a0f]/90 backdrop-blur-md border-b border-gw-border relative blueprint-grid assemble-on-scroll">
+    <section id="pc-builder" className="py-16 sm:py-24 bg-transparent border-b border-gw-border relative assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header with Assembly Bay Branding */}
@@ -261,7 +261,7 @@ Contact: ${COMPANY_INFO.primaryPhone}`;
         {/* ========================================================================= */}
         {/* VIRTUAL MOTHERBOARD & CHASSIS ASSEMBLY BAY SCHEMATIC */}
         {/* ========================================================================= */}
-        <div className="mb-10 p-5 sm:p-6 rounded-2xl bg-black/80 border border-red-900/50 shadow-2xl relative overflow-hidden backdrop-blur-md">
+        <div className="mb-10 p-5 sm:p-6 rounded-2xl bg-[#0a0a10]/95 border border-red-900/50 shadow-2xl relative overflow-hidden">
           
           {/* Laser scanning line animation across the workbench */}
           <div className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-red-500/40 to-transparent pointer-events-none animate-laser-scan"></div>
@@ -707,7 +707,7 @@ Contact: ${COMPANY_INFO.primaryPhone}`;
       {/* OFFICIAL ASSEMBLY BLUEPRINT & QUOTATION MODAL */}
       {/* ========================================================================= */}
       {blueprintModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-fadeIn overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 animate-fadeIn overflow-y-auto">
           <div 
             id="blueprint-quotation-print"
             className="bg-[#0e0e14] border border-red-600/60 rounded-2xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative text-white my-auto"
