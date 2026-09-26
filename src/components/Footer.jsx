@@ -83,15 +83,21 @@ export default function Footer() {
           
           {/* Brand Info */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <img 
                 src={COMPANY_INFO.logo} 
-                alt="Games World" 
-                className="h-10 w-auto object-contain" 
+                alt="Games World Logo" 
+                className="h-12 w-auto object-contain filter drop-shadow-[0_0_10px_rgba(229,9,20,0.5)]" 
               />
-              <span className="font-display text-2xl text-white tracking-wider">
-                GAMES <span className="text-red-600">WORLD</span>
-              </span>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-1 font-display tracking-wider text-2xl leading-none">
+                  <span className="text-white">GAMES</span>
+                  <span className="text-red-600">WORLD</span>
+                </div>
+                <span className="text-[10px] text-gray-400 font-tech tracking-widest-plus uppercase font-bold mt-1">
+                  PLAY • CONNECT • COMPETE
+                </span>
+              </div>
             </div>
 
             <p className="text-xs text-gray-300 leading-relaxed font-sans">
@@ -100,10 +106,6 @@ export default function Footer() {
             <p className="text-xs text-gray-400 leading-relaxed font-sans">
               Custom PC builds, 240Hz esports gaming arena, and chip-level laptop repairs. Athipatten Street, Chennai.
             </p>
-
-            <div className="text-xs font-tech font-bold text-red-400 tracking-widest-plus uppercase">
-              {COMPANY_INFO.tagline}
-            </div>
           </div>
 
           {/* Quick Links */}

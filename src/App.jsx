@@ -12,7 +12,6 @@ import ConsultationModal from './components/ConsultationModal';
 import CartDrawer from './components/CartDrawer';
 import StickyWhatsApp from './components/StickyWhatsApp';
 import HologramFlowBg from './components/HologramFlowBg';
-import AssemblyHUD from './components/AssemblyHUD';
 import { initGlobalAssemblyObserver } from './utils/useAssemble';
 
 export default function App() {
@@ -44,8 +43,6 @@ export default function App() {
       {/* Hologram Flow Canvas Background from video frames */}
       <HologramFlowBg />
 
-      {/* Assembly Telemetry HUD & Audio Controller */}
-      <AssemblyHUD />
 
       {/* Navigation Bar */}
       <Navbar 

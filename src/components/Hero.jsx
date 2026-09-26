@@ -35,68 +35,22 @@ export default function Hero({ onOpenConsultation }) {
 
   return (
     <>
-      {/* 1. Cinematic Assembly Bay Stage: Live Hologram PC Construction with Technical Overlay */}
-      <section id="hero" className="relative h-[calc(100vh-80px)] min-h-[580px] flex flex-col justify-between items-center p-6 sm:p-10 select-none overflow-hidden">
-        
-        {/* Technical Corner Alignment Ticks */}
-        <div className="corner-tick-tl"></div>
-        <div className="corner-tick-tr"></div>
-        <div className="corner-tick-bl"></div>
-        <div className="corner-tick-br"></div>
-
-        {/* Top Blueprint Telemetry Markers */}
-        <div className="w-full flex items-center justify-between text-[10px] font-tech text-gray-400 uppercase tracking-widest-plus pt-2">
-          <div className="flex items-center gap-2">
+      {/* 1. Cinematic Video Stage - Only the clean video plays */}
+      <section id="hero" className="relative h-[calc(100vh-80px)] min-h-[500px] flex flex-col justify-end items-center pb-8 select-none overflow-hidden">
+        {/* Simple, Elegant Scroll Anchor */}
+        <button
+          onClick={scrollToContent}
+          className="group flex flex-col items-center gap-2 cursor-pointer transition-all hover:scale-105"
+          aria-label="Scroll to explore"
+        >
+          <div className="flex items-center gap-2.5 px-6 py-3 rounded-full bg-black/80 hover:bg-black border border-red-700/60 shadow-2xl transition-all">
             <span className="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-            <span className="text-red-500 font-bold">[ ASSEMBLY BAY 01 ]</span>
-            <span className="hidden sm:inline text-gray-500">• CHENNAI WORKBENCH</span>
+            <span className="text-xs font-tech font-bold uppercase tracking-widest-plus text-gray-200 group-hover:text-white">
+              EXPLORE WORKBENCH
+            </span>
+            <ChevronDown className="w-4 h-4 text-red-500 group-hover:translate-y-0.5 transition-transform" />
           </div>
-
-          <div className="hidden sm:flex items-center gap-3 text-gray-400 font-mono">
-            <span>CALIBRATION: AM5 / LGA1700</span>
-            <span className="text-gray-600">|</span>
-            <span className="text-emerald-400">TELEMETRY: ACTIVE</span>
-          </div>
-        </div>
-
-        {/* Center Minimal Assembly Target Guide */}
-        <div className="flex flex-col items-center pointer-events-none opacity-40">
-          <div className="w-16 h-16 rounded-full border border-dashed border-red-500/50 flex items-center justify-center animate-spin" style={{ animationDuration: '20s' }}>
-            <div className="w-2 h-2 rounded-full bg-red-500"></div>
-          </div>
-          <span className="text-[9px] font-tech font-bold tracking-widest-plus text-red-500 uppercase mt-2">
-            ALIGNMENT CENTER
-          </span>
-        </div>
-
-        {/* Bottom Technical Control: PULL TO ASSEMBLE */}
-        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 pb-2">
-          
-          <div className="hidden sm:block text-[10px] font-tech text-gray-400 uppercase tracking-wider font-mono">
-            TORQUE: 0.6 Nm • KRYONAUT THERMAL PROFILE
-          </div>
-
-          {/* Interactive Scroll Anchor */}
-          <button
-            onClick={scrollToContent}
-            className="group flex flex-col items-center gap-2 cursor-pointer transition-all hover:scale-105"
-            aria-label="Scroll to construct system"
-          >
-            <div className="flex items-center gap-2.5 px-6 py-3 rounded-full bg-black/90 hover:bg-black border border-red-700/70 shadow-2xl shadow-red-950/50 transition-all">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-              <span className="text-xs font-tech font-bold uppercase tracking-widest-plus text-gray-200 group-hover:text-white">
-                PULL TO ASSEMBLE // SCROLL TO CONSTRUCT
-              </span>
-              <ChevronDown className="w-4 h-4 text-red-500 group-hover:translate-y-0.5 transition-transform" />
-            </div>
-          </button>
-
-          <div className="hidden sm:block text-[10px] font-tech text-gray-400 uppercase tracking-wider font-mono text-right">
-            PCIE 5.0 INTERFACE • 24HR BURN-IN
-          </div>
-
-        </div>
-
+        </button>
       </section>
 
       {/* 2. All Hero Details Below the Video Screen - Styled as Workbench Overview */}
@@ -209,11 +163,16 @@ export default function Hero({ onOpenConsultation }) {
                       <img 
                         src={COMPANY_INFO.logo} 
                         alt="Games World Logo" 
-                        className="w-10 h-10 object-contain" 
+                        className="w-10 h-10 object-contain filter drop-shadow-[0_0_8px_rgba(229,9,20,0.5)]" 
                       />
-                      <div>
-                        <div className="text-base font-display tracking-wider text-white">GAMES WORLD CHENNAI</div>
-                        <div className="text-[11px] text-gray-400 font-sans">Athipatten Street • Ph: {COMPANY_INFO.primaryPhone}</div>
+                      <div className="flex flex-col">
+                        <div className="flex items-center gap-1 font-display tracking-wider text-lg leading-none">
+                          <span className="text-white">GAMES</span>
+                          <span className="text-red-600">WORLD</span>
+                        </div>
+                        <span className="text-[9px] text-gray-400 font-tech tracking-widest uppercase font-bold mt-0.5">
+                          PLAY • CONNECT • COMPETE
+                        </span>
                       </div>
                     </div>
                     <span className="px-2.5 py-1 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 text-[10px] font-tech font-bold uppercase">
