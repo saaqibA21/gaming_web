@@ -4,15 +4,13 @@ import {
   ShoppingBag, 
   Menu, 
   X, 
-  Sparkles
+  Sparkles 
 } from 'lucide-react';
 
 export default function Navbar({ 
   cartItems = [], 
   onOpenCart, 
-  onOpenConsultation,
-  activeSection,
-  setActiveSection
+  onOpenConsultation
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -32,27 +30,27 @@ export default function Navbar({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Brand Logo & Name - Uses small 'G' controller emblem */}
-          <a href="#hero" className="flex items-center gap-3 group shrink-0">
+          {/* Brand Logo & Name with Small G Controller Emblem */}
+          <a href="#hero" className="flex items-center gap-3 group flex-shrink-0">
             <div className="relative">
               <img 
-                src={COMPANY_INFO.logoIcon || "/images/games_world_icon.png"} 
-                alt="Games World G Logo" 
-                className="h-12 sm:h-14 w-auto object-contain filter drop-shadow-[0_0_12px_rgba(229,9,20,0.6)] group-hover:scale-105 transition-transform duration-300"
+                src={COMPANY_INFO.logo} 
+                alt="Games World Small G Emblem" 
+                className="h-12 w-12 sm:h-14 sm:w-14 object-contain filter drop-shadow-[0_0_12px_rgba(229,9,20,0.5)] group-hover:scale-105 transition-transform duration-300"
               />
             </div>
             <div className="flex flex-col">
-              <div className="flex items-center gap-1 font-display tracking-wider text-xl sm:text-2xl leading-none">
+              <div className="flex items-center gap-1 font-display tracking-wider text-xl sm:text-2xl lg:text-3xl leading-none">
                 <span className="text-white">GAMES</span>
                 <span className="text-red-600 group-hover:text-red-500 transition-colors drop-shadow-[0_0_10px_rgba(229,9,20,0.8)]">WORLD</span>
               </div>
-              <span className="text-[9px] sm:text-[10px] text-gray-400 font-tech tracking-widest-plus uppercase font-bold mt-1">
+              <span className="text-[9px] sm:text-[10px] text-gray-400 font-tech tracking-widest-plus uppercase font-bold mt-0.5">
                 PLAY • CONNECT • COMPETE
               </span>
             </div>
           </a>
 
-          {/* Desktop Nav Items / Options */}
+          {/* Desktop Nav Items */}
           <nav className="hidden lg:flex items-center space-x-1">
             {navLinks.map((link) => (
               <a
@@ -130,7 +128,7 @@ export default function Navbar({
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenConsultation && onOpenConsultation();
+                onOpenConsultation();
               }}
               className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-red-600 text-white font-bold tracking-wider uppercase text-sm"
             >
@@ -146,3 +144,5 @@ export default function Navbar({
     </header>
   );
 }
+
+
