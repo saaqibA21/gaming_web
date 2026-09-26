@@ -141,6 +141,174 @@
   border-right: 2px solid #e50914;
 }
 
+/* ========================================================================= */
+/* HARDWARE ASSEMBLY ANIMATION SYSTEM */
+/* ========================================================================= */
+
+@keyframes assembleLeft {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) translateX(-70px) rotateY(-8deg) scale(0.92);
+    filter: blur(4px);
+  }
+  65% {
+    opacity: 1;
+    transform: perspective(1000px) translateX(6px) rotateY(1.5deg) scale(1.01);
+    filter: blur(0px);
+  }
+  85% {
+    transform: perspective(1000px) translateX(-2px) rotateY(-0.5deg) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) translateX(0) rotateY(0deg) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes assembleRight {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) translateX(70px) rotateY(8deg) scale(0.92);
+    filter: blur(4px);
+  }
+  65% {
+    opacity: 1;
+    transform: perspective(1000px) translateX(-6px) rotateY(-1.5deg) scale(1.01);
+    filter: blur(0px);
+  }
+  85% {
+    transform: perspective(1000px) translateX(2px) rotateY(0.5deg) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) translateX(0) rotateY(0deg) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes assembleDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.93);
+    filter: blur(3px);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(4px) scale(1.01);
+    filter: blur(0px);
+  }
+  85% {
+    transform: translateY(-1px) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes assembleUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.93);
+    filter: blur(3px);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.01);
+    filter: blur(0px);
+  }
+  85% {
+    transform: translateY(1px) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes assembleSocket {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(12px);
+    box-shadow: 0 0 0 rgba(229, 9, 20, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.04) translateY(-2px);
+    box-shadow: 0 0 25px rgba(229, 9, 20, 0.6);
+  }
+  80% {
+    transform: scale(0.98) translateY(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    box-shadow: 0 0 0 rgba(229, 9, 20, 0);
+  }
+}
+
+/* Base state for assemble elements */
+.assemble-left,
+.assemble-right,
+.assemble-down,
+.assemble-up,
+.assemble-socket {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Triggered states (either directly or via parent .is-assembled) */
+.is-assembled .assemble-left,
+.assemble-left.is-assembled {
+  animation: assembleLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.is-assembled .assemble-right,
+.assemble-right.is-assembled {
+  animation: assembleRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.is-assembled .assemble-down,
+.assemble-down.is-assembled {
+  animation: assembleDown 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.is-assembled .assemble-up,
+.assemble-up.is-assembled {
+  animation: assembleUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.is-assembled .assemble-socket,
+.assemble-socket.is-assembled {
+  animation: assembleSocket 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Stagger Delay Utility Classes */
+.assemble-delay-1 { animation-delay: 60ms !important; }
+.assemble-delay-2 { animation-delay: 120ms !important; }
+.assemble-delay-3 { animation-delay: 180ms !important; }
+.assemble-delay-4 { animation-delay: 240ms !important; }
+.assemble-delay-5 { animation-delay: 300ms !important; }
+.assemble-delay-6 { animation-delay: 360ms !important; }
+.assemble-delay-7 { animation-delay: 420ms !important; }
+.assemble-delay-8 { animation-delay: 480ms !important; }
+.assemble-delay-9 { animation-delay: 540ms !important; }
+.assemble-delay-10 { animation-delay: 600ms !important; }
+
+/* Interactive Hover Mechanical Assembly Effects */
+.assemble-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.assemble-card:hover {
+  transform: translateY(-4px) scale(1.015);
+  box-shadow: 0 10px 30px -10px rgba(229, 9, 20, 0.4);
+  border-color: rgba(229, 9, 20, 0.65);
+}
+
+
 @media print {
   body * {
     visibility: hidden;

@@ -67,18 +67,18 @@ export default function WhyUs() {
   ];
 
   return (
-    <section id="why-us" className="py-16 sm:py-20 bg-[#0a0a0f]/85 backdrop-blur-md border-b border-gw-border relative">
+    <section id="why-us" className="py-16 sm:py-20 bg-[#0a0a0f]/85 backdrop-blur-md border-b border-gw-border relative assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2">
+          <div className="text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2 assemble-down assemble-delay-1">
             HARDWARE INTEGRITY & STANDARDS
           </div>
-          <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-white">
+          <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-white assemble-down assemble-delay-2">
             THE GAMES WORLD <span className="text-red-600">DIFFERENCE</span>
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-gray-300 font-sans">
+          <p className="mt-2 text-sm sm:text-base text-gray-300 font-sans assemble-down assemble-delay-3">
             Every build that leaves our workbench is treated as a tournament machine. Here is how we build differently.
           </p>
         </div>
@@ -87,10 +87,11 @@ export default function WhyUs() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
           {pillarsDifference.map((item, idx) => {
             const Icon = item.icon;
+            const delayClass = `assemble-delay-${idx + 1}`;
             return (
               <div 
                 key={idx}
-                className="p-6 rounded-2xl bg-gw-card border border-gw-border hover:border-red-600/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-red-glow"
+                className={`p-6 rounded-2xl bg-gw-card border border-gw-border hover:border-red-600/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-red-glow assemble-card assemble-up ${delayClass}`}
               >
                 <div className="w-12 h-12 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center mb-4">
                   <Icon className="w-6 h-6" />
@@ -107,7 +108,7 @@ export default function WhyUs() {
         </div>
 
         {/* Games World vs Generic Table */}
-        <div className="mb-16">
+        <div className="mb-16 assemble-up assemble-delay-3">
           <div className="text-center mb-6">
             <h3 className="text-3xl font-display tracking-wider text-white">
               GAMES WORLD VS. GENERIC PREBUILTS

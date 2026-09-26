@@ -89,19 +89,19 @@ Please arrange a diagnostic consultation / walk-in slot.`;
   };
 
   return (
-    <section id="laptop-service" className="py-16 sm:py-20 bg-[#070709]/85 backdrop-blur-md border-b border-gw-border relative blueprint-grid">
+    <section id="laptop-service" className="py-16 sm:py-20 bg-[#070709]/85 backdrop-blur-md border-b border-gw-border relative blueprint-grid assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-700/60 text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-700/60 text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2 assemble-down assemble-delay-1">
             <Microscope className="w-3.5 h-3.5 text-red-400 animate-pulse" />
             <span>CHIP-LEVEL MOTHERBOARD & THERMAL REPAIR LAB</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-white">
+          <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-white assemble-down assemble-delay-2">
             SURGICAL TEARDOWN & <span className="text-red-600">REBUILD BAY</span>
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-gray-300 font-sans">
+          <p className="mt-2 text-sm sm:text-base text-gray-300 font-sans assemble-down assemble-delay-3">
             Thermal throttling? Artifacting GPU? Dead power rail? Microscopic chip-level repair and liquid metal repasting for ASUS ROG, Lenovo Legion, Dell Alienware, MSI, HP Omen, and Acer Predator.
           </p>
         </div>
@@ -109,7 +109,7 @@ Please arrange a diagnostic consultation / walk-in slot.`;
         {/* ========================================================================= */}
         {/* SURGICAL TEARDOWN PIPELINE SCHEMATIC */}
         {/* ========================================================================= */}
-        <div className="mb-14 p-5 sm:p-7 rounded-2xl bg-black/85 border border-red-900/50 shadow-2xl relative overflow-hidden backdrop-blur-md">
+        <div className="mb-14 p-5 sm:p-7 rounded-2xl bg-black/85 border border-red-900/50 shadow-2xl relative overflow-hidden backdrop-blur-md assemble-down assemble-delay-3">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-gw-border/80 mb-6">
             <div className="flex items-center gap-3">
               <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
@@ -135,6 +135,7 @@ Please arrange a diagnostic consultation / walk-in slot.`;
             {TEARDOWN_STEPS.map((step, idx) => {
               const StepIcon = step.icon;
               const isActive = activeTeardownStep === idx;
+              const delayClass = `assemble-delay-${idx + 1}`;
               return (
                 <button
                   key={step.step}
@@ -142,7 +143,7 @@ Please arrange a diagnostic consultation / walk-in slot.`;
                     playClickSound();
                     setActiveTeardownStep(idx);
                   }}
-                  className={`p-3.5 rounded-xl border text-left transition-all relative ${
+                  className={`p-3.5 rounded-xl border text-left transition-all relative assemble-socket ${delayClass} ${
                     isActive
                       ? 'bg-red-950/60 border-red-500 shadow-red-glow text-white'
                       : 'bg-gw-card/80 border-gw-border hover:border-gray-500 text-gray-400'
@@ -182,14 +183,15 @@ Please arrange a diagnostic consultation / walk-in slot.`;
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Services Cards (Left 7 Cols) */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {LAPTOP_SERVICES.map((srv) => {
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 assemble-left assemble-delay-3">
+            {LAPTOP_SERVICES.map((srv, idx) => {
               const Icon = iconMap[srv.icon] || Wrench;
+              const delayClass = `assemble-delay-${(idx % 4) + 1}`;
               return (
                 <div 
                   key={srv.id}
                   onClick={playClickSound}
-                  className="p-5 rounded-2xl bg-gw-card border border-gw-border hover:border-red-600/50 transition-all duration-300 flex flex-col justify-between group hover:shadow-lg cursor-pointer"
+                  className={`p-5 rounded-2xl bg-gw-card border border-gw-border hover:border-red-600/50 transition-all duration-300 flex flex-col justify-between group hover:shadow-lg cursor-pointer assemble-card assemble-up ${delayClass}`}
                 >
                   <div>
                     <div className="w-10 h-10 rounded-xl bg-red-600/15 text-red-500 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
@@ -218,7 +220,7 @@ Please arrange a diagnostic consultation / walk-in slot.`;
           </div>
 
           {/* Service Booking Card (Right 5 Cols) */}
-          <div className="lg:col-span-5 bg-gw-card rounded-2xl p-6 sm:p-8 border border-gw-border relative shadow-xl">
+          <div className="lg:col-span-5 bg-gw-card rounded-2xl p-6 sm:p-8 border border-gw-border relative shadow-xl assemble-right assemble-delay-4">
             <div className="space-y-1 mb-6">
               <span className="text-[10px] font-tech font-bold uppercase text-red-500 tracking-widest-plus">Direct Diagnostics</span>
               <h3 className="text-3xl font-display tracking-wider text-white">

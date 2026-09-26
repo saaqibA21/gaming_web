@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import PcBuilder from './components/PcBuilder';
@@ -13,11 +13,17 @@ import CartDrawer from './components/CartDrawer';
 import StickyWhatsApp from './components/StickyWhatsApp';
 import HologramFlowBg from './components/HologramFlowBg';
 import AssemblyHUD from './components/AssemblyHUD';
+import { initGlobalAssemblyObserver } from './utils/useAssemble';
 
 export default function App() {
   const [cartItems, setCartItems] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [consultationOpen, setConsultationOpen] = useState(false);
+
+  useEffect(() => {
+    const cleanup = initGlobalAssemblyObserver();
+    return cleanup;
+  }, []);
 
   const handleAddToCart = (item) => {
     setCartItems(prev => [...prev, item]);

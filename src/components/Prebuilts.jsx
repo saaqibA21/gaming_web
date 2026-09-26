@@ -61,23 +61,23 @@ export default function Prebuilts({ onAddToCart }) {
   };
 
   return (
-    <section id="prebuilts" className="py-16 sm:py-20 bg-[#070709]/85 backdrop-blur-md border-b border-gw-border relative">
+    <section id="prebuilts" className="py-16 sm:py-20 bg-[#070709]/85 backdrop-blur-md border-b border-gw-border relative assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2">
+          <div className="text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2 assemble-down assemble-delay-1">
             PRE-ASSEMBLED • BENCHMARKED • READY TO DISPATCH
           </div>
-          <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-white">
+          <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-white assemble-down assemble-delay-2">
             BATTLE-TESTED <span className="text-red-600">PREBUILTS</span>
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-gray-300 font-sans">
+          <p className="mt-2 text-sm sm:text-base text-gray-300 font-sans assemble-down assemble-delay-3">
             Assembled by senior technicians, stress-tested under continuous 24-hour FurMark & Cinebench thermal loads, and boxed in custom high-density expanding foam crates.
           </p>
 
           {/* Filter Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
+          <div className="flex flex-wrap items-center justify-center gap-2 mt-6 assemble-up assemble-delay-4">
             {categories.map((cat) => (
               <button
                 key={cat.id}
@@ -96,12 +96,13 @@ export default function Prebuilts({ onAddToCart }) {
 
         {/* Prebuilts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredPcs.map((pc) => {
+          {filteredPcs.map((pc, idx) => {
             const isExpanded = expandedBuild === pc.id;
+            const delayClass = `assemble-delay-${(idx % 4) + 1}`;
             return (
               <div
                 key={pc.id}
-                className={`rounded-2xl bg-gw-card border transition-all duration-300 flex flex-col justify-between overflow-hidden group ${
+                className={`rounded-2xl bg-gw-card border transition-all duration-300 flex flex-col justify-between overflow-hidden group assemble-card assemble-up ${delayClass} ${
                   pc.popular 
                     ? 'border-red-600 shadow-red-glow' 
                     : 'border-gw-border hover:border-red-600/50 hover:shadow-lg'
@@ -275,7 +276,7 @@ export default function Prebuilts({ onAddToCart }) {
         </div>
 
         {/* Solid Ad Callout Banner */}
-        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-red-950/80 via-gw-card to-black border border-red-900/60 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-red-950/80 via-gw-card to-black border border-red-900/60 flex flex-col md:flex-row items-center justify-between gap-6 assemble-up assemble-delay-3">
           <div className="space-y-1.5 text-center md:text-left">
             <div className="text-xs font-tech font-bold text-red-500 uppercase tracking-widest-plus">CUSTOM WORKSTATIONS & LIQUID LOOPS</div>
             <h3 className="text-2xl sm:text-3xl font-display tracking-wider text-white">

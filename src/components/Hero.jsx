@@ -100,7 +100,7 @@ export default function Hero({ onOpenConsultation }) {
       </section>
 
       {/* 2. All Hero Details Below the Video Screen - Styled as Workbench Overview */}
-      <section id="hero-details" className="relative py-16 sm:py-24 border-b border-gw-border bg-[#070709]/85 backdrop-blur-md">
+      <section id="hero-details" className="relative py-16 sm:py-24 border-b border-gw-border bg-[#070709]/85 backdrop-blur-md assemble-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           
           {/* Main Grid: Left Ad Copy, Right Hardware Showcase */}
@@ -111,10 +111,10 @@ export default function Hero({ onOpenConsultation }) {
               
               {/* Big Impact Headline using Bebas Neue / Space Grotesk */}
               <div>
-                <div className="text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2">
+                <div className="text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2 assemble-down assemble-delay-1">
                   // WORKBENCH SPECIFICATION OVERVIEW
                 </div>
-                <h1 className="text-5xl sm:text-7xl lg:text-8xl font-display tracking-tight leading-[0.92] text-white">
+                <h1 className="text-5xl sm:text-7xl lg:text-8xl font-display tracking-tight leading-[0.92] text-white assemble-left assemble-delay-2">
                   CUSTOM GAMING RIGS. <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-600 to-amber-500 drop-shadow-[0_0_25px_rgba(229,9,20,0.7)]">
                     BUILT TO DOMINATE.
@@ -123,12 +123,12 @@ export default function Hero({ onOpenConsultation }) {
               </div>
 
               {/* Clear, Solid Subhead */}
-              <p className="text-base sm:text-lg text-gray-200 font-sans max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-gray-200 font-sans max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal assemble-left assemble-delay-3">
                 High-performance custom gaming PCs, 240Hz esports arena, and chip-level laptop repairs. Hand-assembled with sealed brand-new components, 24-hour benchmarked, and backed by a 3-year warranty with zero build fee.
               </p>
 
               {/* Slogan Banner with Official Founder Details */}
-              <div className="p-4 rounded-xl bg-black/75 border border-red-900/60 backdrop-blur-md shadow-solid-dark space-y-1">
+              <div className="p-4 rounded-xl bg-black/75 border border-red-900/60 backdrop-blur-md shadow-solid-dark space-y-1 assemble-left assemble-delay-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="text-sm sm:text-base font-tech font-bold text-red-400 uppercase tracking-wide">
                     "{COMPANY_INFO.slogan}"
@@ -143,7 +143,7 @@ export default function Hero({ onOpenConsultation }) {
               </div>
 
               {/* Solid CTAs */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2 assemble-up assemble-delay-5">
                 <a
                   href="#pc-builder"
                   onClick={() => playClickSound()}
@@ -176,19 +176,19 @@ export default function Hero({ onOpenConsultation }) {
 
               {/* 4 Solid Guarantees */}
               <div className="pt-2 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center">
+                <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center assemble-socket assemble-delay-6 assemble-card">
                   <div className="font-tech font-bold text-white text-xs">ZERO BUILD FEE</div>
                   <div className="text-[10px] text-gray-400 mt-0.5 font-sans">Pay only for parts</div>
                 </div>
-                <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center">
+                <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center assemble-socket assemble-delay-7 assemble-card">
                   <div className="font-tech font-bold text-white text-xs">24-HR STRESS TEST</div>
                   <div className="text-[10px] text-gray-400 mt-0.5 font-sans">FurMark logs provided</div>
                 </div>
-                <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center">
+                <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center assemble-socket assemble-delay-8 assemble-card">
                   <div className="font-tech font-bold text-white text-xs">3-YR WARRANTY</div>
                   <div className="text-[10px] text-gray-400 mt-0.5 font-sans">Local walk-in RMA</div>
                 </div>
-                <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center">
+                <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center assemble-socket assemble-delay-9 assemble-card">
                   <div className="font-tech font-bold text-white text-xs">SAME-DAY SERVICE</div>
                   <div className="text-[10px] text-gray-400 mt-0.5 font-sans">Laptop repasting</div>
                 </div>
@@ -197,7 +197,7 @@ export default function Hero({ onOpenConsultation }) {
             </div>
 
             {/* Right Solid Ad Showcase */}
-            <div className="lg:col-span-5 relative flex justify-center">
+            <div className="lg:col-span-5 relative flex justify-center assemble-right assemble-delay-3">
               <div className="relative w-full max-w-md">
                 
                 {/* Solid Card container */}
@@ -274,8 +274,8 @@ export default function Hero({ onOpenConsultation }) {
           </div>
 
           {/* 4 Pillars Section */}
-          <div className="mt-16 pt-12 border-t border-gw-border/60">
-            <div className="text-center mb-8">
+          <div className="mt-16 pt-12 border-t border-gw-border/60 assemble-on-scroll">
+            <div className="text-center mb-8 assemble-down assemble-delay-1">
               <h3 className="text-xs uppercase tracking-widest-plus font-tech font-bold text-red-500">
                 OUR 4 CORE DIVISIONS
               </h3>
@@ -285,12 +285,13 @@ export default function Hero({ onOpenConsultation }) {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {PILLARS.map((pillar) => {
+              {PILLARS.map((pillar, idx) => {
                 const IconComp = iconMap[pillar.icon] || Cpu;
+                const delayClass = `assemble-delay-${idx + 2}`;
                 return (
                   <div 
                     key={pillar.id}
-                    className="p-5 rounded-2xl bg-gw-card/90 border border-gw-border hover:border-red-600/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-red-glow backdrop-blur-sm"
+                    className={`p-5 rounded-2xl bg-gw-card/90 border border-gw-border hover:border-red-600/60 transition-all duration-300 assemble-up ${delayClass} assemble-card backdrop-blur-sm`}
                   >
                     <div className="w-12 h-12 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center mb-4">
                       <IconComp className="w-6 h-6" />

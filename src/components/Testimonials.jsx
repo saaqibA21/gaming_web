@@ -11,11 +11,11 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-[#070709]/85 backdrop-blur-md border-b border-gw-border relative">
+    <section className="py-16 sm:py-20 bg-[#070709]/85 backdrop-blur-md border-b border-gw-border relative assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-14 assemble-down assemble-delay-1">
           <div className="text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2">
             VERIFIED CUSTOMER REVIEWS
           </div>
@@ -32,7 +32,7 @@ export default function Testimonials() {
           {TESTIMONIALS.map((item, idx) => (
             <div 
               key={idx}
-              className="p-6 rounded-2xl bg-gw-card border border-gw-border hover:border-red-600/50 transition-all duration-300 flex flex-col justify-between relative group"
+              className={`p-6 rounded-2xl bg-gw-card border border-gw-border hover:border-red-600/50 transition-all duration-300 flex flex-col justify-between relative group assemble-card assemble-up assemble-delay-${idx + 1}`}
             >
               <Quote className="w-8 h-8 text-red-600/30 mb-3" />
               
@@ -60,7 +60,7 @@ export default function Testimonials() {
         </div>
 
         {/* Rig Showcase Gallery */}
-        <div className="pt-4">
+        <div className="pt-4 assemble-up assemble-delay-3">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
               <Camera className="w-5 h-5 text-red-500" />

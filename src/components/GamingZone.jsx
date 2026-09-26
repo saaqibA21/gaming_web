@@ -86,18 +86,18 @@ Please reserve our station/booth.`;
   };
 
   return (
-    <section id="gaming-zone" className="py-16 sm:py-20 bg-[#0a0a0f]/85 backdrop-blur-md border-b border-gw-border relative cyber-grid">
+    <section id="gaming-zone" className="py-16 sm:py-20 bg-[#0a0a0f]/85 backdrop-blur-md border-b border-gw-border relative cyber-grid assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2">
+          <div className="text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2 assemble-down assemble-delay-1">
             ESPORTS ARENA • PS5 4K VIP LOUNGE • SIM RACING
           </div>
-          <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-white">
+          <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-white assemble-down assemble-delay-2">
             THE GAMES WORLD <span className="text-red-600">GAMING ZONE</span>
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-gray-300 font-sans">
+          <p className="mt-2 text-sm sm:text-base text-gray-300 font-sans assemble-down assemble-delay-3">
             Chennai's competitive tournament destination. Powered by RTX 40-Series battle stations, 240Hz high-refresh displays, ultra-low ping gigabit fiber, and private 65" 4K 120Hz PlayStation 5 couch suites.
           </p>
         </div>
@@ -105,7 +105,7 @@ Please reserve our station/booth.`;
         {/* ========================================================================= */}
         {/* INTERACTIVE BATTLE STATION BAY TELEMETRY */}
         {/* ========================================================================= */}
-        <div className="mb-14 p-5 sm:p-7 rounded-2xl bg-black/85 border border-red-900/50 shadow-2xl relative overflow-hidden backdrop-blur-md">
+        <div className="mb-14 p-5 sm:p-7 rounded-2xl bg-black/85 border border-red-900/50 shadow-2xl relative overflow-hidden backdrop-blur-md assemble-socket assemble-delay-3">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-gw-border/80 mb-6">
             <div className="flex items-center gap-3">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -184,7 +184,7 @@ Please reserve our station/booth.`;
 
         {/* Pricing / Passes Section */}
         <div className="space-y-6">
-          <div className="text-center">
+          <div className="text-center assemble-down assemble-delay-3">
             <h3 className="text-3xl font-display tracking-wider text-white">
               GAMING PASSES & HOURLY RATES
             </h3>
@@ -192,10 +192,10 @@ Please reserve our station/booth.`;
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {GAMING_ZONE_PLANS.map((plan) => (
+            {GAMING_ZONE_PLANS.map((plan, idx) => (
               <div
                 key={plan.id}
-                className={`rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 relative border ${
+                className={`rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 relative border assemble-card assemble-up assemble-delay-${idx + 1} ${
                   plan.popular 
                     ? 'bg-gradient-to-b from-red-950/50 via-gw-card to-gw-card border-red-600 shadow-red-glow' 
                     : 'bg-gw-card border-gw-border hover:border-gray-500'
