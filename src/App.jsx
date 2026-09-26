@@ -12,6 +12,7 @@ import ConsultationModal from './components/ConsultationModal';
 import CartDrawer from './components/CartDrawer';
 import StickyWhatsApp from './components/StickyWhatsApp';
 import HologramFlowBg from './components/HologramFlowBg';
+import AssemblyHUD from './components/AssemblyHUD';
 
 export default function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -32,10 +33,13 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#070709] text-gray-100 flex flex-col font-condensed relative">
+    <div className="min-h-screen bg-[#070709] text-gray-100 flex flex-col font-sans relative">
       
       {/* Hologram Flow Canvas Background from video frames */}
       <HologramFlowBg />
+
+      {/* Assembly Telemetry HUD & Audio Controller */}
+      <AssemblyHUD />
 
       {/* Navigation Bar */}
       <Navbar 
@@ -46,25 +50,25 @@ export default function App() {
 
       {/* Main Content Sections with depth layering */}
       <main className="flex-1 relative z-10">
-        {/* Hero Section with 4 Pillars */}
+        {/* Hero Section: Live Assembly Bay 01 & Workbench Overview */}
         <Hero onOpenConsultation={() => setConsultationOpen(true)} />
 
-        {/* Custom PC Builder Configurator */}
+        {/* Custom PC Builder: Interactive Hardware Assembly Bench */}
         <PcBuilder onAddToCart={handleAddToCart} />
 
-        {/* Ready to Ship Prebuilts */}
+        {/* Prebuilt Systems: Factory-Assembled Rigs */}
         <Prebuilts onAddToCart={handleAddToCart} />
 
-        {/* Gaming Zone Arena */}
+        {/* Gaming Zone: 240Hz Battle Station Deployment */}
         <GamingZone />
 
-        {/* Laptop Service & Repair Lab */}
+        {/* Laptop Service: Microscopic Chip-Level Overhaul Lab */}
         <LaptopService />
 
-        {/* Why Games World / Quality Difference */}
+        {/* Why Games World: 24-Hr Benchmark & Assembly Standards */}
         <WhyUs />
 
-        {/* Community, Reviews & Rig Showcase */}
+        {/* Community & Benchmarked Rig Showcase */}
         <Testimonials />
       </main>
 

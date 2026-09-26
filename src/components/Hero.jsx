@@ -9,8 +9,13 @@ import {
   CheckCircle2, 
   Sparkles, 
   MessageSquare,
-  ChevronDown
+  ChevronDown,
+  Wrench,
+  Layers,
+  Flame,
+  Zap
 } from 'lucide-react';
+import { playClickSound } from '../utils/audioEffects';
 
 const iconMap = {
   Gamepad2: Gamepad2,
@@ -21,6 +26,7 @@ const iconMap = {
 
 export default function Hero({ onOpenConsultation }) {
   const scrollToContent = () => {
+    playClickSound();
     const el = document.getElementById('hero-details');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -29,26 +35,71 @@ export default function Hero({ onOpenConsultation }) {
 
   return (
     <>
-      {/* 1. Cinematic Intro Screen: ONLY the video plays unobstructed in full view */}
-      <section id="hero" className="relative h-[calc(100vh-80px)] min-h-[580px] flex flex-col justify-end items-center pb-10 select-none">
+      {/* 1. Cinematic Assembly Bay Stage: Live Hologram PC Construction with Technical Overlay */}
+      <section id="hero" className="relative h-[calc(100vh-80px)] min-h-[580px] flex flex-col justify-between items-center p-6 sm:p-10 select-none overflow-hidden">
         
-        {/* Subtle, elegant scroll indicator at the bottom center */}
-        <button
-          onClick={scrollToContent}
-          className="group flex flex-col items-center gap-2 cursor-pointer transition-all hover:scale-105"
-          aria-label="Scroll to explore details"
-        >
-          <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-black/70 hover:bg-black/90 border border-red-800/60 backdrop-blur-md shadow-2xl transition-all">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
-            <span className="text-xs font-tech font-bold uppercase tracking-widest text-gray-200 group-hover:text-white">
-              SCROLL TO EXPLORE
-            </span>
-            <ChevronDown className="w-4 h-4 text-red-500 group-hover:translate-y-0.5 transition-transform" />
+        {/* Technical Corner Alignment Ticks */}
+        <div className="corner-tick-tl"></div>
+        <div className="corner-tick-tr"></div>
+        <div className="corner-tick-bl"></div>
+        <div className="corner-tick-br"></div>
+
+        {/* Top Blueprint Telemetry Markers */}
+        <div className="w-full flex items-center justify-between text-[10px] font-tech text-gray-400 uppercase tracking-widest-plus pt-2">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+            <span className="text-red-500 font-bold">[ ASSEMBLY BAY 01 ]</span>
+            <span className="hidden sm:inline text-gray-500">• CHENNAI WORKBENCH</span>
           </div>
-        </button>
+
+          <div className="hidden sm:flex items-center gap-3 text-gray-400 font-mono">
+            <span>CALIBRATION: AM5 / LGA1700</span>
+            <span className="text-gray-600">|</span>
+            <span className="text-emerald-400">TELEMETRY: ACTIVE</span>
+          </div>
+        </div>
+
+        {/* Center Minimal Assembly Target Guide */}
+        <div className="flex flex-col items-center pointer-events-none opacity-40">
+          <div className="w-16 h-16 rounded-full border border-dashed border-red-500/50 flex items-center justify-center animate-spin" style={{ animationDuration: '20s' }}>
+            <div className="w-2 h-2 rounded-full bg-red-500"></div>
+          </div>
+          <span className="text-[9px] font-tech font-bold tracking-widest-plus text-red-500 uppercase mt-2">
+            ALIGNMENT CENTER
+          </span>
+        </div>
+
+        {/* Bottom Technical Control: PULL TO ASSEMBLE */}
+        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 pb-2">
+          
+          <div className="hidden sm:block text-[10px] font-tech text-gray-400 uppercase tracking-wider font-mono">
+            TORQUE: 0.6 Nm • KRYONAUT THERMAL PROFILE
+          </div>
+
+          {/* Interactive Scroll Anchor */}
+          <button
+            onClick={scrollToContent}
+            className="group flex flex-col items-center gap-2 cursor-pointer transition-all hover:scale-105"
+            aria-label="Scroll to construct system"
+          >
+            <div className="flex items-center gap-2.5 px-6 py-3 rounded-full bg-black/80 hover:bg-black border border-red-700/70 backdrop-blur-md shadow-2xl shadow-red-950/50 transition-all">
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+              <span className="text-xs font-tech font-bold uppercase tracking-widest-plus text-gray-200 group-hover:text-white">
+                PULL TO ASSEMBLE // SCROLL TO CONSTRUCT
+              </span>
+              <ChevronDown className="w-4 h-4 text-red-500 group-hover:translate-y-0.5 transition-transform" />
+            </div>
+          </button>
+
+          <div className="hidden sm:block text-[10px] font-tech text-gray-400 uppercase tracking-wider font-mono text-right">
+            PCIE 5.0 INTERFACE • 24HR BURN-IN
+          </div>
+
+        </div>
+
       </section>
 
-      {/* 2. All Hero Details Moved Down Below the Video Screen */}
+      {/* 2. All Hero Details Below the Video Screen - Styled as Workbench Overview */}
       <section id="hero-details" className="relative py-16 sm:py-24 border-b border-gw-border bg-[#070709]/85 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           
@@ -61,7 +112,7 @@ export default function Hero({ onOpenConsultation }) {
               {/* Big Impact Headline using Bebas Neue / Space Grotesk */}
               <div>
                 <div className="text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2">
-                  CHENNAI'S PREMIER GAMING HARDWARE DESTINATION
+                  // WORKBENCH SPECIFICATION OVERVIEW
                 </div>
                 <h1 className="text-5xl sm:text-7xl lg:text-8xl font-display tracking-tight leading-[0.92] text-white">
                   CUSTOM GAMING RIGS. <br />
@@ -95,24 +146,27 @@ export default function Hero({ onOpenConsultation }) {
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
                 <a
                   href="#pc-builder"
+                  onClick={() => playClickSound()}
                   className="flex items-center gap-2.5 px-7 py-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-sm tracking-wider uppercase shadow-red-glow hover:shadow-red-glow-lg transition-all transform hover:-translate-y-0.5"
                 >
                   <Cpu className="w-5 h-5" />
-                  <span>Configure Your PC</span>
+                  <span>Enter Assembly Bay (PC Builder)</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
 
                 <a
                   href="#prebuilts"
+                  onClick={() => playClickSound()}
                   className="flex items-center gap-2 px-6 py-4 rounded-xl bg-gw-card hover:bg-gw-card-hover border border-gw-border hover:border-red-600/60 text-gray-100 hover:text-white font-tech font-bold text-sm tracking-wider uppercase transition-all"
                 >
-                  <span>Shop Prebuilts</span>
+                  <span>Factory Prebuilts</span>
                 </a>
 
                 <a
                   href={`https://wa.me/${COMPANY_INFO.whatsappNumber}?text=Hi%20Pradhaan!%20I%20want%20to%20inquire%20about%20a%20Gaming%20PC/Laptop%20Service.`}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => playClickSound()}
                   className="flex items-center gap-2 px-5 py-4 rounded-xl bg-emerald-700/80 hover:bg-emerald-600 text-white font-tech font-bold text-sm tracking-wider uppercase transition-all"
                 >
                   <MessageSquare className="w-4 h-4" />
@@ -124,19 +178,19 @@ export default function Hero({ onOpenConsultation }) {
               <div className="pt-2 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
                 <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center">
                   <div className="font-tech font-bold text-white text-xs">ZERO BUILD FEE</div>
-                  <div className="text-[10px] text-gray-400 mt-0.5">Pay only for parts</div>
+                  <div className="text-[10px] text-gray-400 mt-0.5 font-sans">Pay only for parts</div>
                 </div>
                 <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center">
                   <div className="font-tech font-bold text-white text-xs">24-HR STRESS TEST</div>
-                  <div className="text-[10px] text-gray-400 mt-0.5">FurMark logs provided</div>
+                  <div className="text-[10px] text-gray-400 mt-0.5 font-sans">FurMark logs provided</div>
                 </div>
                 <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center">
                   <div className="font-tech font-bold text-white text-xs">3-YR WARRANTY</div>
-                  <div className="text-[10px] text-gray-400 mt-0.5">Local walk-in RMA</div>
+                  <div className="text-[10px] text-gray-400 mt-0.5 font-sans">Local walk-in RMA</div>
                 </div>
                 <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center">
                   <div className="font-tech font-bold text-white text-xs">SAME-DAY SERVICE</div>
-                  <div className="text-[10px] text-gray-400 mt-0.5">Laptop repasting</div>
+                  <div className="text-[10px] text-gray-400 mt-0.5 font-sans">Laptop repasting</div>
                 </div>
               </div>
 
@@ -176,7 +230,7 @@ export default function Hero({ onOpenConsultation }) {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
                     <div className="absolute bottom-3 left-3 right-3">
-                      <div className="text-[10px] font-tech font-bold text-red-400 uppercase tracking-wider">FEATURED SPECIFICATION</div>
+                      <div className="text-[10px] font-tech font-bold text-red-400 uppercase tracking-wider">SAMPLE BENCH SPECIFICATION</div>
                       <div className="text-xl font-display tracking-wider text-white">VALKYRIE 1440P EDITION</div>
                       <div className="text-xs text-gray-200 font-sans">Ryzen 7 7800X3D • RTX 4070 Super 12GB • 32GB DDR5 6000MHz</div>
                     </div>
@@ -197,7 +251,10 @@ export default function Hero({ onOpenConsultation }) {
                   {/* Direct Action Buttons */}
                   <div className="grid grid-cols-2 gap-2 pt-1">
                     <button
-                      onClick={onOpenConsultation}
+                      onClick={() => {
+                        playClickSound();
+                        onOpenConsultation();
+                      }}
                       className="w-full py-2.5 px-3 rounded-lg bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider transition-colors"
                     >
                       Free Build Quote

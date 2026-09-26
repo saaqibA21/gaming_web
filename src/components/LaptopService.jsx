@@ -12,8 +12,13 @@ import {
   Clock, 
   ShieldCheck, 
   ArrowRight,
-  Send
+  Send,
+  Microscope,
+  ThermometerSnowflake,
+  Activity,
+  Layers
 } from 'lucide-react';
+import { playClickSound, playMountSound } from '../utils/audioEffects';
 
 const iconMap = {
   Flame,
@@ -24,7 +29,39 @@ const iconMap = {
   Zap
 };
 
+const TEARDOWN_STEPS = [
+  {
+    step: '01',
+    title: 'ESD-Safe Micro-Teardown',
+    detail: 'Torque-calibrated disassembly on grounded antistatic mat. High-frequency ultrasonic chassis & dual turbine fan de-oxidation.',
+    spec: '0.1mm indexing / 0.35Nm torque limit',
+    icon: Wrench
+  },
+  {
+    step: '02',
+    title: 'Chip-Level Rail & MOSFET Tracing',
+    detail: 'Thermal camera infrared hotspot isolation. Micro-soldering of shorted capacitors, PWM controllers, and DrMOS power stages under 40x magnification.',
+    spec: 'FLIR IR <0.5°C delta / 40x Trinocular Microscope',
+    icon: Microscope
+  },
+  {
+    step: '03',
+    title: 'Phase-Change Kryonaut Repasting',
+    detail: 'Mirror-finish vapor chamber polishing. Application of Thermal Grizzly Kryonaut Extreme + K5 Pro viscous thermal pads across VRAM & VRMs.',
+    spec: '14.2 W/m-K thermal conductivity / Zero void spread',
+    icon: ThermometerSnowflake
+  },
+  {
+    step: '04',
+    title: '24-Hour Thermal Burn-In & QA',
+    detail: 'Simultaneous 100% CPU Cinebench R23 and 3DMark Time Spy loops. Verified delta-T below 75°C without acoustic fan throttling.',
+    spec: '24h loop log provided / 90-day chip warranty',
+    icon: Activity
+  }
+];
+
 export default function LaptopService() {
+  const [activeTeardownStep, setActiveTeardownStep] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -36,6 +73,7 @@ export default function LaptopService() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    playMountSound();
     const msg = `*GAMES WORLD CHENNAI - LAPTOP SERVICE REQUEST*
 Name: ${formData.name}
 Phone: ${formData.phone}
@@ -51,20 +89,93 @@ Please arrange a diagnostic consultation / walk-in slot.`;
   };
 
   return (
-    <section id="laptop-service" className="py-16 sm:py-20 bg-[#070709]/85 backdrop-blur-md border-b border-gw-border relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="laptop-service" className="py-16 sm:py-20 bg-[#070709]/85 backdrop-blur-md border-b border-gw-border relative blueprint-grid">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2">
-            CHIP-LEVEL MOTHERBOARD & THERMAL REPAIR LAB
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-700/60 text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2">
+            <Microscope className="w-3.5 h-3.5 text-red-400 animate-pulse" />
+            <span>CHIP-LEVEL MOTHERBOARD & THERMAL REPAIR LAB</span>
           </div>
           <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-white">
-            GAMING LAPTOP <span className="text-red-600">SERVICE</span>
+            SURGICAL TEARDOWN & <span className="text-red-600">REBUILD BAY</span>
           </h2>
           <p className="mt-2 text-sm sm:text-base text-gray-300 font-sans">
-            Thermal throttling? Artifacting GPU? Dead power rail? Microscopic chip-level repair for ASUS ROG, Lenovo Legion, Dell Alienware, MSI, HP Omen, and Acer Predator.
+            Thermal throttling? Artifacting GPU? Dead power rail? Microscopic chip-level repair and liquid metal repasting for ASUS ROG, Lenovo Legion, Dell Alienware, MSI, HP Omen, and Acer Predator.
           </p>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* SURGICAL TEARDOWN PIPELINE SCHEMATIC */}
+        {/* ========================================================================= */}
+        <div className="mb-14 p-5 sm:p-7 rounded-2xl bg-black/85 border border-red-900/50 shadow-2xl relative overflow-hidden backdrop-blur-md">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-gw-border/80 mb-6">
+            <div className="flex items-center gap-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+              <div>
+                <h3 className="text-xl font-display tracking-wider text-white flex items-center gap-2">
+                  <span>CLEAN-ROOM REBUILD PROTOCOL</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded bg-red-950 text-red-400 border border-red-800 font-tech font-bold uppercase">
+                    STAGE {TEARDOWN_STEPS[activeTeardownStep].step} ACTIVE
+                  </span>
+                </h3>
+                <p className="text-[11px] text-gray-400 font-sans">
+                  Click any stage below to inspect the microscopic teardown process.
+                </p>
+              </div>
+            </div>
+            <div className="text-xs font-tech text-gray-400">
+              LAB ENVIRONMENT: <span className="text-emerald-400 font-bold">ESD CLASS 1 • ISO CLASS 7</span>
+            </div>
+          </div>
+
+          {/* Stepper Tabs */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+            {TEARDOWN_STEPS.map((step, idx) => {
+              const StepIcon = step.icon;
+              const isActive = activeTeardownStep === idx;
+              return (
+                <button
+                  key={step.step}
+                  onClick={() => {
+                    playClickSound();
+                    setActiveTeardownStep(idx);
+                  }}
+                  className={`p-3.5 rounded-xl border text-left transition-all relative ${
+                    isActive
+                      ? 'bg-red-950/60 border-red-500 shadow-red-glow text-white'
+                      : 'bg-gw-card/80 border-gw-border hover:border-gray-500 text-gray-400'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-tech font-bold text-red-400">
+                      STEP {step.step}
+                    </span>
+                    <StepIcon className={`w-4 h-4 ${isActive ? 'text-red-400' : 'text-gray-500'}`} />
+                  </div>
+                  <div className="text-xs font-display tracking-wider text-white font-bold leading-tight">
+                    {step.title}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Step Deep Dive Panel */}
+          <div className="p-4 sm:p-5 rounded-xl bg-gw-card/90 border border-gw-border/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="text-xs font-tech font-bold text-red-400 uppercase tracking-wider">
+                STAGE SPECIFICATION // {TEARDOWN_STEPS[activeTeardownStep].title}
+              </div>
+              <p className="text-xs sm:text-sm text-gray-200 font-sans">
+                {TEARDOWN_STEPS[activeTeardownStep].detail}
+              </p>
+            </div>
+            <div className="whitespace-nowrap px-3.5 py-2 rounded-lg bg-black/70 border border-red-900/50 text-[11px] font-tech text-red-300">
+              TOLERANCE: <span className="font-bold text-white">{TEARDOWN_STEPS[activeTeardownStep].spec}</span>
+            </div>
+          </div>
         </div>
 
         {/* Services Grid & Interactive Booking Form */}
@@ -77,7 +188,8 @@ Please arrange a diagnostic consultation / walk-in slot.`;
               return (
                 <div 
                   key={srv.id}
-                  className="p-5 rounded-2xl bg-gw-card border border-gw-border hover:border-red-600/50 transition-all duration-300 flex flex-col justify-between group hover:shadow-lg"
+                  onClick={playClickSound}
+                  className="p-5 rounded-2xl bg-gw-card border border-gw-border hover:border-red-600/50 transition-all duration-300 flex flex-col justify-between group hover:shadow-lg cursor-pointer"
                 >
                   <div>
                     <div className="w-10 h-10 rounded-xl bg-red-600/15 text-red-500 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">

@@ -11,9 +11,13 @@ import {
   ChevronDown, 
   ChevronUp,
   Cpu,
-  Clock
+  Clock,
+  Wrench,
+  CheckCircle2,
+  FileCheck
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { playClickSound, playMountSound } from '../utils/audioEffects';
 
 export default function Prebuilts({ onAddToCart }) {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -31,12 +35,19 @@ export default function Prebuilts({ onAddToCart }) {
     ? PREBUILT_PCS 
     : PREBUILT_PCS.filter(pc => pc.category === activeCategory);
 
+  const handleCategorySelect = (id) => {
+    playClickSound();
+    setActiveCategory(id);
+  };
+
   const handleWhatsAppOrder = (pc) => {
+    playClickSound();
     const text = encodeURIComponent(`Hi Games World! I want to order the prebuilt PC: *${pc.name}* (Price: ₹${pc.price.toLocaleString('en-IN')}). Please confirm stock and delivery timeline.`);
     window.open(`https://wa.me/${COMPANY_INFO.whatsappNumber}?text=${text}`, '_blank');
   };
 
   const handleAddToCart = (pc) => {
+    playMountSound();
     if (onAddToCart) {
       onAddToCart({
         id: pc.id,
@@ -70,7 +81,7 @@ export default function Prebuilts({ onAddToCart }) {
             {categories.map((cat) => (
               <button
                 key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
+                onClick={() => handleCategorySelect(cat.id)}
                 className={`px-4 py-2 rounded-xl text-xs font-tech font-bold uppercase tracking-wider transition-all duration-200 border ${
                   activeCategory === cat.id
                     ? 'bg-red-600 text-white border-red-500 shadow-red-glow'
@@ -134,6 +145,16 @@ export default function Prebuilts({ onAddToCart }) {
                 {/* Content */}
                 <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                   <div>
+                    <div className="flex items-center justify-between gap-1 mb-1">
+                      <span className="text-[10px] font-tech font-bold text-red-400 uppercase tracking-widest">
+                        BENCH SPEC // READY
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-[10px] font-tech text-emerald-400">
+                        <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                        PASSED
+                      </span>
+                    </div>
+
                     <h3 className="text-xl font-display tracking-wider text-white group-hover:text-red-400 transition-colors">
                       {pc.name}
                     </h3>
@@ -182,6 +203,18 @@ export default function Prebuilts({ onAddToCart }) {
                         <div className="text-[11px] text-gray-400 pt-1 font-sans">
                           Chassis: <span className="text-white font-medium">{pc.specs.cabinet}</span>
                         </div>
+                        
+                        {/* Assembly Verification Certificate */}
+                        <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border space-y-1 text-[10px] font-tech text-gray-300">
+                          <div className="text-red-400 font-bold uppercase flex items-center gap-1">
+                            <FileCheck className="w-3 h-3" />
+                            GAMES WORLD BENCH CERTIFIED
+                          </div>
+                          <div className="text-gray-400">✓ Thermal Grizzly Kryonaut TIM</div>
+                          <div className="text-gray-400">✓ XMP / EXPO Memory Profile Locked</div>
+                          <div className="text-gray-400">✓ 24hr Continuous Stress Tested</div>
+                        </div>
+
                         <div className="text-[10px] text-emerald-400 font-tech font-bold uppercase">
                           🛡 {pc.warranty}
                         </div>
@@ -189,10 +222,13 @@ export default function Prebuilts({ onAddToCart }) {
                     )}
 
                     <button
-                      onClick={() => setExpandedBuild(isExpanded ? null : pc.id)}
+                      onClick={() => {
+                        playClickSound();
+                        setExpandedBuild(isExpanded ? null : pc.id);
+                      }}
                       className="mt-3 text-xs text-gray-400 hover:text-white flex items-center gap-1 font-tech font-bold uppercase tracking-wider transition-colors"
                     >
-                      <span>{isExpanded ? "Hide Benchmarks" : "View FPS Benchmarks"}</span>
+                      <span>{isExpanded ? "Hide Assembly Specs" : "View Assembly Specs & FPS"}</span>
                       {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                     </button>
                   </div>

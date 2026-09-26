@@ -10,10 +10,42 @@ import {
   CheckCircle2, 
   Share2, 
   Users,
-  Sparkles
+  Sparkles,
+  Flame,
+  Activity,
+  Radio
 } from 'lucide-react';
+import { playClickSound, playMountSound } from '../utils/audioEffects';
+
+const BATTLE_STATIONS = [
+  {
+    id: 'station-esports',
+    name: 'STATION 01 // 240Hz ESPORTS ARENA',
+    tag: 'RTX 4070 SUPER • 240Hz FAST-IPS',
+    specs: 'Intel Core i7-14700KF | RTX 4070 Super 12GB | 240Hz Fast-IPS 0.5ms | Glorious Model O & Wooting 60HE | Low-Ping Dedicated Gigabit LAN',
+    games: ['Valorant', 'Counter-Strike 2', 'Apex Legends', 'Overwatch 2'],
+    icon: Trophy
+  },
+  {
+    id: 'station-ps5',
+    name: 'STATION 02 // 4K 120Hz PS5 VIP SUITE',
+    tag: '65" SONY 4K OLED • 4-WAY DUALSENSE',
+    specs: 'PlayStation 5 Disc Edition | 65" 4K 120Hz OLED HDR Display | 4x Haptic DualSense Controllers | Recliner Leather Lounge Suite',
+    games: ['EA Sports FC 24', 'WWE 2K24', 'Tekken 8', 'Mortal Kombat 1', 'Spider-Man 2'],
+    icon: Tv
+  },
+  {
+    id: 'station-sim',
+    name: 'STATION 03 // SIM RACING COCKPIT',
+    tag: 'FORCE FEEDBACK • STEEL COCKPIT',
+    specs: 'Next-Level Racing Steel Rig | Logitech G29 Force-Feedback Dual Motor Wheel | 6-Speed Shifter | Triple Pedals | 144Hz Curved Display',
+    games: ['Gran Turismo 7', 'Forza Horizon 5', 'Assetto Corsa', 'F1 24'],
+    icon: Headphones
+  }
+];
 
 export default function GamingZone() {
+  const [activeStation, setActiveStation] = useState(0);
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(GAMING_ZONE_PLANS[1]);
   const [bookingData, setBookingData] = useState({
@@ -24,15 +56,23 @@ export default function GamingZone() {
     players: '1 Player'
   });
 
+  const handleStationClick = (idx) => {
+    playClickSound();
+    setActiveStation(idx);
+  };
+
   const handleBookClick = (plan) => {
+    playMountSound();
     setSelectedPlan(plan);
     setBookingModalOpen(true);
   };
 
   const handleBookingSubmit = (e) => {
     e.preventDefault();
+    playMountSound();
     const msg = `*GAMES WORLD CHENNAI - ARENA SEAT RESERVATION*
 Plan: ${selectedPlan.title} (${selectedPlan.price})
+Station: ${BATTLE_STATIONS[activeStation].name}
 Name: ${bookingData.name}
 Phone: ${bookingData.phone}
 Date: ${bookingData.date || 'Today'}
@@ -62,39 +102,84 @@ Please reserve our station/booth.`;
           </p>
         </div>
 
-        {/* Feature Highlights Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
-          
-          <div className="p-6 rounded-2xl bg-gw-card border border-gw-border hover:border-red-600/50 transition-all duration-300 group">
-            <div className="w-12 h-12 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <Trophy className="w-6 h-6" />
+        {/* ========================================================================= */}
+        {/* INTERACTIVE BATTLE STATION BAY TELEMETRY */}
+        {/* ========================================================================= */}
+        <div className="mb-14 p-5 sm:p-7 rounded-2xl bg-black/85 border border-red-900/50 shadow-2xl relative overflow-hidden backdrop-blur-md">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-gw-border/80 mb-6">
+            <div className="flex items-center gap-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <div>
+                <h3 className="text-xl font-display tracking-wider text-white flex items-center gap-2">
+                  <span>ARENA STATIONS // READY FOR DEPLOYMENT</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded bg-red-950 text-red-400 border border-red-800 font-tech font-bold uppercase">
+                    FIBER: 1.2ms PING
+                  </span>
+                </h3>
+                <p className="text-[11px] text-gray-400 font-sans">
+                  Select a station loadout below to inspect the dedicated hardware & tournament peripherals.
+                </p>
+              </div>
             </div>
-            <h3 className="text-2xl font-display tracking-wider text-white mb-2">240Hz TOURNAMENT RIGS</h3>
-            <p className="text-xs text-gray-300 font-sans leading-relaxed">
-              Every esports station features 240Hz Fast-IPS monitors, RTX 4070 Super graphics, mechanical switches, and zero-packet-loss fiber for Valorant, CS2, and Apex Legends.
-            </p>
+            <div className="text-xs font-tech text-gray-400">
+              LOCATION: <span className="text-white font-bold">ATHIPATTEN ST, CHENNAI</span>
+            </div>
           </div>
 
-          <div className="p-6 rounded-2xl bg-gw-card border border-gw-border hover:border-red-600/50 transition-all duration-300 group">
-            <div className="w-12 h-12 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <Tv className="w-6 h-6" />
-            </div>
-            <h3 className="text-2xl font-display tracking-wider text-white mb-2">PS5 4K 120Hz VIP COUCH</h3>
-            <p className="text-xs text-gray-300 font-sans leading-relaxed">
-              Private leather recliner couch booth with a 65-inch 4K 120Hz OLED TV and 4 DualSense controllers. Ready for FC 24, WWE 2K24, Tekken 8, and Mortal Kombat 1.
-            </p>
+          {/* Station Tabs */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+            {BATTLE_STATIONS.map((station, idx) => {
+              const StationIcon = station.icon;
+              const isActive = activeStation === idx;
+              return (
+                <button
+                  key={station.id}
+                  onClick={() => handleStationClick(idx)}
+                  className={`p-4 rounded-xl border text-left transition-all relative ${
+                    isActive
+                      ? 'bg-red-950/60 border-red-500 shadow-red-glow text-white'
+                      : 'bg-gw-card/80 border-gw-border hover:border-gray-500 text-gray-400'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-tech font-bold text-red-400">
+                      {station.tag}
+                    </span>
+                    <StationIcon className={`w-4 h-4 ${isActive ? 'text-red-400' : 'text-gray-500'}`} />
+                  </div>
+                  <div className="text-sm font-display tracking-wider text-white font-bold leading-tight">
+                    {station.name}
+                  </div>
+                </button>
+              );
+            })}
           </div>
 
-          <div className="p-6 rounded-2xl bg-gw-card border border-gw-border hover:border-red-600/50 transition-all duration-300 group">
-            <div className="w-12 h-12 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <Headphones className="w-6 h-6" />
+          {/* Active Station Specs & Preloaded Titles */}
+          <div className="p-4 sm:p-5 rounded-xl bg-gw-card/90 border border-gw-border/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="space-y-2">
+              <div className="text-xs font-tech font-bold text-red-400 uppercase tracking-wider">
+                STATION HARDWARE LOADOUT:
+              </div>
+              <p className="text-xs sm:text-sm text-gray-200 font-sans">
+                {BATTLE_STATIONS[activeStation].specs}
+              </p>
+              <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                <span className="text-[10px] font-tech text-gray-400 uppercase">Pre-Loaded Titles:</span>
+                {BATTLE_STATIONS[activeStation].games.map((g) => (
+                  <span key={g} className="px-2 py-0.5 rounded bg-black/60 border border-gw-border text-[10px] font-tech text-emerald-400">
+                    {g}
+                  </span>
+                ))}
+              </div>
             </div>
-            <h3 className="text-2xl font-display tracking-wider text-white mb-2">FORCE-FEEDBACK SIM RACING</h3>
-            <p className="text-xs text-gray-300 font-sans leading-relaxed">
-              Dedicated steel cockpit rig with Logitech G29 force-feedback wheel, paddle shifters, and 3-pedal floor unit for Gran Turismo 7 and Forza Horizon 5.
-            </p>
+            <button
+              onClick={() => handleBookClick(selectedPlan)}
+              className="whitespace-nowrap px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider transition-all shadow-red-glow"
+            >
+              Reserve This Station
+            </button>
           </div>
-
         </div>
 
         {/* Pricing / Passes Section */}

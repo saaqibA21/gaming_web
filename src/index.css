@@ -25,17 +25,26 @@
   background: #e50914;
 }
 
-/* Cyber gaming background grid pattern */
+/* Technical Blueprint Grid Pattern */
+.blueprint-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(229, 9, 20, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(229, 9, 20, 0.08) 1px, transparent 1px);
+}
+
+.blueprint-grid-fine {
+  background-size: 16px 16px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
 .cyber-grid {
   background-size: 40px 40px;
   background-image: 
     linear-gradient(to right, rgba(229, 9, 20, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(229, 9, 20, 0.05) 1px, transparent 1px);
-}
-
-.cyber-dots {
-  background-image: radial-gradient(rgba(229, 9, 20, 0.15) 1px, transparent 1px);
-  background-size: 24px 24px;
 }
 
 .glow-text-red {
@@ -52,4 +61,110 @@
 
 .clip-angle-sm {
   clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+
+/* Mechanical slotting and mounting animations */
+@keyframes slotSnap {
+  0% {
+    transform: translateY(-8px) scale(0.98);
+    opacity: 0.6;
+  }
+  60% {
+    transform: translateY(2px) scale(1.01);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-slot-snap {
+  animation: slotSnap 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes laserScan {
+  0% {
+    top: 0%;
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0.2;
+  }
+}
+
+.animate-laser-scan {
+  animation: laserScan 2.5s linear infinite;
+}
+
+/* Technical blueprint corner ticks */
+.corner-tick-tl {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #e50914;
+  border-left: 2px solid #e50914;
+}
+
+.corner-tick-tr {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #e50914;
+  border-right: 2px solid #e50914;
+}
+
+.corner-tick-bl {
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid #e50914;
+  border-left: 2px solid #e50914;
+}
+
+.corner-tick-br {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid #e50914;
+  border-right: 2px solid #e50914;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #blueprint-quotation-print,
+  #blueprint-quotation-print * {
+    visibility: visible;
+  }
+  #blueprint-quotation-print {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: white !important;
+    color: black !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  #blueprint-quotation-print .print-hide {
+    display: none !important;
+  }
+  #blueprint-quotation-print * {
+    color: black !important;
+  }
 }
