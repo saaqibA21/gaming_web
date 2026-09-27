@@ -1,21 +1,20 @@
-import React from 'react';
-import { COMPANY_INFO } from '../data/mockData';
-import { X, Trash2, ShoppingBag, Share2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, Trash2, ShoppingBag, CheckCircle2, Send } from 'lucide-react';
 
 export default function CartDrawer({ isOpen, onClose, cartItems = [], onRemoveItem, onClearCart }) {
+  const [orderSubmitted, setOrderSubmitted] = useState(false);
+
   if (!isOpen) return null;
 
   const totalAmount = cartItems.reduce((acc, item) => acc + (item.price || 0), 0);
 
-  const handleCheckoutWhatsApp = () => {
-    let msg = `*GAMES WORLD CHENNAI - CART CHECKOUT*\nDate: ${new Date().toLocaleDateString('en-IN')}\n\n`;
-    cartItems.forEach((item, idx) => {
-      msg += `${idx + 1}. *${item.name}* - ₹${item.price.toLocaleString('en-IN')}\n`;
-    });
-    msg += `\n*TOTAL ESTIMATE: ₹${totalAmount.toLocaleString('en-IN')}*\n`;
-    msg += `• GST & Invoice Included\n• 3-Year Hardware Warranty\n\nPlease confirm stock and dispatch!`;
-
-    window.open(`https://wa.me/${COMPANY_INFO.whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+  const handleCheckout = () => {
+    setOrderSubmitted(true);
+    setTimeout(() => {
+      onClearCart();
+      setOrderSubmitted(false);
+      onClose();
+    }, 3000);
   };
 
   return (
@@ -98,13 +97,25 @@ export default function CartDrawer({ isOpen, onClose, cartItems = [], onRemoveIt
                 </span>
               </div>
 
-              <button
-                onClick={handleCheckoutWhatsApp}
-                className="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-tech font-bold text-xs uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 transition-all"
-              >
-                <Share2 className="w-4 h-4" />
-                <span>Complete Order via WhatsApp</span>
-              </button>
+              {orderSubmitted ? (
+                <div className="p-4 rounded-xl bg-emerald-950/40 border border-emerald-800 text-center space-y-1">
+                  <div className="flex items-center justify-center gap-1.5 text-emerald-400 font-tech font-bold text-sm uppercase">
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>ORDER TICKET GENERATED!</span>
+                  </div>
+                  <div className="text-xs text-gray-300">
+                    Your build configuration invoice has been prepared for dispatch processing.
+                  </div>
+                </div>
+              ) : (
+                <button
+                  onClick={handleCheckout}
+                  className="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider shadow-red-glow flex items-center justify-center gap-2 transition-all"
+                >
+                  <Send className="w-4 h-4" />
+                  <span>Submit Order Request</span>
+                </button>
+              )}
 
               <button
                 onClick={onClearCart}

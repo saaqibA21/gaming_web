@@ -1,20 +1,17 @@
 import React from 'react';
 import { COMPANY_INFO } from '../data/mockData';
 import { 
-  Phone, 
-  Mail, 
   MapPin, 
   Clock, 
   Shield, 
   ArrowUp, 
-  MessageSquare,
-  Cpu,
-  Gamepad2,
-  Laptop,
-  CheckCircle2
+  Cpu, 
+  Laptop, 
+  CheckCircle2,
+  Sparkles
 } from 'lucide-react';
 
-export default function Footer() {
+export default function Footer({ onOpenConsultation }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -36,7 +33,7 @@ export default function Footer() {
                 VISIT GAMES WORLD IN CHENNAI
               </h3>
               <p className="text-sm text-gray-300 leading-relaxed max-w-xl font-sans">
-                Test our 240Hz tournament battle stations, try out the PlayStation 5 4K 120Hz VIP couch lounge, or consult directly with our founder on custom liquid-cooled rigs.
+                Consult directly with our expert hardware technicians on custom liquid-cooled rigs, high-FPS workstation builds, and chip-level motherboard service.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs">
@@ -68,7 +65,7 @@ export default function Footer() {
                   className="w-full h-auto rounded-xl object-contain shadow-2xl hover:scale-[1.02] transition-transform duration-300"
                 />
                 <div className="mt-2 text-center text-[11px] text-gray-400 font-sans">
-                  Founder: <span className="text-white font-bold">{COMPANY_INFO.founder}</span> • Official Games World Membership Card
+                  Official Games World Store & Service Warranty Guarantee
                 </div>
               </div>
             </div>
@@ -104,7 +101,7 @@ export default function Footer() {
               "{COMPANY_INFO.slogan}"
             </p>
             <p className="text-xs text-gray-400 leading-relaxed font-sans">
-              Custom PC builds, 240Hz esports gaming arena, and chip-level laptop repairs. Athipatten Street, Chennai.
+              Custom PC builds and chip-level laptop repairs. Athipatten Street, Chennai.
             </p>
           </div>
 
@@ -124,12 +121,6 @@ export default function Footer() {
                 <a href="#prebuilts" className="hover:text-red-400 transition-colors flex items-center gap-1.5">
                   <Shield className="w-3.5 h-3.5 text-red-500" />
                   <span>Curated Prebuilt Rigs</span>
-                </a>
-              </li>
-              <li>
-                <a href="#gaming-zone" className="hover:text-red-400 transition-colors flex items-center gap-1.5">
-                  <Gamepad2 className="w-3.5 h-3.5 text-red-500" />
-                  <span>240Hz Esports Arena & PS5 Lounge</span>
                 </a>
               </li>
               <li>
@@ -171,44 +162,32 @@ export default function Footer() {
           {/* Contact Details */}
           <div className="space-y-3">
             <h4 className="text-base font-display tracking-wider text-white uppercase">
-              CONTACT STORE
+              STORE ASSISTANCE
             </h4>
             
-            <div className="space-y-2.5 text-xs font-sans">
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-red-500 flex-shrink-0" />
-                <div>
-                  <a href={`tel:${COMPANY_INFO.primaryPhone}`} className="hover:text-white font-bold block text-sm font-tech">
-                    {COMPANY_INFO.primaryPhone}
-                  </a>
-                  <a href={`tel:${COMPANY_INFO.phones[1]}`} className="hover:text-white text-gray-400 block text-xs font-tech">
-                    {COMPANY_INFO.phones[1]}
-                  </a>
+            <div className="space-y-3 text-xs font-sans">
+              <div className="p-3 rounded-lg bg-gw-card border border-gw-border">
+                <div className="font-tech font-bold text-gray-300 uppercase text-[11px]">Walk-In Desk</div>
+                <div className="text-gray-400 mt-1 leading-relaxed">
+                  Athipatten Street, Chennai (Back side Bharat Petroleum)
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-red-500 flex-shrink-0" />
-                <div>
-                  <a href={`mailto:${COMPANY_INFO.emails[0]}`} className="hover:text-white block truncate">
-                    {COMPANY_INFO.emails[0]}
-                  </a>
-                  <a href={`mailto:${COMPANY_INFO.emails[1]}`} className="hover:text-white text-gray-400 block truncate">
-                    {COMPANY_INFO.emails[1]}
-                  </a>
+              <div className="p-3 rounded-lg bg-gw-card border border-gw-border">
+                <div className="font-tech font-bold text-gray-300 uppercase text-[11px]">Hours of Operation</div>
+                <div className="text-gray-400 mt-1 leading-relaxed">
+                  Monday – Sunday: 10:30 AM – 9:30 PM
                 </div>
               </div>
 
-              <div className="pt-2">
-                <a
-                  href={`https://wa.me/${COMPANY_INFO.whatsappNumber}?text=Hi%20Games%20World!%20I%20have%20an%20inquiry.`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-tech font-bold text-xs uppercase tracking-wider transition-colors"
+              <div className="pt-1">
+                <button
+                  onClick={onOpenConsultation}
+                  className="w-full flex items-center justify-center gap-2 py-3 px-3 rounded-lg bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider transition-colors shadow-red-glow"
                 >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>Chat on WhatsApp</span>
-                </a>
+                  <Sparkles className="w-4 h-4" />
+                  <span>Request Hardware Quote</span>
+                </button>
               </div>
             </div>
 
@@ -219,7 +198,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-gw-border/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 font-sans">
           <div>
-            © {new Date().getFullYear()} <span className="text-white font-bold">GAMES WORLD</span>. Founder: {COMPANY_INFO.founder}. All Rights Reserved.
+            © {new Date().getFullYear()} <span className="text-white font-bold">GAMES WORLD</span>. All Rights Reserved.
           </div>
 
           <button

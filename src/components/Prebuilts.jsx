@@ -40,11 +40,6 @@ export default function Prebuilts({ onAddToCart }) {
     setActiveCategory(id);
   };
 
-  const handleWhatsAppOrder = (pc) => {
-    playClickSound();
-    const text = encodeURIComponent(`Hi Games World! I want to order the prebuilt PC: *${pc.name}* (Price: ₹${pc.price.toLocaleString('en-IN')}). Please confirm stock and delivery timeline.`);
-    window.open(`https://wa.me/${COMPANY_INFO.whatsappNumber}?text=${text}`, '_blank');
-  };
 
   const handleAddToCart = (pc) => {
     playMountSound();
@@ -250,21 +245,13 @@ export default function Prebuilts({ onAddToCart }) {
                       )}
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        onClick={() => handleWhatsAppOrder(pc)}
-                        className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-tech font-bold uppercase tracking-wider transition-colors"
-                      >
-                        <Share2 className="w-3.5 h-3.5" />
-                        <span>Order</span>
-                      </button>
-                      
+                    <div className="pt-1">
                       <button
                         onClick={() => handleAddToCart(pc)}
-                        className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg bg-red-600 hover:bg-red-500 text-white text-xs font-tech font-bold uppercase tracking-wider transition-colors"
+                        className="w-full flex items-center justify-center gap-2 py-3 px-3 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-tech font-bold uppercase tracking-wider transition-all shadow-red-glow hover:shadow-red-glow-lg"
                       >
-                        <ShoppingBag className="w-3.5 h-3.5" />
-                        <span>Cart</span>
+                        <ShoppingBag className="w-4 h-4" />
+                        <span>Add to Assembly Cart</span>
                       </button>
                     </div>
 
@@ -294,12 +281,10 @@ export default function Prebuilts({ onAddToCart }) {
               Open Configurator
             </a>
             <a
-              href={`https://wa.me/${COMPANY_INFO.whatsappNumber}?text=Hi%20Pradhaan!%20I%20need%20a%20workstation/custom%20loop%20quote.`}
-              target="_blank"
-              rel="noreferrer"
+              href="#why-us"
               className="px-6 py-3.5 rounded-xl bg-gw-card hover:bg-gw-card-hover border border-gw-border text-white text-xs font-tech font-bold uppercase tracking-wider transition-all"
             >
-              Talk to Pradhaan
+              Learn More
             </a>
           </div>
         </div>

@@ -2,11 +2,6 @@ export const COMPANY_INFO = {
   name: "GAMES WORLD",
   tagline: "PLAY • CONNECT • COMPETE",
   slogan: "GAMES WORLD – YOUR TECH, OUR PRIORITY",
-  founder: "PRADHAAN RAGAVA",
-  phones: ["+91 9087290225", "+91 9381218111"],
-  primaryPhone: "+91 9087290225",
-  whatsappNumber: "919087290225",
-  emails: ["gamesworldsathya@gmail.com", "pradhaanragava@gmail.com"],
   address: "No -1, Athipatten Street, 3rd Floor, Landmark - Bharat Petroleum Back Side, Chennai",
   hours: "Monday – Sunday: 10:30 AM – 9:30 PM",
   logo: "/images/games_world_emblem.png",
@@ -23,13 +18,6 @@ export const PILLARS = [
     sub: "ZERO ASSEMBLY FEE • 100% GENUINE",
     icon: "Cpu",
     desc: "Built with sealed brand-new components. Every build includes cable grooming, BIOS flashing, memory EXPO/XMP tuning, and 24-hour FurMark stress testing.",
-  },
-  {
-    id: "gaming-zone",
-    title: "ESPORTS GAMING ZONE",
-    sub: "240HZ RIGS • PS5 4K VIP LOUNGE",
-    icon: "Gamepad2",
-    desc: "Tournament-ready 240Hz gaming monitors, RTX 40-series machines, gigabit fiber, and private 65\" 4K 120Hz PlayStation 5 couch booths.",
   },
   {
     id: "laptop-service",
@@ -217,66 +205,6 @@ export const PREBUILT_PCS = [
   }
 ];
 
-export const GAMING_ZONE_PLANS = [
-  {
-    id: "gz-1",
-    title: "1-HOUR ESPORTS SESSION",
-    price: "₹99",
-    unit: "/ hour",
-    popular: false,
-    features: [
-      "240Hz Gaming Monitors",
-      "NVIDIA RTX 40-Series Powered Rigs",
-      "Mechanical Keyboards & High-DPI Esports Mouse",
-      "Low-Ping Gigabit Fiber Connection",
-      "Valorant, CS2, Apex, Fortnite Pre-Installed"
-    ]
-  },
-  {
-    id: "gz-2",
-    title: "3-HOUR BATTLE PASS",
-    price: "₹249",
-    unit: "/ 3 hours",
-    popular: true,
-    badge: "Best Value",
-    features: [
-      "3 Continuous hours of competitive gameplay",
-      "Seat reservation on preferred tournament rig",
-      "Esports noise-cancelling headset included",
-      "Save ₹48 over hourly rate",
-      "Cold beverage included"
-    ]
-  },
-  {
-    id: "gz-3",
-    title: "VIP PS5 4K COUCH LOUNGE",
-    price: "₹399",
-    unit: "/ hour (up to 4 friends)",
-    popular: false,
-    badge: "Squad VIP",
-    features: [
-      "Private luxury recliner couch booth",
-      "PlayStation 5 on 65\" 4K 120Hz OLED Screen",
-      "4 DualSense wireless controllers",
-      "FC 24, WWE 2K24, Tekken 8, Mortal Kombat 1",
-      "Logitech G29 Racing Rig Access"
-    ]
-  },
-  {
-    id: "gz-4",
-    title: "NIGHT LOCK-IN (10 PM - 7 AM)",
-    price: "₹699",
-    unit: "/ 9 full hours",
-    popular: false,
-    features: [
-      "9 Hours non-stop night gaming session",
-      "Dedicated high-FPS tournament station",
-      "Midnight energy drink + snack combo",
-      "Advance slot booking recommended"
-    ]
-  }
-];
-
 export const LAPTOP_SERVICES = [
   {
     id: "ls-1",
@@ -333,7 +261,7 @@ export const TESTIMONIALS = [
     name: "Karthik Subramanian",
     role: "CS2 & Valorant Player",
     rating: 5,
-    text: "Had terrible thermal throttling on my ASUS ROG Strix (CPU hitting 96°C in CS2). Brought it to Games World Chennai; Pradhaan personally repasted it with Thermal Grizzly Kryonaut and cleaned the copper fins. Temps dropped to 72°C flat. Collected the laptop in 2 hours.",
+    text: "Had terrible thermal throttling on my ASUS ROG Strix (CPU hitting 96°C in CS2). Brought it to Games World Chennai; their technicians repasted it with Thermal Grizzly Kryonaut and cleaned the copper fins. Temps dropped to 72°C flat. Collected the laptop in 2 hours.",
     build: "Laptop Thermal Overhaul",
     city: "Chennai"
   },
@@ -341,16 +269,16 @@ export const TESTIMONIALS = [
     name: "Vignesh Murugan",
     role: "Full-Time Gamer & Editor",
     rating: 5,
-    text: "Ordered a custom Ryzen 7 7800X3D + RTX 4070 Super build with 32GB DDR5. Tested Cyberpunk and Valorant on their 240Hz monitors before taking delivery. Cable routing behind the Lian Li glass is razor sharp, and no bloatware was installed.",
+    text: "Ordered a custom Ryzen 7 7800X3D + RTX 4070 Super build with 32GB DDR5. Tested Cyberpunk and Valorant on bench before taking delivery. Cable routing behind the Lian Li glass is razor sharp, and no bloatware was installed.",
     build: "Custom 7800X3D + RTX 4070 Super",
     city: "Anna Nagar, Chennai"
   },
   {
     name: "Arvind Raghavan",
-    role: "Weekend Gamer",
+    role: "Creative Professional",
     rating: 5,
-    text: "Hands down the best gaming cafe in Chennai. 240Hz BenQ monitors, zero ping issues, and their private PS5 couch booth is unbeatable for FIFA and Tekken weekends with the squad.",
-    build: "Gaming Zone Regular",
-    city: "Triplicane, Chennai"
+    text: "Ordered a custom workstation for 3D animation and Unreal Engine 5. High-grade VRM heatsinks, zero thermal throttling under full render load, and rock-solid stability.",
+    build: "Production Rig",
+    city: "Chennai"
   }
 ];

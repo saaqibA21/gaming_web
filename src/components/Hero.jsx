@@ -78,18 +78,13 @@ export default function Hero({ onOpenConsultation }) {
 
               {/* Clear, Solid Subhead */}
               <p className="text-base sm:text-lg text-gray-200 font-sans max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal assemble-left assemble-delay-3">
-                High-performance custom gaming PCs, 240Hz esports arena, and chip-level laptop repairs. Hand-assembled with sealed brand-new components, 24-hour benchmarked, and backed by a 3-year warranty with zero build fee.
+                High-performance custom gaming PCs and chip-level laptop repairs. Hand-assembled with sealed brand-new components, 24-hour benchmarked, and backed by a 3-year warranty with zero build fee.
               </p>
 
-              {/* Slogan Banner with Official Founder Details */}
+              {/* Slogan Banner */}
               <div className="p-4 rounded-xl bg-black/90 border border-red-900/60 shadow-solid-dark space-y-1 assemble-left assemble-delay-4">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <div className="text-sm sm:text-base font-tech font-bold text-red-400 uppercase tracking-wide">
-                    "{COMPANY_INFO.slogan}"
-                  </div>
-                  <div className="text-xs text-gray-400 font-sans">
-                    Founder: <span className="text-white font-semibold">{COMPANY_INFO.founder}</span>
-                  </div>
+                <div className="text-sm sm:text-base font-tech font-bold text-red-400 uppercase tracking-wide">
+                  "{COMPANY_INFO.slogan}"
                 </div>
                 <div className="text-xs text-gray-400 font-sans truncate">
                   📍 {COMPANY_INFO.address}
@@ -114,17 +109,6 @@ export default function Hero({ onOpenConsultation }) {
                   className="flex items-center gap-2 px-6 py-4 rounded-xl bg-gw-card hover:bg-gw-card-hover border border-gw-border hover:border-red-600/60 text-gray-100 hover:text-white font-tech font-bold text-sm tracking-wider uppercase transition-all"
                 >
                   <span>Factory Prebuilts</span>
-                </a>
-
-                <a
-                  href={`https://wa.me/${COMPANY_INFO.whatsappNumber}?text=Hi%20Pradhaan!%20I%20want%20to%20inquire%20about%20a%20Gaming%20PC/Laptop%20Service.`}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => playClickSound()}
-                  className="flex items-center gap-2 px-5 py-4 rounded-xl bg-emerald-700/80 hover:bg-emerald-600 text-white font-tech font-bold text-sm tracking-wider uppercase transition-all"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>WhatsApp Us</span>
                 </a>
               </div>
 
@@ -198,8 +182,8 @@ export default function Hero({ onOpenConsultation }) {
                   {/* Store Services Quick List */}
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border">
-                      <div className="text-[10px] text-gray-400 font-tech uppercase">Gaming Zone</div>
-                      <div className="font-bold text-white font-sans mt-0.5">240Hz & PS5 Lounge</div>
+                      <div className="text-[10px] text-gray-400 font-tech uppercase">Custom PC Assembly</div>
+                      <div className="font-bold text-white font-sans mt-0.5">Zero Build Fee</div>
                     </div>
                     <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border">
                       <div className="text-[10px] text-gray-400 font-tech uppercase">Laptop Repaste</div>
@@ -208,22 +192,16 @@ export default function Hero({ onOpenConsultation }) {
                   </div>
 
                   {/* Direct Action Buttons */}
-                  <div className="grid grid-cols-2 gap-2 pt-1">
+                  <div className="pt-1">
                     <button
                       onClick={() => {
                         playClickSound();
                         onOpenConsultation();
                       }}
-                      className="w-full py-2.5 px-3 rounded-lg bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider transition-colors"
+                      className="w-full py-3 px-4 rounded-lg bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider transition-colors shadow-red-glow"
                     >
-                      Free Build Quote
+                      Request Free Hardware Consultation
                     </button>
-                    <a
-                      href={`tel:${COMPANY_INFO.primaryPhone}`}
-                      className="w-full py-2.5 px-3 rounded-lg bg-gw-card hover:bg-gw-card-hover border border-gw-border text-center text-white font-tech font-bold text-xs uppercase tracking-wider transition-colors"
-                    >
-                      Call Store
-                    </a>
                   </div>
 
                 </div>
@@ -232,18 +210,18 @@ export default function Hero({ onOpenConsultation }) {
             </div>
           </div>
 
-          {/* 4 Pillars Section */}
+          {/* Core Hardware Pillars Section */}
           <div className="mt-16 pt-12 border-t border-gw-border/60 assemble-on-scroll">
             <div className="text-center mb-8 assemble-down assemble-delay-1">
               <h3 className="text-xs uppercase tracking-widest-plus font-tech font-bold text-red-500">
-                OUR 4 CORE DIVISIONS
+                OUR CORE DIVISIONS
               </h3>
               <p className="text-3xl sm:text-4xl font-display tracking-wider text-white mt-1">
                 THE PILLARS OF GAMES WORLD
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {PILLARS.map((pillar, idx) => {
                 const IconComp = iconMap[pillar.icon] || Cpu;
                 const delayClass = `assemble-delay-${idx + 2}`;

@@ -3,14 +3,12 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import PcBuilder from './components/PcBuilder';
 import Prebuilts from './components/Prebuilts';
-import GamingZone from './components/GamingZone';
 import LaptopService from './components/LaptopService';
 import WhyUs from './components/WhyUs';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import ConsultationModal from './components/ConsultationModal';
 import CartDrawer from './components/CartDrawer';
-import StickyWhatsApp from './components/StickyWhatsApp';
 import HologramFlowBg from './components/HologramFlowBg';
 import { initGlobalAssemblyObserver } from './utils/useAssemble';
 
@@ -62,9 +60,6 @@ export default function App() {
         {/* Prebuilt Systems: Factory-Assembled Rigs */}
         <Prebuilts onAddToCart={handleAddToCart} />
 
-        {/* Gaming Zone: 240Hz Battle Station Deployment */}
-        <GamingZone />
-
         {/* Laptop Service: Microscopic Chip-Level Overhaul Lab */}
         <LaptopService />
 
@@ -77,11 +72,8 @@ export default function App() {
 
       {/* Footer */}
       <div className="relative z-10">
-        <Footer />
+        <Footer onOpenConsultation={() => setConsultationOpen(true)} />
       </div>
-
-      {/* Floating Sticky WhatsApp Widget */}
-      <StickyWhatsApp />
 
       {/* Modals & Drawers */}
       <ConsultationModal 

@@ -190,7 +190,7 @@ Date: ${new Date().toLocaleDateString('en-IN')}
 • 3-Year Hardware Warranty
 ---------------------------------
 Games World - Athipatten Street, Chennai
-Contact: ${COMPANY_INFO.primaryPhone}`;
+Official Hardware Specification Sheet`;
   };
 
   const handleCopySpec = () => {
@@ -199,12 +199,6 @@ Contact: ${COMPANY_INFO.primaryPhone}`;
     navigator.clipboard.writeText(text);
     setCopiedQuote(true);
     setTimeout(() => setCopiedQuote(false), 3000);
-  };
-
-  const handleWhatsAppOrder = () => {
-    playClickSound();
-    const text = encodeURIComponent(`Hi Games World! I configured this PC on your website assembly bay and want to confirm stock & delivery:\n\n${generateSpecText()}`);
-    window.open(`https://wa.me/${COMPANY_INFO.whatsappNumber}?text=${text}`, '_blank');
   };
 
   const handleAddToCartClick = () => {
@@ -479,7 +473,7 @@ Contact: ${COMPANY_INFO.primaryPhone}`;
 
             {/* Next Category Quick Advance */}
             <div className="flex justify-between items-center pt-2">
-              <span className="text-xs text-gray-400 font-sans">Technician direct line: <span className="text-white font-semibold">{COMPANY_INFO.primaryPhone}</span></span>
+              <span className="text-xs text-gray-400 font-sans">Zero assembly charge • 100% Genuine sealed parts</span>
               {activeTab !== 'cabinets' && (
                 <button
                   onClick={() => {
@@ -638,20 +632,10 @@ Contact: ${COMPANY_INFO.primaryPhone}`;
 
               {/* Action Buttons */}
               <div className="space-y-3 pt-2">
-                
-                {/* 1-Click WhatsApp Order */}
-                <button
-                  onClick={handleWhatsAppOrder}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-tech font-bold text-xs uppercase tracking-wider shadow-lg transition-all transform hover:-translate-y-0.5"
-                >
-                  <Share2 className="w-4 h-4" />
-                  <span>Send Spec Sheet to WhatsApp</span>
-                </button>
-
                 {/* Add to Cart */}
                 <button
                   onClick={handleAddToCartClick}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider shadow-red-glow transition-all"
+                  className="w-full flex items-center justify-center gap-2 py-4 px-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider shadow-red-glow hover:shadow-red-glow-lg transition-all transform hover:-translate-y-0.5"
                 >
                   <ShoppingBag className="w-4 h-4" />
                   <span>Add Assembled Rig to Cart</span>
@@ -669,21 +653,15 @@ Contact: ${COMPANY_INFO.primaryPhone}`;
                   <span>Open Official Blueprint & Quotation (PDF)</span>
                 </button>
 
-                {/* Copy Spec / Print / Call Store */}
+                {/* Copy Spec / Print */}
                 <div className="flex gap-2">
                   <button
                     onClick={handleCopySpec}
                     className="flex-1 py-2.5 px-3 rounded-lg bg-gw-card hover:bg-gw-card-hover border border-gw-border text-xs font-tech font-bold uppercase tracking-wider text-gray-300 flex items-center justify-center gap-1.5 transition-colors"
                   >
                     <Printer className="w-3.5 h-3.5 text-gray-400" />
-                    <span>{copiedQuote ? "Copied!" : "Quick Copy"}</span>
+                    <span>{copiedQuote ? "Copied Spec Sheet!" : "Quick Copy Spec Sheet"}</span>
                   </button>
-                  <a
-                    href={`tel:${COMPANY_INFO.primaryPhone}`}
-                    className="py-2.5 px-4 rounded-lg bg-gw-card hover:bg-gw-card-hover border border-gw-border text-xs font-tech font-bold uppercase tracking-wider text-gray-300 flex items-center justify-center gap-1.5 transition-colors"
-                  >
-                    <span>Call Store</span>
-                  </a>
                 </div>
 
               </div>
@@ -741,7 +719,7 @@ Contact: ${COMPANY_INFO.primaryPhone}`;
                   Athipatten Street, 3rd Floor, Landmark - Bharat Petroleum Back Side, Chennai
                 </p>
                 <p className="text-xs text-gray-400 font-tech">
-                  Phone: {COMPANY_INFO.primaryPhone} | {COMPANY_INFO.secondaryPhone}
+                  Store Hours: {COMPANY_INFO.hours}
                 </p>
               </div>
 
@@ -841,14 +819,6 @@ Contact: ${COMPANY_INFO.primaryPhone}`;
                 className="px-5 py-2.5 rounded-xl bg-gw-card hover:bg-gw-card-hover border border-gw-border text-white text-xs font-tech font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors"
               >
                 <span>{copiedQuote ? "Copied to Clipboard!" : "Copy Text"}</span>
-              </button>
-
-              <button
-                onClick={handleWhatsAppOrder}
-                className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-tech font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors shadow-lg"
-              >
-                <Share2 className="w-4 h-4" />
-                <span>Send to WhatsApp</span>
               </button>
             </div>
 

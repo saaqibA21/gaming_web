@@ -18,7 +18,6 @@ export default function Navbar({
     { name: "Home", href: "#hero" },
     { name: "Custom PC Builder", href: "#pc-builder", badge: "Live Configurator" },
     { name: "Prebuilt PCs", href: "#prebuilts" },
-    { name: "Gaming Zone", href: "#gaming-zone" },
     { name: "Laptop Service", href: "#laptop-service" },
     { name: "Why Games World", href: "#why-us" },
     { name: "Store & Contact", href: "#contact" },
@@ -135,9 +134,6 @@ export default function Navbar({
               <Sparkles className="w-4 h-4" />
               <span>Book Free Consultation</span>
             </button>
-            <div className="text-center text-xs text-gray-400 pt-1">
-              Founder: {COMPANY_INFO.founder} | {COMPANY_INFO.primaryPhone}
-            </div>
           </div>
         </div>
       )}

@@ -7,8 +7,6 @@ import {
   Package, 
   Wrench, 
   Award, 
-  Check, 
-  X,
   Sparkles
 } from 'lucide-react';
 
@@ -38,15 +36,6 @@ export default function WhyUs() {
     }
   ];
 
-  const comparisonData = [
-    { feature: "Component Sourcing", custom: "100% Brand-new, sealed boxes opened in front of you or shipped with build", generic: "Unmarked OEM bulk parts with short warranties" },
-    { feature: "Stress Testing", custom: "24-Hour continuous burn-in with FurMark & Cinebench test logs", generic: "Basic 5-minute POST check" },
-    { feature: "Cable Management", custom: "Hand-routed, combed, and zip-tied for unobstructed case airflow", generic: "Tangled rat's nest stuffed behind side panel" },
-    { feature: "Motherboard & VRMs", custom: "Tier-1 ASUS / MSI with robust heatsinks and M.2 shields", generic: "Bare green/brown PCB with no VRM heatsinks" },
-    { feature: "Warranty Support", custom: "Direct brand warranty (up to 10 yrs) + 3-yr Games World support", generic: "Cumbersome mail-in RMA with weeks of downtime" },
-    { feature: "Shipping Security", custom: "Expanding internal foam + outer wooden crating (100% insured)", generic: "Standard cardboard box with thin bubble wrap" }
-  ];
-
   const faqs = [
     {
       q: "Custom PC Builder vs. Prebuilt – Which should I choose?",
@@ -58,11 +47,11 @@ export default function WhyUs() {
     },
     {
       q: "What warranty and after-sales support do you provide?",
-      a: "All builds include individual brand component warranties (ranging from 3 to 10 years on RAM & PSUs), plus Games World's 3-year build warranty and lifetime technical assistance via phone/WhatsApp."
+      a: "All builds include individual brand component warranties (ranging from 3 to 10 years on RAM & PSUs), plus Games World's 3-year build warranty and dedicated hardware support."
     },
     {
       q: "Can I visit your physical store in Chennai?",
-      a: `Yes! You are welcome to visit Games World at ${COMPANY_INFO.address}. Test out rigs at our 240Hz Gaming Zone, consult in person with our founder ${COMPANY_INFO.founder}, or bring your gaming laptop in for same-day service.`
+      a: `Yes! You are welcome to visit Games World at ${COMPANY_INFO.address}. Consult directly with our build team in person or bring your gaming laptop in for same-day diagnostic service.`
     }
   ];
 
@@ -107,52 +96,6 @@ export default function WhyUs() {
           })}
         </div>
 
-        {/* Games World vs Generic Table */}
-        <div className="mb-16 assemble-up assemble-delay-3">
-          <div className="text-center mb-6">
-            <h3 className="text-3xl font-display tracking-wider text-white">
-              GAMES WORLD VS. GENERIC PREBUILTS
-            </h3>
-            <p className="text-xs text-gray-400 font-tech uppercase tracking-widest-plus mt-1">
-              Verify the quality of your components
-            </p>
-          </div>
-
-          <div className="overflow-x-auto rounded-2xl border border-gw-border bg-gw-card shadow-xl">
-            <table className="w-full text-left border-collapse text-xs sm:text-sm">
-              <thead>
-                <tr className="border-b border-gw-border bg-[#101017]">
-                  <th className="p-4 font-tech font-bold text-gray-400 uppercase tracking-wider text-xs">Criteria</th>
-                  <th className="p-4 font-tech font-bold text-red-400 uppercase tracking-wider text-xs bg-red-950/20 border-x border-red-900/40">
-                    Games World Custom Build
-                  </th>
-                  <th className="p-4 font-tech font-bold text-gray-500 uppercase tracking-wider text-xs">
-                    Generic Mass Market Prebuilt
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gw-border font-sans">
-                {comparisonData.map((row, i) => (
-                  <tr key={i} className="hover:bg-white/5 transition-colors">
-                    <td className="p-4 font-bold text-white whitespace-nowrap">{row.feature}</td>
-                    <td className="p-4 text-emerald-300 font-medium bg-red-950/10 border-x border-red-900/30">
-                      <div className="flex items-center gap-2">
-                        <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                        <span>{row.custom}</span>
-                      </div>
-                    </td>
-                    <td className="p-4 text-gray-400">
-                      <div className="flex items-center gap-2">
-                        <X className="w-4 h-4 text-red-400 flex-shrink-0" />
-                        <span>{row.generic}</span>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
 
         {/* Frequently Asked Questions */}
         <div className="max-w-4xl mx-auto space-y-3">

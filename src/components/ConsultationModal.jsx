@@ -8,7 +8,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
     phone: '',
     budget: '₹80,000 - ₹1,20,000',
     primaryUse: 'Competitive Esports (Valorant, CS2, Apex)',
-    consultationType: 'WhatsApp Chat & Call',
+    consultationType: 'Direct Call',
     preferredTime: 'Anytime Today'
   });
   const [submitted, setSubmitted] = useState(false);
@@ -17,17 +17,6 @@ export default function ConsultationModal({ isOpen, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const msg = `*GAMES WORLD FREE EXPERT CONSULTATION REQUEST*
-Name: ${formData.name}
-Phone: ${formData.phone}
-Target Budget: ${formData.budget}
-Primary Workload: ${formData.primaryUse}
-Mode: ${formData.consultationType}
-Preferred Time: ${formData.preferredTime}
----------------------------------
-Please connect me with a hardware specialist for build guidance.`;
-
-    window.open(`https://wa.me/${COMPANY_INFO.whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
@@ -51,7 +40,7 @@ Please connect me with a hardware specialist for build guidance.`;
         </div>
 
         <h3 className="text-3xl font-display tracking-wider text-white">
-          TALK TO PRADHAAN & TEAM
+          EXPERT HARDWARE CONSULTATION
         </h3>
         <p className="text-xs text-gray-300 font-sans mt-1 mb-6">
           Avoid overpaying on mismatched parts. Get a solid component quotation with zero assembly charge.
@@ -60,9 +49,9 @@ Please connect me with a hardware specialist for build guidance.`;
         {submitted ? (
           <div className="p-8 text-center space-y-3 bg-red-950/20 rounded-xl border border-red-800/40">
             <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
-            <h4 className="text-lg font-black font-gamer text-white">REQUEST DISPATCHED!</h4>
+            <h4 className="text-lg font-black font-gamer text-white">REQUEST SUBMITTED!</h4>
             <p className="text-xs text-gray-300">
-              Opening WhatsApp with your consultation details. Our founder & team will assist you immediately.
+              Our hardware specialist team has received your build requirements and will get in touch with your custom quotation shortly.
             </p>
           </div>
         ) : (
@@ -80,7 +69,7 @@ Please connect me with a hardware specialist for build guidance.`;
             </div>
 
             <div>
-              <label className="block text-gray-300 font-semibold mb-1">WhatsApp Mobile Number</label>
+              <label className="block text-gray-300 font-semibold mb-1">Mobile / Contact Number</label>
               <input 
                 type="tel" 
                 required
@@ -130,11 +119,11 @@ Please connect me with a hardware specialist for build guidance.`;
                   <input 
                     type="radio" 
                     name="mode" 
-                    checked={formData.consultationType.includes('WhatsApp')}
-                    onChange={() => setFormData({...formData, consultationType: 'WhatsApp Chat & Call'})}
+                    checked={formData.consultationType === 'Direct Call'}
+                    onChange={() => setFormData({...formData, consultationType: 'Direct Call'})}
                     className="accent-red-600"
                   />
-                  <span className="text-gray-200">WhatsApp / Call</span>
+                  <span className="text-gray-200">Phone Call</span>
                 </label>
 
                 <label className="flex items-center gap-2 p-2.5 rounded-lg border border-gw-border bg-black/40 cursor-pointer">
@@ -155,13 +144,13 @@ Please connect me with a hardware specialist for build guidance.`;
               className="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold uppercase tracking-wider text-xs shadow-red-glow transition-all flex items-center justify-center gap-2"
             >
               <Send className="w-3.5 h-3.5" />
-              <span>Connect with Expert</span>
+              <span>Submit Consultation Request</span>
             </button>
           </form>
         )}
 
-        <div className="mt-4 pt-3 border-t border-gw-border/50 text-[11px] text-gray-400 text-center">
-          Founder: {COMPANY_INFO.founder} • Direct Line: {COMPANY_INFO.primaryPhone}
+        <div className="mt-4 pt-3 border-t border-gw-border/50 text-[11px] text-gray-400 text-center font-tech uppercase tracking-wider">
+          Games World Hardware Consultation Desk • Free Quote & Guidance
         </div>
 
       </div>

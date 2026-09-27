@@ -74,18 +74,17 @@ export default function LaptopService() {
   const handleSubmit = (e) => {
     e.preventDefault();
     playMountSound();
-    const msg = `*GAMES WORLD CHENNAI - LAPTOP SERVICE REQUEST*
-Name: ${formData.name}
-Phone: ${formData.phone}
-Laptop Model: ${formData.laptopModel}
-Reported Issue: ${formData.issue}
-Notes: ${formData.notes || 'None'}
----------------------------------
-Please arrange a diagnostic consultation / walk-in slot.`;
-
-    window.open(`https://wa.me/${COMPANY_INFO.whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({
+        name: '',
+        phone: '',
+        laptopModel: '',
+        issue: 'Overheating & Thermal Throttling (Thermal Repaste)',
+        notes: ''
+      });
+    }, 4000);
   };
 
   return (
@@ -231,79 +230,89 @@ Please arrange a diagnostic consultation / walk-in slot.`;
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4 text-xs font-sans">
-              <div>
-                <label className="block text-gray-300 font-semibold mb-1">Full Name</label>
-                <input 
-                  type="text" 
-                  required
-                  placeholder="e.g. Anand Kumar"
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-gw-border text-white focus:outline-none focus:border-red-500 text-xs font-sans"
-                />
+            {submitted ? (
+              <div className="p-8 text-center space-y-3 bg-red-950/20 rounded-xl border border-red-800/40">
+                <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
+                <h4 className="text-lg font-black font-gamer text-white">SERVICE TICKET LOGGED!</h4>
+                <p className="text-xs text-gray-300">
+                  Our lab diagnostic technician will inspect your ticket and prepare testing apparatus prior to your store visit.
+                </p>
               </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4 text-xs font-sans">
+                <div>
+                  <label className="block text-gray-300 font-semibold mb-1">Full Name</label>
+                  <input 
+                    type="text" 
+                    required
+                    placeholder="e.g. Anand Kumar"
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-gw-border text-white focus:outline-none focus:border-red-500 text-xs font-sans"
+                  />
+                </div>
 
-              <div>
-                <label className="block text-gray-300 font-semibold mb-1">WhatsApp Phone Number</label>
-                <input 
-                  type="tel" 
-                  required
-                  placeholder="+91 9876543210"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-gw-border text-white focus:outline-none focus:border-red-500 text-xs font-sans"
-                />
-              </div>
+                <div>
+                  <label className="block text-gray-300 font-semibold mb-1">Contact Phone Number</label>
+                  <input 
+                    type="tel" 
+                    required
+                    placeholder="+91 9876543210"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-gw-border text-white focus:outline-none focus:border-red-500 text-xs font-sans"
+                  />
+                </div>
 
-              <div>
-                <label className="block text-gray-300 font-semibold mb-1">Laptop Model & Brand</label>
-                <input 
-                  type="text" 
-                  required
-                  placeholder="e.g. ASUS ROG Strix G15 / Lenovo Legion 5"
-                  value={formData.laptopModel}
-                  onChange={(e) => setFormData({...formData, laptopModel: e.target.value})}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-gw-border text-white focus:outline-none focus:border-red-500 text-xs font-sans"
-                />
-              </div>
+                <div>
+                  <label className="block text-gray-300 font-semibold mb-1">Laptop Model & Brand</label>
+                  <input 
+                    type="text" 
+                    required
+                    placeholder="e.g. ASUS ROG Strix G15 / Lenovo Legion 5"
+                    value={formData.laptopModel}
+                    onChange={(e) => setFormData({...formData, laptopModel: e.target.value})}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-gw-border text-white focus:outline-none focus:border-red-500 text-xs font-sans"
+                  />
+                </div>
 
-              <div>
-                <label className="block text-gray-300 font-semibold mb-1">Primary Problem</label>
-                <select 
-                  value={formData.issue}
-                  onChange={(e) => setFormData({...formData, issue: e.target.value})}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-gw-border text-white focus:outline-none focus:border-red-500 text-xs font-sans"
+                <div>
+                  <label className="block text-gray-300 font-semibold mb-1">Primary Problem</label>
+                  <select 
+                    value={formData.issue}
+                    onChange={(e) => setFormData({...formData, issue: e.target.value})}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-gw-border text-white focus:outline-none focus:border-red-500 text-xs font-sans"
+                  >
+                    <option>Overheating & Thermal Throttling (Thermal Repaste)</option>
+                    <option>Dead Laptop / Not Powering On (Motherboard Repair)</option>
+                    <option>GPU Artifacting / BSOD Code 43 (GPU Repair)</option>
+                    <option>Broken / Flickering Display Screen</option>
+                    <option>Broken Hinges or Body Damage</option>
+                    <option>Liquid Spill / Water Damage</option>
+                    <option>RAM / SSD Speed Upgrade</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-gray-300 font-semibold mb-1">Additional Symptoms (Optional)</label>
+                  <textarea 
+                    rows={2}
+                    placeholder="Describe when the issue occurs..."
+                    value={formData.notes}
+                    onChange={(e) => setFormData({...formData, notes: e.target.value})}
+                    className="w-full px-3.5 py-2 rounded-xl bg-black/60 border border-gw-border text-white focus:outline-none focus:border-red-500 text-xs resize-none font-sans"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold uppercase tracking-wider text-xs shadow-red-glow transition-all flex items-center justify-center gap-2"
                 >
-                  <option>Overheating & Thermal Throttling (Thermal Repaste)</option>
-                  <option>Dead Laptop / Not Powering On (Motherboard Repair)</option>
-                  <option>GPU Artifacting / BSOD Code 43 (GPU Repair)</option>
-                  <option>Broken / Flickering Display Screen</option>
-                  <option>Broken Hinges or Body Damage</option>
-                  <option>Liquid Spill / Water Damage</option>
-                  <option>RAM / SSD Speed Upgrade</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-gray-300 font-semibold mb-1">Additional Symptoms (Optional)</label>
-                <textarea 
-                  rows={2}
-                  placeholder="Describe when the issue occurs..."
-                  value={formData.notes}
-                  onChange={(e) => setFormData({...formData, notes: e.target.value})}
-                  className="w-full px-3.5 py-2 rounded-xl bg-black/60 border border-gw-border text-white focus:outline-none focus:border-red-500 text-xs resize-none font-sans"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold uppercase tracking-wider text-xs shadow-red-glow transition-all flex items-center justify-center gap-2"
-              >
-                <Send className="w-3.5 h-3.5" />
-                <span>Submit Service Request via WhatsApp</span>
-              </button>
-            </form>
+                  <Send className="w-3.5 h-3.5" />
+                  <span>Submit Diagnostic Request</span>
+                </button>
+              </form>
+            )}
 
             <div className="mt-6 pt-4 border-t border-gw-border/60 space-y-1.5 text-[11px] text-gray-300 font-sans">
               <div className="flex items-center gap-2">
