@@ -32,8 +32,9 @@ export default function Hero({ onOpenConsultation }) {
     const handleScroll = () => {
       const hero = document.getElementById('hero');
       if (hero) {
-        const maxScroll = Math.max(1, hero.offsetHeight - window.innerHeight);
-        const p = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+        const totalRunway = Math.max(1, hero.offsetHeight - window.innerHeight);
+        const assemblyRunway = totalRunway * 0.70;
+        const p = Math.min(1, Math.max(0, window.scrollY / assemblyRunway));
         setScrollProgress(p);
       }
     };
@@ -54,20 +55,20 @@ export default function Hero({ onOpenConsultation }) {
     if (p < 0.25) return 'STAGE 1: CHASSIS & RADIATOR RIGGING';
     if (p < 0.50) return 'STAGE 2: CPU BLOCK & MOBO SEATING';
     if (p < 0.75) return 'STAGE 3: GPU & LIQUID ROUTING';
-    if (p < 0.98) return 'STAGE 4: COOLANT FILL & LEAK PURGE';
-    return 'STAGE 5: BENCHMARK READY';
+    if (p < 1.0) return 'STAGE 4: COOLANT FILL & LEAK PURGE';
+    return 'STAGE 5: ASSEMBLY COMPLETE • BENCHMARK READY';
   };
 
   return (
     <>
       {/* 1. Cinematic Interactive Assembly Stage - Scrolls to assemble */}
-      <section id="hero" className="relative h-[260vh]">
+      <section id="hero" className="relative h-[300vh]">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-between items-center py-6 px-4 select-none pointer-events-none">
           {/* Top Stage Pill */}
           <div className="pt-20 pointer-events-auto">
-            <div className="px-4 py-1.5 rounded-full bg-black/80 border border-gw-border text-[11px] font-tech font-bold uppercase tracking-widest text-gray-300 flex items-center gap-2 shadow-xl">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-              <span>SCROLL TO ASSEMBLE HARDWARE</span>
+            <div className="px-4 py-1.5 rounded-full bg-black/85 border border-gw-border text-[11px] font-tech font-bold uppercase tracking-widest text-gray-300 flex items-center gap-2 shadow-xl">
+              <span className={`w-2 h-2 rounded-full ${scrollProgress >= 1 ? "bg-emerald-400" : "bg-red-500 animate-pulse"}`}></span>
+              <span>{scrollProgress >= 1 ? "ASSEMBLY BENCHMARK VERIFIED" : "SCROLL TO ASSEMBLE HARDWARE"}</span>
             </div>
           </div>
 
@@ -75,15 +76,24 @@ export default function Hero({ onOpenConsultation }) {
           <div className="pb-8 w-full max-w-md pointer-events-auto flex flex-col items-center gap-3">
             <div className="w-full bg-black/85 backdrop-blur-md p-3.5 rounded-xl border border-gw-border shadow-2xl">
               <div className="flex items-center justify-between text-[11px] font-tech font-bold uppercase tracking-wider text-gray-300 mb-2">
-                <span>{getAssemblyStage(scrollProgress)}</span>
-                <span className="text-red-500 font-mono font-bold">{Math.round(scrollProgress * 100)}%</span>
+                <span className={scrollProgress >= 1 ? "text-emerald-400 font-bold" : ""}>
+                  {getAssemblyStage(scrollProgress)}
+                </span>
+                <span className={`font-mono font-bold ${scrollProgress >= 1 ? "text-emerald-400" : "text-red-500"}`}>
+                  {Math.round(scrollProgress * 100)}%
+                </span>
               </div>
               <div className="w-full h-1.5 bg-neutral-900 rounded-full overflow-hidden border border-neutral-800">
                 <div 
-                  className="h-full bg-red-600 transition-all duration-75"
+                  className={`h-full transition-all duration-75 ${scrollProgress >= 1 ? "bg-emerald-500" : "bg-red-600"}`}
                   style={{ width: `${Math.round(scrollProgress * 100)}%` }}
                 />
               </div>
+              {scrollProgress >= 1 && (
+                <div className="mt-2 text-center text-[10px] font-tech uppercase tracking-widest text-emerald-400">
+                  BUILD 100% COMPLETE • SCROLL DOWN FOR SPECIFICATIONS
+                </div>
+              )}
             </div>
 
             <button

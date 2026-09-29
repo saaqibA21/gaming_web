@@ -64,10 +64,12 @@ export default function HologramFlowBg() {
       const scrollY = window.scrollY;
       let progress = 0;
       if (hero) {
-        const maxScroll = Math.max(1, hero.offsetHeight - window.innerHeight);
-        progress = Math.min(1, Math.max(0, scrollY / maxScroll));
+        // Complete the full 240-frame liquid cooling assembly over the first 70% of the scroll track
+        const totalRunway = Math.max(1, hero.offsetHeight - window.innerHeight);
+        const assemblyRunway = totalRunway * 0.70;
+        progress = Math.min(1, Math.max(0, scrollY / assemblyRunway));
       } else {
-        const heroThreshold = window.innerHeight * 1.5;
+        const heroThreshold = window.innerHeight * 1.2;
         progress = Math.min(1, Math.max(0, scrollY / heroThreshold));
       }
       stateRef.current.targetFrame = progress * (TOTAL_FRAMES - 1);
@@ -82,10 +84,10 @@ export default function HologramFlowBg() {
       const images = imagesRef.current;
 
       if (images.length > 0) {
-        // Smoothly interpolate towards targetFrame based purely on scroll
+        // High responsiveness so frames tightly track user scroll without lag
         const diff = s.targetFrame - s.currentFrame;
-        if (Math.abs(diff) > 0.01) {
-          s.currentFrame += diff * 0.22;
+        if (Math.abs(diff) > 0.001) {
+          s.currentFrame += diff * 0.55;
         } else {
           s.currentFrame = s.targetFrame;
         }
