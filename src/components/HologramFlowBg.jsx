@@ -1,14 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Sparkles, Eye, Pause, Play, RotateCcw } from 'lucide-react';
 
-const TOTAL_FRAMES = 150;
+const TOTAL_FRAMES = 240;
 
 export default function HologramFlowBg() {
   const canvasRef = useRef(null);
   const imagesRef = useRef([]);
   const [loadedCount, setLoadedCount] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [flowMode, setFlowMode] = useState('hybrid'); // 'hybrid' (scroll + ambient), 'auto', 'scroll'
   
   // Animation state refs for 60fps smoothness without re-render lag
   const stateRef = useRef({
@@ -16,7 +13,6 @@ export default function HologramFlowBg() {
     targetFrame: 0,
     lastScrollY: 0,
     scrollSpeed: 0,
-    ambientTimer: 0,
     isUserScrolling: false,
     scrollTimeout: null,
   });
@@ -34,7 +30,7 @@ export default function HologramFlowBg() {
       img.onload = () => {
         if (!isCancelled) {
           loaded++;
-          if (loaded % 15 === 0 || loaded === TOTAL_FRAMES) {
+          if (loaded % 20 === 0 || loaded === TOTAL_FRAMES) {
             setLoadedCount(loaded);
           }
         }
@@ -63,11 +59,11 @@ export default function HologramFlowBg() {
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    // Scroll listener for the scroll-flow effect
+    // Scroll listener for liquid cooling assembly flow scrubbing
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? Math.min(1, Math.max(0, scrollY / docHeight)) : 0;
+      const heroThreshold = window.innerHeight * 1.2;
+      const progress = Math.min(1, Math.max(0, scrollY / heroThreshold));
       
       const s = stateRef.current;
       s.targetFrame = progress * (TOTAL_FRAMES - 1);
@@ -92,15 +88,13 @@ export default function HologramFlowBg() {
       const images = imagesRef.current;
 
       if (images.length > 0) {
-        if (!s.isUserScrolling || flowMode === 'auto') {
-          if (isPlaying) {
-            // Smooth natural video playback (20 frames per second)
-            s.currentFrame = (s.currentFrame + delta * 20) % TOTAL_FRAMES;
-            s.targetFrame = s.currentFrame;
-          }
+        if (!s.isUserScrolling) {
+          // Smooth continuous 24fps liquid cooling assembly flow
+          s.currentFrame = (s.currentFrame + delta * 24) % TOTAL_FRAMES;
+          s.targetFrame = s.currentFrame;
         } else {
           // Smooth interpolation when scrolling
-          const lerpFactor = 0.15;
+          const lerpFactor = 0.18;
           const diff = s.targetFrame - s.currentFrame;
           s.currentFrame = (s.currentFrame + diff * lerpFactor + TOTAL_FRAMES) % TOTAL_FRAMES;
         }
@@ -142,54 +136,16 @@ export default function HologramFlowBg() {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isPlaying, flowMode]);
+  }, []);
 
   return (
-    <>
-      {/* Fixed Background Canvas for Hologram Flow - Crystal Clear */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden select-none">
-        <canvas
-          ref={canvasRef}
-          className="w-full h-full object-cover"
-        />
-
-        {/* Subtle Edge Vignette only at the very bottom to transition smoothly */}
-        <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#070709] to-transparent pointer-events-none"></div>
-      </div>
-
-      {/* Discreet Flow Effect Control Widget */}
-      <aside aria-label="Hologram Controls" className="fixed bottom-6 left-6 z-40 hidden sm:flex items-center gap-2 p-1.5 px-3 rounded-full bg-black/90 border border-red-900/60 shadow-lg shadow-black/80 text-xs">
-        <div className="flex items-center gap-1.5 text-red-500 font-gamer font-bold tracking-wider text-[10px] uppercase">
-          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-          <span>HOLOGRAM FLOW</span>
-        </div>
-
-        <span className="text-gray-600">|</span>
-
-        {/* Mode Selector */}
-        <button
-          onClick={() => setFlowMode(prev => prev === 'hybrid' ? 'scroll' : prev === 'scroll' ? 'auto' : 'hybrid')}
-          className="px-2 py-0.5 rounded-md bg-gw-card hover:bg-gw-card-hover border border-gw-border text-gray-300 hover:text-white text-[10px] font-semibold transition-colors"
-          title="Click to toggle flow mode"
-        >
-          {flowMode === 'hybrid' ? '⚡ Scroll + Flow' : flowMode === 'scroll' ? '📜 Scroll Scrub' : '▶ Auto Flow'}
-        </button>
-
-        {/* Play/Pause */}
-        <button
-          onClick={() => setIsPlaying(!isPlaying)}
-          className="p-1 rounded-md text-gray-400 hover:text-white transition-colors"
-          title={isPlaying ? "Pause Flow" : "Play Flow"}
-        >
-          {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
-        </button>
-
-        {loadedCount < TOTAL_FRAMES && (
-          <span className="text-[9px] text-gray-500 font-mono">
-            {Math.round((loadedCount / TOTAL_FRAMES) * 100)}%
-          </span>
-        )}
-      </aside>
-    </>
+    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden select-none">
+      <canvas
+        ref={canvasRef}
+        className="w-full h-full object-cover"
+      />
+      {/* Crisp dark vignette at base */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#070709] via-[#070709]/80 to-transparent pointer-events-none"></div>
+    </div>
   );
 }

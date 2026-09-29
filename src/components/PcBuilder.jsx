@@ -216,7 +216,7 @@ Official Hardware Specification Sheet`;
   };
 
   return (
-    <section id="pc-builder" className="py-16 sm:py-24 bg-transparent border-b border-gw-border relative assemble-on-scroll">
+    <section id="pc-builder" className="py-16 sm:py-24 bg-[#070709] border-b border-gw-border relative assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header with Assembly Bay Branding */}
@@ -307,7 +307,7 @@ Official Hardware Specification Sheet`;
                     isLastMounted ? 'animate-slot-snap' : ''
                   } ${
                     isSelected 
-                      ? 'bg-red-950/40 border-red-500 shadow-red-glow' 
+                      ? 'bg-[#1a0e10] border-red-600 shadow-md' 
                       : item 
                         ? 'bg-gw-card/90 border-gw-border hover:border-gray-500' 
                         : 'bg-black/50 border-dashed border-gray-700 hover:border-red-500/50'
@@ -361,7 +361,7 @@ Official Hardware Specification Sheet`;
                     onClick={() => handleTabChange(cat.id)}
                     className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-tech font-bold uppercase whitespace-nowrap transition-all border ${
                       isSelected 
-                        ? 'bg-red-600 text-white border-red-500 shadow-red-glow' 
+                        ? 'bg-red-600 text-white border-red-600 shadow-md' 
                         : isFilled 
                           ? 'bg-gw-card text-gray-200 border-gw-border hover:border-gray-500' 
                           : 'bg-black/50 text-gray-500 border-gw-border/50'
@@ -409,7 +409,7 @@ Official Hardware Specification Sheet`;
                     onClick={() => handleSelectPart(activeTab, item)}
                     className={`p-4 rounded-xl cursor-pointer transition-all duration-200 border relative group assemble-card assemble-up ${delayClass} ${
                       isCurrentChoice
-                        ? 'bg-gradient-to-br from-red-950/60 to-gw-card border-red-600 shadow-red-glow'
+                        ? 'bg-[#181116] border-red-600 shadow-md'
                         : 'bg-gw-card hover:bg-gw-card-hover border-gw-border hover:border-gray-600'
                     }`}
                   >
@@ -505,7 +505,7 @@ Official Hardware Specification Sheet`;
                   <p className="text-xs text-gray-400 font-sans">Zero Assembly Fee Included</p>
                 </div>
                 <div className="text-right">
-                  <div className="text-3xl font-display tracking-wider text-red-500 drop-shadow-[0_0_10px_rgba(229,9,20,0.5)]">
+                  <div className="text-3xl font-display tracking-wider text-red-500">
                     ₹{totalPrice.toLocaleString('en-IN')}
                   </div>
                   <span className="text-[10px] text-gray-400 font-tech uppercase">GST & Invoice Included</span>
@@ -635,7 +635,7 @@ Official Hardware Specification Sheet`;
                 {/* Add to Cart */}
                 <button
                   onClick={handleAddToCartClick}
-                  className="w-full flex items-center justify-center gap-2 py-4 px-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider shadow-red-glow hover:shadow-red-glow-lg transition-all transform hover:-translate-y-0.5"
+                  className="w-full flex items-center justify-center gap-2 py-4 px-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider shadow-md transition-all transform hover:-translate-y-0.5"
                 >
                   <ShoppingBag className="w-4 h-4" />
                   <span>Add Assembled Rig to Cart</span>
@@ -667,10 +667,19 @@ Official Hardware Specification Sheet`;
               </div>
 
               {/* Included Services Badges */}
-              <div className="border-t border-gw-border/60 pt-3 text-[11px] text-gray-300 font-sans space-y-1">
-                <div>✔ Free Assembly & Master Cable Management</div>
-                <div>✔ 24-Hour Stress Testing & OS Configuration</div>
-                <div>✔ 3-Year Hardware Warranty + Safe Transit Packaging</div>
+              <div className="border-t border-gw-border/60 pt-3 text-[11px] text-gray-300 font-sans space-y-1.5">
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Free Assembly & Master Cable Management</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>24-Hour Stress Testing & OS Configuration</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>3-Year Hardware Warranty + Safe Transit Packaging</span>
+                </div>
               </div>
 
             </div>

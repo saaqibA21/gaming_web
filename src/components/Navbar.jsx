@@ -35,13 +35,13 @@ export default function Navbar({
               <img 
                 src={COMPANY_INFO.logo} 
                 alt="Games World Small G Emblem" 
-                className="h-12 w-12 sm:h-14 sm:w-14 object-contain filter drop-shadow-[0_0_12px_rgba(229,9,20,0.5)] group-hover:scale-105 transition-transform duration-300"
+                className="h-12 w-12 sm:h-14 sm:w-14 object-contain group-hover:scale-105 transition-transform duration-300"
               />
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-1 font-display tracking-wider text-xl sm:text-2xl lg:text-3xl leading-none">
                 <span className="text-white">GAMES</span>
-                <span className="text-red-600 group-hover:text-red-500 transition-colors drop-shadow-[0_0_10px_rgba(229,9,20,0.8)]">WORLD</span>
+                <span className="text-red-600 group-hover:text-red-500 transition-colors">WORLD</span>
               </div>
               <span className="text-[9px] sm:text-[10px] text-gray-400 font-tech tracking-widest-plus uppercase font-bold mt-0.5">
                 PLAY • CONNECT • COMPETE
@@ -59,7 +59,7 @@ export default function Navbar({
               >
                 <span>{link.name}</span>
                 {link.badge && (
-                  <span className="ml-1.5 px-1.5 py-0.5 text-[9px] font-tech font-bold uppercase rounded bg-red-600 text-white tracking-wider animate-pulse">
+                  <span className="ml-1.5 px-1.5 py-0.5 text-[9px] font-tech font-bold uppercase rounded bg-red-600 text-white tracking-wider">
                     {link.badge}
                   </span>
                 )}
@@ -73,7 +73,7 @@ export default function Navbar({
             {/* Free Consultation Button */}
             <button
               onClick={onOpenConsultation}
-              className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 text-white text-xs font-tech font-bold uppercase tracking-wider shadow-red-glow hover:shadow-red-glow-lg transition-all transform hover:-translate-y-0.5"
+              className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 text-white text-xs font-tech font-bold uppercase tracking-wider shadow-md transition-all transform hover:-translate-y-0.5"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>Get Free Quote</span>

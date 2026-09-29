@@ -141,7 +141,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
 
             <button
               type="submit"
-              className="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold uppercase tracking-wider text-xs shadow-red-glow transition-all flex items-center justify-center gap-2"
+              className="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold uppercase tracking-wider text-xs shadow-md transition-all flex items-center justify-center gap-2"
             >
               <Send className="w-3.5 h-3.5" />
               <span>Submit Consultation Request</span>

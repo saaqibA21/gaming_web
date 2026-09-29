@@ -13,7 +13,8 @@ import {
   Wrench,
   Layers,
   Flame,
-  Zap
+  Zap,
+  MapPin
 } from 'lucide-react';
 import { playClickSound } from '../utils/audioEffects';
 
@@ -53,8 +54,8 @@ export default function Hero({ onOpenConsultation }) {
         </button>
       </section>
 
-      {/* 2. All Hero Details Below the Video Screen - Styled as Workbench Overview */}
-      <section id="hero-details" className="relative py-16 sm:py-24 border-b border-gw-border bg-transparent assemble-on-scroll">
+      {/* 2. All Hero Details Below the Video Screen - Solid Workbench Overview */}
+      <section id="hero-details" className="relative py-16 sm:py-24 border-b border-gw-border bg-[#070709] assemble-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           
           {/* Main Grid: Left Ad Copy, Right Hardware Showcase */}
@@ -70,7 +71,7 @@ export default function Hero({ onOpenConsultation }) {
                 </div>
                 <h1 className="text-5xl sm:text-7xl lg:text-8xl font-display tracking-tight leading-[0.92] text-white assemble-left assemble-delay-2">
                   CUSTOM GAMING RIGS. <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-600 to-amber-500 drop-shadow-[0_0_25px_rgba(229,9,20,0.7)]">
+                  <span className="text-red-600">
                     BUILT TO DOMINATE.
                   </span>
                 </h1>
@@ -82,12 +83,13 @@ export default function Hero({ onOpenConsultation }) {
               </p>
 
               {/* Slogan Banner */}
-              <div className="p-4 rounded-xl bg-black/90 border border-red-900/60 shadow-solid-dark space-y-1 assemble-left assemble-delay-4">
+              <div className="p-4 rounded-xl bg-[#0d0d14] border border-red-900/60 shadow-solid-dark space-y-1 assemble-left assemble-delay-4">
                 <div className="text-sm sm:text-base font-tech font-bold text-red-400 uppercase tracking-wide">
                   "{COMPANY_INFO.slogan}"
                 </div>
-                <div className="text-xs text-gray-400 font-sans truncate">
-                  📍 {COMPANY_INFO.address}
+                <div className="text-xs text-gray-400 font-sans flex items-center gap-1.5 truncate">
+                  <MapPin className="w-3.5 h-3.5 text-red-500 flex-shrink-0" />
+                  <span>{COMPANY_INFO.address}</span>
                 </div>
               </div>
 
@@ -96,7 +98,7 @@ export default function Hero({ onOpenConsultation }) {
                 <a
                   href="#pc-builder"
                   onClick={() => playClickSound()}
-                  className="flex items-center gap-2.5 px-7 py-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-sm tracking-wider uppercase shadow-red-glow hover:shadow-red-glow-lg transition-all transform hover:-translate-y-0.5"
+                  className="flex items-center gap-2.5 px-7 py-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-sm tracking-wider uppercase shadow-md transition-all transform hover:-translate-y-0.5"
                 >
                   <Cpu className="w-5 h-5" />
                   <span>Enter Assembly Bay (PC Builder)</span>
@@ -147,7 +149,7 @@ export default function Hero({ onOpenConsultation }) {
                       <img 
                         src={COMPANY_INFO.logo} 
                         alt="Games World Logo" 
-                        className="w-10 h-10 object-contain filter drop-shadow-[0_0_8px_rgba(229,9,20,0.5)]" 
+                        className="w-10 h-10 object-contain" 
                       />
                       <div className="flex flex-col">
                         <div className="flex items-center gap-1 font-display tracking-wider text-lg leading-none">
@@ -198,7 +200,7 @@ export default function Hero({ onOpenConsultation }) {
                         playClickSound();
                         onOpenConsultation();
                       }}
-                      className="w-full py-3 px-4 rounded-lg bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider transition-colors shadow-red-glow"
+                      className="w-full py-3 px-4 rounded-lg bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider transition-colors shadow-md"
                     >
                       Request Free Hardware Consultation
                     </button>

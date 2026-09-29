@@ -19,7 +19,7 @@ export default function Footer({ onOpenConsultation }) {
   return (
     <footer id="contact" className="bg-[#050508] border-t border-gw-border text-gray-300 font-sans">
       
-      {/* Upper Store & Business Card Showcase */}
+      {/* Upper Store Showcase - Solid & Clear */}
       <div className="border-b border-gw-border/60 bg-[#08080d] py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -56,16 +56,38 @@ export default function Footer({ onOpenConsultation }) {
               </div>
             </div>
 
-            {/* Right: Business Card Visual Showcase */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative rounded-2xl overflow-hidden border border-red-900/60 shadow-red-glow p-2 bg-gradient-to-br from-red-950/40 to-black max-w-md w-full">
-                <img 
-                  src={COMPANY_INFO.cardImages[0]} 
-                  alt="Games World Business Card" 
-                  className="w-full h-auto rounded-xl object-contain shadow-2xl hover:scale-[1.02] transition-transform duration-300"
-                />
-                <div className="mt-2 text-center text-[11px] text-gray-400 font-sans">
-                  Official Games World Store & Service Warranty Guarantee
+            {/* Right: Solid Store & Quality Standards Panel */}
+            <div className="lg:col-span-5">
+              <div className="rounded-2xl border border-gw-border p-6 bg-[#0c0c14] space-y-4">
+                <div className="border-b border-gw-border pb-3">
+                  <div className="text-xs font-tech font-bold text-red-500 uppercase tracking-widest-plus">BENCHMARK STANDARDS</div>
+                  <h4 className="text-xl font-display tracking-wider text-white mt-0.5">STORE BUILD ASSURANCE</h4>
+                </div>
+
+                <div className="space-y-3 text-xs font-sans">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-white font-semibold">100% Sealed Genuine Components</span>
+                      <p className="text-gray-400 text-[11px] mt-0.5">Boxes unsealed on workbench with direct brand warranties.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-white font-semibold">24-Hour Thermal Burn-In</span>
+                      <p className="text-gray-400 text-[11px] mt-0.5">FurMark and Cinebench stress verified before handover.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-white font-semibold">3-Year Assembly Warranty</span>
+                      <p className="text-gray-400 text-[11px] mt-0.5">Local walk-in RMA support & zero assembly charges.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -84,7 +106,7 @@ export default function Footer({ onOpenConsultation }) {
               <img 
                 src={COMPANY_INFO.logo} 
                 alt="Games World Logo" 
-                className="h-12 w-auto object-contain filter drop-shadow-[0_0_10px_rgba(229,9,20,0.5)]" 
+                className="h-12 w-auto object-contain" 
               />
               <div className="flex flex-col">
                 <div className="flex items-center gap-1 font-display tracking-wider text-2xl leading-none">
@@ -183,7 +205,7 @@ export default function Footer({ onOpenConsultation }) {
               <div className="pt-1">
                 <button
                   onClick={onOpenConsultation}
-                  className="w-full flex items-center justify-center gap-2 py-3 px-3 rounded-lg bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider transition-colors shadow-red-glow"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-3 rounded-lg bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider transition-colors shadow-md"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>Request Hardware Quote</span>

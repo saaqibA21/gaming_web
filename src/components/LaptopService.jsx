@@ -88,13 +88,13 @@ export default function LaptopService() {
   };
 
   return (
-    <section id="laptop-service" className="py-16 sm:py-20 bg-transparent border-b border-gw-border relative assemble-on-scroll">
+    <section id="laptop-service" className="py-16 sm:py-20 bg-[#070709] border-b border-gw-border relative assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-700/60 text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2 assemble-down assemble-delay-1">
-            <Microscope className="w-3.5 h-3.5 text-red-400 animate-pulse" />
+            <Microscope className="w-3.5 h-3.5 text-red-400" />
             <span>CHIP-LEVEL MOTHERBOARD & THERMAL REPAIR LAB</span>
           </div>
           <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-white assemble-down assemble-delay-2">
@@ -111,7 +111,7 @@ export default function LaptopService() {
         <div className="mb-14 p-5 sm:p-7 rounded-2xl bg-[#0a0a10]/95 border border-red-900/50 shadow-2xl relative overflow-hidden assemble-down assemble-delay-3">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-gw-border/80 mb-6">
             <div className="flex items-center gap-3">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500"></span>
               <div>
                 <h3 className="text-xl font-display tracking-wider text-white flex items-center gap-2">
                   <span>CLEAN-ROOM REBUILD PROTOCOL</span>
@@ -144,7 +144,7 @@ export default function LaptopService() {
                   }}
                   className={`p-3.5 rounded-xl border text-left transition-all relative assemble-socket ${delayClass} ${
                     isActive
-                      ? 'bg-red-950/60 border-red-500 shadow-red-glow text-white'
+                      ? 'bg-[#1a0e10] border-red-600 shadow-md text-white'
                       : 'bg-gw-card/80 border-gw-border hover:border-gray-500 text-gray-400'
                   }`}
                 >
@@ -306,7 +306,7 @@ export default function LaptopService() {
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold uppercase tracking-wider text-xs shadow-red-glow transition-all flex items-center justify-center gap-2"
+                  className="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold uppercase tracking-wider text-xs shadow-md transition-all flex items-center justify-center gap-2"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>Submit Diagnostic Request</span>

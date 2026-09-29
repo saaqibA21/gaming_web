@@ -4,11 +4,7 @@ export const COMPANY_INFO = {
   slogan: "GAMES WORLD – YOUR TECH, OUR PRIORITY",
   address: "No -1, Athipatten Street, 3rd Floor, Landmark - Bharat Petroleum Back Side, Chennai",
   hours: "Monday – Sunday: 10:30 AM – 9:30 PM",
-  logo: "/images/games_world_emblem.png",
-  cardImages: [
-    "/images/card_front_back.jpg",
-    "/images/card_details_pillars.jpg"
-  ]
+  logo: "/images/games_world_emblem.png"
 };
 
 export const PILLARS = [

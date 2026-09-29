@@ -56,7 +56,7 @@ export default function Prebuilts({ onAddToCart }) {
   };
 
   return (
-    <section id="prebuilts" className="py-16 sm:py-20 bg-transparent border-b border-gw-border relative assemble-on-scroll">
+    <section id="prebuilts" className="py-16 sm:py-20 bg-[#070709] border-b border-gw-border relative assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -79,7 +79,7 @@ export default function Prebuilts({ onAddToCart }) {
                 onClick={() => handleCategorySelect(cat.id)}
                 className={`px-4 py-2 rounded-xl text-xs font-tech font-bold uppercase tracking-wider transition-all duration-200 border ${
                   activeCategory === cat.id
-                    ? 'bg-red-600 text-white border-red-500 shadow-red-glow'
+                    ? 'bg-red-600 text-white border-red-600 shadow-md'
                     : 'bg-gw-card text-gray-300 border-gw-border hover:border-gray-500'
                 }`}
               >
@@ -99,7 +99,7 @@ export default function Prebuilts({ onAddToCart }) {
                 key={pc.id}
                 className={`rounded-2xl bg-gw-card border transition-all duration-300 flex flex-col justify-between overflow-hidden group assemble-card assemble-up ${delayClass} ${
                   pc.popular 
-                    ? 'border-red-600 shadow-red-glow' 
+                    ? 'border-red-600 shadow-md' 
                     : 'border-gw-border hover:border-red-600/50 hover:shadow-lg'
                 }`}
               >
@@ -201,18 +201,28 @@ export default function Prebuilts({ onAddToCart }) {
                         </div>
                         
                         {/* Assembly Verification Certificate */}
-                        <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border space-y-1 text-[10px] font-tech text-gray-300">
+                        <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border space-y-1.5 text-[10px] font-tech text-gray-300">
                           <div className="text-red-400 font-bold uppercase flex items-center gap-1">
                             <FileCheck className="w-3 h-3" />
                             GAMES WORLD BENCH CERTIFIED
                           </div>
-                          <div className="text-gray-400">✓ Thermal Grizzly Kryonaut TIM</div>
-                          <div className="text-gray-400">✓ XMP / EXPO Memory Profile Locked</div>
-                          <div className="text-gray-400">✓ 24hr Continuous Stress Tested</div>
+                          <div className="flex items-center gap-1.5 text-gray-400">
+                            <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
+                            <span>Thermal Grizzly Kryonaut TIM</span>
+                          </div>
+                          <div className="flex items-center gap-1.5 text-gray-400">
+                            <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
+                            <span>XMP / EXPO Memory Profile Locked</span>
+                          </div>
+                          <div className="flex items-center gap-1.5 text-gray-400">
+                            <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
+                            <span>24hr Continuous Stress Tested</span>
+                          </div>
                         </div>
 
-                        <div className="text-[10px] text-emerald-400 font-tech font-bold uppercase">
-                          🛡 {pc.warranty}
+                        <div className="text-[10px] text-emerald-400 font-tech font-bold uppercase flex items-center gap-1.5">
+                          <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                          <span>{pc.warranty}</span>
                         </div>
                       </div>
                     )}
@@ -248,7 +258,7 @@ export default function Prebuilts({ onAddToCart }) {
                     <div className="pt-1">
                       <button
                         onClick={() => handleAddToCart(pc)}
-                        className="w-full flex items-center justify-center gap-2 py-3 px-3 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-tech font-bold uppercase tracking-wider transition-all shadow-red-glow hover:shadow-red-glow-lg"
+                        className="w-full flex items-center justify-center gap-2 py-3 px-3 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-tech font-bold uppercase tracking-wider transition-all shadow-md"
                       >
                         <ShoppingBag className="w-4 h-4" />
                         <span>Add to Assembly Cart</span>
@@ -263,7 +273,7 @@ export default function Prebuilts({ onAddToCart }) {
         </div>
 
         {/* Solid Ad Callout Banner */}
-        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-red-950/80 via-gw-card to-black border border-red-900/60 flex flex-col md:flex-row items-center justify-between gap-6 assemble-up assemble-delay-3">
+        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-[#0c0c14] border border-gw-border flex flex-col md:flex-row items-center justify-between gap-6 assemble-up assemble-delay-3">
           <div className="space-y-1.5 text-center md:text-left">
             <div className="text-xs font-tech font-bold text-red-500 uppercase tracking-widest-plus">CUSTOM WORKSTATIONS & LIQUID LOOPS</div>
             <h3 className="text-2xl sm:text-3xl font-display tracking-wider text-white">
@@ -276,7 +286,7 @@ export default function Prebuilts({ onAddToCart }) {
           <div className="flex flex-wrap gap-3">
             <a
               href="#pc-builder"
-              className="px-6 py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-tech font-bold uppercase tracking-wider transition-all shadow-red-glow"
+              className="px-6 py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-tech font-bold uppercase tracking-wider transition-all shadow-md"
             >
               Open Configurator
             </a>

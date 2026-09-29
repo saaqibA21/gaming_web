@@ -56,7 +56,7 @@ export default function WhyUs() {
   ];
 
   return (
-    <section id="why-us" className="py-16 sm:py-20 bg-transparent border-b border-gw-border relative assemble-on-scroll">
+    <section id="why-us" className="py-16 sm:py-20 bg-[#070709] border-b border-gw-border relative assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -80,7 +80,7 @@ export default function WhyUs() {
             return (
               <div 
                 key={idx}
-                className={`p-6 rounded-2xl bg-gw-card border border-gw-border hover:border-red-600/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-red-glow assemble-card assemble-up ${delayClass}`}
+                className={`p-6 rounded-2xl bg-gw-card border border-gw-border hover:border-red-600/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-md assemble-card assemble-up ${delayClass}`}
               >
                 <div className="w-12 h-12 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center mb-4">
                   <Icon className="w-6 h-6" />

@@ -110,7 +110,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems = [], onRemoveIt
               ) : (
                 <button
                   onClick={handleCheckout}
-                  className="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider shadow-red-glow flex items-center justify-center gap-2 transition-all"
+                  className="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-2 transition-all"
                 >
                   <Send className="w-4 h-4" />
                   <span>Submit Order Request</span>

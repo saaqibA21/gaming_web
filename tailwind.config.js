@@ -29,8 +29,8 @@ export default {
         'widest-plus': '0.25em',
       },
       boxShadow: {
-        'red-glow': '0 0 25px -5px rgba(229, 9, 20, 0.45)',
-        'red-glow-lg': '0 0 45px -5px rgba(229, 9, 20, 0.7)',
+        'red-glow': '0 4px 6px -1px rgba(0, 0, 0, 0.5)',
+        'red-glow-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.6)',
         'solid-red': '4px 4px 0px 0px rgba(229, 9, 20, 1)',
         'solid-dark': '4px 4px 0px 0px rgba(0, 0, 0, 1)',
       }
