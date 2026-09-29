@@ -59,47 +59,41 @@ export default function HologramFlowBg() {
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    // Scroll listener for liquid cooling assembly flow scrubbing
-    const handleScroll = () => {
+    const updateTargetFrame = () => {
+      const hero = document.getElementById('hero');
       const scrollY = window.scrollY;
-      const heroThreshold = window.innerHeight * 1.2;
-      const progress = Math.min(1, Math.max(0, scrollY / heroThreshold));
-      
-      const s = stateRef.current;
-      s.targetFrame = progress * (TOTAL_FRAMES - 1);
-      s.isUserScrolling = true;
-      s.scrollSpeed = Math.abs(scrollY - s.lastScrollY);
-      s.lastScrollY = scrollY;
-
-      clearTimeout(s.scrollTimeout);
-      s.scrollTimeout = setTimeout(() => {
-        s.isUserScrolling = false;
-      }, 150);
+      let progress = 0;
+      if (hero) {
+        const maxScroll = Math.max(1, hero.offsetHeight - window.innerHeight);
+        progress = Math.min(1, Math.max(0, scrollY / maxScroll));
+      } else {
+        const heroThreshold = window.innerHeight * 1.5;
+        progress = Math.min(1, Math.max(0, scrollY / heroThreshold));
+      }
+      stateRef.current.targetFrame = progress * (TOTAL_FRAMES - 1);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    updateTargetFrame();
+    window.addEventListener('scroll', updateTargetFrame, { passive: true });
 
-    // Render loop
-    let lastTime = performance.now();
-    const render = (time) => {
-      const delta = (time - lastTime) / 1000;
-      lastTime = time;
+    // Render loop - strictly driven by scroll position
+    const render = () => {
       const s = stateRef.current;
       const images = imagesRef.current;
 
       if (images.length > 0) {
-        if (!s.isUserScrolling) {
-          // Smooth continuous 24fps liquid cooling assembly flow
-          s.currentFrame = (s.currentFrame + delta * 24) % TOTAL_FRAMES;
-          s.targetFrame = s.currentFrame;
+        // Smoothly interpolate towards targetFrame based purely on scroll
+        const diff = s.targetFrame - s.currentFrame;
+        if (Math.abs(diff) > 0.01) {
+          s.currentFrame += diff * 0.22;
         } else {
-          // Smooth interpolation when scrolling
-          const lerpFactor = 0.18;
-          const diff = s.targetFrame - s.currentFrame;
-          s.currentFrame = (s.currentFrame + diff * lerpFactor + TOTAL_FRAMES) % TOTAL_FRAMES;
+          s.currentFrame = s.targetFrame;
         }
 
-        const frameIndex = Math.floor(s.currentFrame) % TOTAL_FRAMES;
+        const frameIndex = Math.min(
+          TOTAL_FRAMES - 1,
+          Math.max(0, Math.round(s.currentFrame))
+        );
         const img = images[frameIndex];
 
         if (img && img.complete && img.naturalWidth > 0) {
@@ -134,7 +128,7 @@ export default function HologramFlowBg() {
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', updateTargetFrame);
     };
   }, []);
 

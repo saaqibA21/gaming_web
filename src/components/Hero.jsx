@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { COMPANY_INFO, PILLARS } from '../data/mockData';
 import { 
   Gamepad2, 
@@ -8,13 +8,13 @@ import {
   ArrowRight, 
   CheckCircle2, 
   Sparkles, 
-  MessageSquare,
-  ChevronDown,
-  Wrench,
-  Layers,
-  Flame,
-  Zap,
-  MapPin
+  MessageSquare, 
+  ChevronDown, 
+  Wrench, 
+  Layers, 
+  Flame, 
+  Zap, 
+  MapPin 
 } from 'lucide-react';
 import { playClickSound } from '../utils/audioEffects';
 
@@ -26,6 +26,22 @@ const iconMap = {
 };
 
 export default function Hero({ onOpenConsultation }) {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const hero = document.getElementById('hero');
+      if (hero) {
+        const maxScroll = Math.max(1, hero.offsetHeight - window.innerHeight);
+        const p = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+        setScrollProgress(p);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const scrollToContent = () => {
     playClickSound();
     const el = document.getElementById('hero-details');
@@ -34,24 +50,54 @@ export default function Hero({ onOpenConsultation }) {
     }
   };
 
+  const getAssemblyStage = (p) => {
+    if (p < 0.25) return 'STAGE 1: CHASSIS & RADIATOR RIGGING';
+    if (p < 0.50) return 'STAGE 2: CPU BLOCK & MOBO SEATING';
+    if (p < 0.75) return 'STAGE 3: GPU & LIQUID ROUTING';
+    if (p < 0.98) return 'STAGE 4: COOLANT FILL & LEAK PURGE';
+    return 'STAGE 5: BENCHMARK READY';
+  };
+
   return (
     <>
-      {/* 1. Cinematic Video Stage - Only the clean video plays */}
-      <section id="hero" className="relative h-[calc(100vh-80px)] min-h-[500px] flex flex-col justify-end items-center pb-8 select-none overflow-hidden">
-        {/* Simple, Elegant Scroll Anchor */}
-        <button
-          onClick={scrollToContent}
-          className="group flex flex-col items-center gap-2 cursor-pointer transition-all hover:scale-105"
-          aria-label="Scroll to explore"
-        >
-          <div className="flex items-center gap-2.5 px-6 py-3 rounded-full bg-black/80 hover:bg-black border border-red-700/60 shadow-2xl transition-all">
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-            <span className="text-xs font-tech font-bold uppercase tracking-widest-plus text-gray-200 group-hover:text-white">
-              EXPLORE WORKBENCH
-            </span>
-            <ChevronDown className="w-4 h-4 text-red-500 group-hover:translate-y-0.5 transition-transform" />
+      {/* 1. Cinematic Interactive Assembly Stage - Scrolls to assemble */}
+      <section id="hero" className="relative h-[260vh]">
+        <div className="sticky top-0 h-screen w-full flex flex-col justify-between items-center py-6 px-4 select-none pointer-events-none">
+          {/* Top Stage Pill */}
+          <div className="pt-20 pointer-events-auto">
+            <div className="px-4 py-1.5 rounded-full bg-black/80 border border-gw-border text-[11px] font-tech font-bold uppercase tracking-widest text-gray-300 flex items-center gap-2 shadow-xl">
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+              <span>SCROLL TO ASSEMBLE HARDWARE</span>
+            </div>
           </div>
-        </button>
+
+          {/* Bottom HUD: Stage tracker + Skip CTA */}
+          <div className="pb-8 w-full max-w-md pointer-events-auto flex flex-col items-center gap-3">
+            <div className="w-full bg-black/85 backdrop-blur-md p-3.5 rounded-xl border border-gw-border shadow-2xl">
+              <div className="flex items-center justify-between text-[11px] font-tech font-bold uppercase tracking-wider text-gray-300 mb-2">
+                <span>{getAssemblyStage(scrollProgress)}</span>
+                <span className="text-red-500 font-mono font-bold">{Math.round(scrollProgress * 100)}%</span>
+              </div>
+              <div className="w-full h-1.5 bg-neutral-900 rounded-full overflow-hidden border border-neutral-800">
+                <div 
+                  className="h-full bg-red-600 transition-all duration-75"
+                  style={{ width: `${Math.round(scrollProgress * 100)}%` }}
+                />
+              </div>
+            </div>
+
+            <button
+              onClick={scrollToContent}
+              className="group flex items-center gap-2 px-6 py-2.5 rounded-full bg-black/90 hover:bg-black border border-red-700/60 shadow-xl transition-all cursor-pointer hover:border-red-500"
+              aria-label="Skip to details"
+            >
+              <span className="text-xs font-tech font-bold uppercase tracking-widest text-gray-200 group-hover:text-white">
+                EXPLORE WORKBENCH
+              </span>
+              <ChevronDown className="w-4 h-4 text-red-500 group-hover:translate-y-0.5 transition-transform" />
+            </button>
+          </div>
+        </div>
       </section>
 
       {/* 2. All Hero Details Below the Video Screen - Solid Workbench Overview */}
