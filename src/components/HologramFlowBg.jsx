@@ -12,8 +12,7 @@ export default function HologramFlowBg() {
     currentFrame: 0,
     targetFrame: 0,
     lastScrollY: 0,
-    scrollSpeed: 0,
-    isUserScrolling: false,
+    isScrolling: false,
     scrollTimeout: null,
   });
 
@@ -59,7 +58,7 @@ export default function HologramFlowBg() {
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    const updateTargetFrame = () => {
+    const handleScroll = () => {
       const hero = document.getElementById('hero');
       const scrollY = window.scrollY;
       let progress = 0;
@@ -72,29 +71,47 @@ export default function HologramFlowBg() {
         const heroThreshold = window.innerHeight * 1.2;
         progress = Math.min(1, Math.max(0, scrollY / heroThreshold));
       }
-      stateRef.current.targetFrame = progress * (TOTAL_FRAMES - 1);
+      
+      const s = stateRef.current;
+      s.targetFrame = progress * (TOTAL_FRAMES - 1);
+      s.isScrolling = true;
+
+      clearTimeout(s.scrollTimeout);
+      s.scrollTimeout = setTimeout(() => {
+        s.isScrolling = false;
+      }, 180);
     };
 
-    updateTargetFrame();
-    window.addEventListener('scroll', updateTargetFrame, { passive: true });
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Render loop - strictly driven by scroll position
-    const render = () => {
+    // Render loop - plays normally at 24fps when idle, scrubs dynamically on scroll
+    let lastTime = performance.now();
+    const render = (time) => {
+      const delta = Math.min(0.1, (time - lastTime) / 1000);
+      lastTime = time;
+
       const s = stateRef.current;
       const images = imagesRef.current;
 
       if (images.length > 0) {
-        // High responsiveness so frames tightly track user scroll without lag
-        const diff = s.targetFrame - s.currentFrame;
-        if (Math.abs(diff) > 0.001) {
-          s.currentFrame += diff * 0.55;
+        if (s.isScrolling) {
+          // Dynamic scrubbing when user is actively scrolling
+          const diff = s.targetFrame - s.currentFrame;
+          if (Math.abs(diff) > 0.001) {
+            s.currentFrame += diff * 0.55;
+          } else {
+            s.currentFrame = s.targetFrame;
+          }
         } else {
-          s.currentFrame = s.targetFrame;
+          // Natural 24fps playback when user is not scrolling
+          s.currentFrame = (s.currentFrame + delta * 24) % TOTAL_FRAMES;
+          s.targetFrame = s.currentFrame;
         }
 
         const frameIndex = Math.min(
           TOTAL_FRAMES - 1,
-          Math.max(0, Math.round(s.currentFrame))
+          Math.max(0, Math.floor(s.currentFrame))
         );
         const img = images[frameIndex];
 
@@ -130,7 +147,7 @@ export default function HologramFlowBg() {
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('scroll', updateTargetFrame);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
