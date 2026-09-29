@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { COMPANY_INFO, PILLARS } from '../data/mockData';
 import { 
   Gamepad2, 
@@ -26,23 +26,6 @@ const iconMap = {
 };
 
 export default function Hero({ onOpenConsultation }) {
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const hero = document.getElementById('hero');
-      if (hero) {
-        const totalRunway = Math.max(1, hero.offsetHeight - window.innerHeight);
-        const assemblyRunway = totalRunway * 0.70;
-        const p = Math.min(1, Math.max(0, window.scrollY / assemblyRunway));
-        setScrollProgress(p);
-      }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const scrollToContent = () => {
     playClickSound();
     const el = document.getElementById('hero-details');
@@ -51,62 +34,21 @@ export default function Hero({ onOpenConsultation }) {
     }
   };
 
-  const getAssemblyStage = (p) => {
-    if (p < 0.25) return 'STAGE 1: CHASSIS & RADIATOR RIGGING';
-    if (p < 0.50) return 'STAGE 2: CPU BLOCK & MOBO SEATING';
-    if (p < 0.75) return 'STAGE 3: GPU & LIQUID ROUTING';
-    if (p < 1.0) return 'STAGE 4: COOLANT FILL & LEAK PURGE';
-    return 'STAGE 5: ASSEMBLY COMPLETE • BENCHMARK READY';
-  };
-
   return (
     <>
-      {/* 1. Cinematic Interactive Assembly Stage - Scrolls to assemble */}
+      {/* 1. Cinematic Interactive Assembly Stage - Clean video without HUD overlays */}
       <section id="hero" className="relative h-[300vh]">
-        <div className="sticky top-0 h-screen w-full flex flex-col justify-between items-center py-6 px-4 select-none pointer-events-none">
-          {/* Top Stage Pill */}
-          <div className="pt-20 pointer-events-auto">
-            <div className="px-4 py-1.5 rounded-full bg-black/85 border border-gw-border text-[11px] font-tech font-bold uppercase tracking-widest text-gray-300 flex items-center gap-2 shadow-xl">
-              <span className={`w-2 h-2 rounded-full ${scrollProgress >= 1 ? "bg-emerald-400" : "bg-red-500 animate-pulse"}`}></span>
-              <span>{scrollProgress >= 1 ? "ASSEMBLY BENCHMARK VERIFIED" : "SCROLL TO ASSEMBLE HARDWARE"}</span>
-            </div>
-          </div>
-
-          {/* Bottom HUD: Stage tracker + Skip CTA */}
-          <div className="pb-8 w-full max-w-md pointer-events-auto flex flex-col items-center gap-3">
-            <div className="w-full bg-black/85 backdrop-blur-md p-3.5 rounded-xl border border-gw-border shadow-2xl">
-              <div className="flex items-center justify-between text-[11px] font-tech font-bold uppercase tracking-wider text-gray-300 mb-2">
-                <span className={scrollProgress >= 1 ? "text-emerald-400 font-bold" : ""}>
-                  {getAssemblyStage(scrollProgress)}
-                </span>
-                <span className={`font-mono font-bold ${scrollProgress >= 1 ? "text-emerald-400" : "text-red-500"}`}>
-                  {Math.round(scrollProgress * 100)}%
-                </span>
-              </div>
-              <div className="w-full h-1.5 bg-neutral-900 rounded-full overflow-hidden border border-neutral-800">
-                <div 
-                  className={`h-full transition-all duration-75 ${scrollProgress >= 1 ? "bg-emerald-500" : "bg-red-600"}`}
-                  style={{ width: `${Math.round(scrollProgress * 100)}%` }}
-                />
-              </div>
-              {scrollProgress >= 1 && (
-                <div className="mt-2 text-center text-[10px] font-tech uppercase tracking-widest text-emerald-400">
-                  BUILD 100% COMPLETE • SCROLL DOWN FOR SPECIFICATIONS
-                </div>
-              )}
-            </div>
-
-            <button
-              onClick={scrollToContent}
-              className="group flex items-center gap-2 px-6 py-2.5 rounded-full bg-black/90 hover:bg-black border border-red-700/60 shadow-xl transition-all cursor-pointer hover:border-red-500"
-              aria-label="Skip to details"
-            >
-              <span className="text-xs font-tech font-bold uppercase tracking-widest text-gray-200 group-hover:text-white">
-                EXPLORE WORKBENCH
-              </span>
-              <ChevronDown className="w-4 h-4 text-red-500 group-hover:translate-y-0.5 transition-transform" />
-            </button>
-          </div>
+        <div className="sticky top-0 h-screen w-full flex flex-col justify-end items-center pb-8 select-none pointer-events-none">
+          <button
+            onClick={scrollToContent}
+            className="group pointer-events-auto flex items-center gap-2 px-6 py-2.5 rounded-full bg-black/80 hover:bg-black border border-red-700/60 shadow-xl transition-all cursor-pointer hover:border-red-500"
+            aria-label="Skip to details"
+          >
+            <span className="text-xs font-tech font-bold uppercase tracking-widest text-gray-200 group-hover:text-white">
+              EXPLORE WORKBENCH
+            </span>
+            <ChevronDown className="w-4 h-4 text-red-500 group-hover:translate-y-0.5 transition-transform" />
+          </button>
         </div>
       </section>
 
