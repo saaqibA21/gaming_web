@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PC_PARTS, COMPANY_INFO } from '../data/mockData';
 import { 
+  Monitor,
   Cpu, 
   CircuitBoard, 
   Layers, 
@@ -29,21 +30,24 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { playClickSound, playMountSound, playBootSound } from '../utils/audioEffects';
+import BattlestationStudio from './BattlestationStudio';
 
 const CATEGORIES = [
-  { id: 'processors', label: '1. Processor (CPU)', slotName: 'CPU SOCKET', icon: Cpu },
-  { id: 'motherboards', label: '2. Motherboard', slotName: 'MOTHERBOARD PCB', icon: CircuitBoard },
-  { id: 'graphicsCards', label: '3. Graphics Card (GPU)', slotName: 'PCIE 5.0 X16', icon: Layers },
-  { id: 'rams', label: '4. Memory (RAM)', slotName: 'DIMM 2 & 4', icon: Box },
-  { id: 'storages', label: '5. Storage (NVMe SSD)', slotName: 'M.2 GEN4 SLOT', icon: HardDrive },
-  { id: 'coolers', label: '6. CPU Cooler', slotName: 'COLDPLATE & AIO', icon: Fan },
-  { id: 'powerSupplies', label: '7. Power Supply (PSU)', slotName: 'PSU COMPARTMENT', icon: Zap },
-  { id: 'cabinets', label: '8. Cabinet / Case', slotName: 'CHASSIS FRAME', icon: Box }
+  { id: 'monitors', label: '1. Gaming Screen', slotName: 'DISPLAY SCREEN', icon: Monitor },
+  { id: 'processors', label: '2. Processor (CPU)', slotName: 'CPU SOCKET', icon: Cpu },
+  { id: 'coolers', label: '3. Cooling Fans & AIO', slotName: 'FANS & COOLER', icon: Fan },
+  { id: 'graphicsCards', label: '4. Graphics Card (GPU)', slotName: 'PCIE 5.0 X16', icon: Layers },
+  { id: 'motherboards', label: '5. Motherboard', slotName: 'MOTHERBOARD PCB', icon: CircuitBoard },
+  { id: 'rams', label: '6. Memory (RAM)', slotName: 'DIMM 2 & 4', icon: Box },
+  { id: 'storages', label: '7. Storage (NVMe SSD)', slotName: 'M.2 GEN4 SLOT', icon: HardDrive },
+  { id: 'powerSupplies', label: '8. Power Supply (PSU)', slotName: 'PSU COMPARTMENT', icon: Zap },
+  { id: 'cabinets', label: '9. Cabinet / Case', slotName: 'CHASSIS FRAME', icon: Box }
 ];
 
 export default function PcBuilder({ onAddToCart }) {
-  // Initial default build (high-performance balanced rig)
+  // Initial default build (high-performance balanced rig with monitor)
   const [selectedParts, setSelectedParts] = useState({
+    monitors: PC_PARTS.monitors[1], // LG UltraGear 27" 240Hz
     processors: PC_PARTS.processors[1], // 7800X3D
     motherboards: PC_PARTS.motherboards[0], // MSI B650
     graphicsCards: PC_PARTS.graphicsCards[2], // RTX 4070 Super
@@ -78,6 +82,7 @@ export default function PcBuilder({ onAddToCart }) {
     if (selectedParts.rams) watts += selectedParts.rams.wattage || 15;
     if (selectedParts.storages) watts += selectedParts.storages.wattage || 10;
     if (selectedParts.coolers) watts += selectedParts.coolers.wattage || 20;
+    if (selectedParts.monitors) watts += selectedParts.monitors.wattage || 0;
     return watts;
   }, [selectedParts]);
 
@@ -133,6 +138,7 @@ export default function PcBuilder({ onAddToCart }) {
   const handleReset = () => {
     playClickSound();
     setSelectedParts({
+      monitors: PC_PARTS.monitors[0],
       processors: PC_PARTS.processors[0],
       motherboards: PC_PARTS.motherboards[0],
       graphicsCards: PC_PARTS.graphicsCards[0],
@@ -148,6 +154,7 @@ export default function PcBuilder({ onAddToCart }) {
   const handleLoadFlagship = () => {
     playMountSound();
     setSelectedParts({
+      monitors: PC_PARTS.monitors[2], // 4K Samsung Odyssey G7
       processors: PC_PARTS.processors[2], // 9800X3D
       motherboards: PC_PARTS.motherboards[1],
       graphicsCards: PC_PARTS.graphicsCards[4], // RTX 4080 Super
@@ -174,15 +181,16 @@ export default function PcBuilder({ onAddToCart }) {
     return `*GAMES WORLD CHENNAI - HARDWARE ASSEMBLY QUOTATION*
 Date: ${new Date().toLocaleDateString('en-IN')}
 ---------------------------------
-[ASSEMBLY BAY SPECIFICATION]
-• 01. CPU: ${selectedParts.processors?.name || 'Not mounted'}
-• 02. Motherboard: ${selectedParts.motherboards?.name || 'Not mounted'}
-• 03. GPU: ${selectedParts.graphicsCards?.name || 'Not mounted'}
-• 04. RAM: ${selectedParts.rams?.name || 'Not mounted'}
-• 05. NVMe Storage: ${selectedParts.storages?.name || 'Not mounted'}
-• 06. CPU Cooler: ${selectedParts.coolers?.name || 'Not mounted'}
-• 07. Power Supply: ${selectedParts.powerSupplies?.name || 'Not mounted'}
-• 08. Case Chassis: ${selectedParts.cabinets?.name || 'Not mounted'}
+[BATTLESTATION DESKTOP SPECIFICATION]
+• 01. Screen / Monitor: ${selectedParts.monitors?.name || 'Tower Only'}
+• 02. CPU: ${selectedParts.processors?.name || 'Not mounted'}
+• 03. Motherboard: ${selectedParts.motherboards?.name || 'Not mounted'}
+• 04. GPU: ${selectedParts.graphicsCards?.name || 'Not mounted'}
+• 05. RAM: ${selectedParts.rams?.name || 'Not mounted'}
+• 06. NVMe Storage: ${selectedParts.storages?.name || 'Not mounted'}
+• 07. Cooling Fans & AIO: ${selectedParts.coolers?.name || 'Not mounted'}
+• 08. Power Supply: ${selectedParts.powerSupplies?.name || 'Not mounted'}
+• 09. Case Chassis: ${selectedParts.cabinets?.name || 'Not mounted'}
 ---------------------------------
 *TOTAL ESTIMATE: ₹${totalPrice.toLocaleString('en-IN')}* (GST Included)
 • Zero Assembly Charge
@@ -206,7 +214,7 @@ Official Hardware Specification Sheet`;
     if (onAddToCart) {
       onAddToCart({
         id: `custom-build-${Date.now()}`,
-        name: `Custom PC: ${selectedParts.processors?.name?.split(' ')[2] || 'Custom'} + ${selectedParts.graphicsCards?.name?.split(' ')[3] || 'RTX'}`,
+        name: `Custom PC: ${selectedParts.processors?.name?.split(' ')[2] || 'Custom'} + ${selectedParts.graphicsCards?.name?.split(' ')[3] || 'RTX'}${selectedParts.monitors?.price > 0 ? ` + ${selectedParts.monitors?.brand} Screen` : ''}`,
         price: totalPrice,
         specs: selectedParts,
         image: selectedParts.cabinets?.image || "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400"
@@ -253,93 +261,17 @@ Official Hardware Specification Sheet`;
         </div>
 
         {/* ========================================================================= */}
-        {/* VIRTUAL MOTHERBOARD & CHASSIS ASSEMBLY BAY SCHEMATIC */}
+        {/* 3D INTERACTIVE BATTLESTATION: DESKTOP SCREEN & CPU TOWER */}
         {/* ========================================================================= */}
-        <div className="mb-10 p-5 sm:p-6 rounded-2xl bg-[#0a0a10]/95 border border-red-900/50 shadow-2xl relative overflow-hidden">
-          
-          {/* Laser scanning line animation across the workbench */}
-          <div className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-red-500/40 to-transparent pointer-events-none animate-laser-scan"></div>
-
-          {/* Header row of schematic */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-gw-border mb-5 assemble-down assemble-delay-2">
-            <div className="flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-red-500 animate-ping"></div>
-              <div>
-                <h3 className="text-xl font-display tracking-wider text-white flex items-center gap-2">
-                  <span>LIVE HARDWARE BENCH SCHEMATIC</span>
-                  <span className="text-xs px-2 py-0.5 rounded bg-red-950 text-red-400 border border-red-800 font-tech font-bold">
-                    BAY 01
-                  </span>
-                </h3>
-                <p className="text-[11px] text-gray-400 font-sans">
-                  Click any slot to switch category and mount/swap components.
-                </p>
-              </div>
-            </div>
-
-            {/* Assembly Progress Meter */}
-            <div className="flex items-center gap-3 w-full sm:w-auto">
-              <div className="flex-1 sm:w-48 bg-gray-900 rounded-full h-3 border border-gw-border overflow-hidden">
-                <div 
-                  className="bg-gradient-to-r from-red-600 to-amber-500 h-3 rounded-full transition-all duration-300"
-                  style={{ width: `${(installedCount / 8) * 100}%` }}
-                ></div>
-              </div>
-              <span className="text-xs font-tech font-bold text-white whitespace-nowrap">
-                {installedCount}/8 SLOTS ({Math.round((installedCount / 8) * 100)}%)
-              </span>
-            </div>
-          </div>
-
-          {/* 8 Schematic Slot Panels */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5">
-            {CATEGORIES.map((cat, idx) => {
-              const isSelected = activeTab === cat.id;
-              const item = selectedParts[cat.id];
-              const isLastMounted = lastMountedSlot === cat.id;
-              const delayClass = `assemble-delay-${idx + 1}`;
-
-              return (
-                <div
-                  key={cat.id}
-                  onClick={() => handleTabChange(cat.id)}
-                  className={`p-3 rounded-xl cursor-pointer border transition-all relative flex flex-col justify-between min-h-[110px] assemble-socket ${delayClass} assemble-card ${
-                    isLastMounted ? 'animate-slot-snap' : ''
-                  } ${
-                    isSelected 
-                      ? 'bg-[#1a0e10] border-red-600 shadow-md' 
-                      : item 
-                        ? 'bg-gw-card/90 border-gw-border hover:border-gray-500' 
-                        : 'bg-black/50 border-dashed border-gray-700 hover:border-red-500/50'
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-center justify-between text-[9px] font-tech text-gray-400 uppercase tracking-wider mb-1">
-                      <span>{cat.slotName.split(' ')[0]}</span>
-                      {item ? (
-                        <Check className="w-3 h-3 text-emerald-400" />
-                      ) : (
-                        <span className="text-amber-500 font-bold">EMPTY</span>
-                      )}
-                    </div>
-                    <div className="text-xs font-bold text-white leading-tight font-sans line-clamp-2">
-                      {item ? item.name : `Slot ${cat.label.split('. ')[1]}`}
-                    </div>
-                  </div>
-
-                  <div className="pt-2 text-[10px] font-tech font-bold">
-                    {item ? (
-                      <span className="text-red-400 font-mono">₹{item.price.toLocaleString('en-IN')}</span>
-                    ) : (
-                      <span className="text-gray-500 uppercase">+ Click to slot</span>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-        </div>
+        <BattlestationStudio 
+          selectedParts={selectedParts}
+          activeTab={activeTab}
+          onSelectCategory={handleTabChange}
+          totalPrice={totalPrice}
+          estimatedWattage={estimatedWattage}
+          gameFps={gameFps}
+          targetResolution={targetResolution}
+        />
 
         {/* ========================================================================= */}
         {/* MAIN BUILDER WORKSPACE: Component Picker & Summary Telemetry */}
@@ -439,7 +371,12 @@ Official Hardware Specification Sheet`;
                           {item.socket && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">Socket {item.socket}</span>}
                           {item.vram && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">{item.vram}</span>}
                           {item.capacity && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">{item.capacity}</span>}
-                          {item.wattage && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">~{item.wattage}W</span>}
+                          {item.size && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">{item.size}</span>}
+                          {item.resolution && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">{item.resolution}</span>}
+                          {item.refreshRate && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-red-900/50 text-red-400 font-bold">{item.refreshRate}</span>}
+                          {item.panel && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">{item.panel}</span>}
+                          {item.type && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">{item.type}</span>}
+                          {item.wattage && item.wattage > 0 && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">~{item.wattage}W</span>}
                           {item.wattageOutput && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">{item.wattageOutput}W Output</span>}
                         </div>
                       </div>

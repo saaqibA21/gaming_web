@@ -73,7 +73,10 @@ export const PC_PARTS = {
     { id: "clr-1", name: "DeepCool AG400 ARGB Single Tower Cooler (4 Heatpipes)", brand: "DeepCool", type: "Air Cooler", price: 2100, wattage: 10, image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80" },
     { id: "clr-2", name: "DeepCool AK620 Digital Dual Tower (260W TDP Rating)", brand: "DeepCool", type: "Dual Tower Air", price: 6200, wattage: 15, image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80" },
     { id: "clr-3", name: "DeepCool LS720 SE 360mm ARGB Liquid Cooler", brand: "DeepCool", type: "360mm AIO", price: 9200, wattage: 25, popular: true, image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80" },
-    { id: "clr-4", name: "Lian Li Galahad II LCD 360mm Liquid Cooler", brand: "Lian Li", type: "360mm LCD AIO", price: 22500, wattage: 30, image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80" }
+    { id: "clr-4", name: "Lian Li Galahad II LCD 360mm Liquid Cooler", brand: "Lian Li", type: "360mm LCD AIO", price: 22500, wattage: 30, image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80" },
+    { id: "clr-5", name: "Lian Li UNI FAN SL-Infinity 120 RGB (3-Fan Pack + Controller)", brand: "Lian Li", type: "Triple ARGB Fans", price: 8900, wattage: 15, popular: true, image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80" },
+    { id: "clr-6", name: "Corsair iCUE LINK QX120 RGB 120mm PWM (3-Fan Starter Kit)", brand: "Corsair", type: "Magnetic Link Fans", price: 12500, wattage: 20, image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80" },
+    { id: "clr-7", name: "Ant Esports Superflow 120 Auto RGB V2 (3-Fan Pack)", brand: "Ant Esports", type: "Budget 120mm Fans", price: 1200, wattage: 10, image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80" }
   ],
   powerSupplies: [
     { id: "psu-1", name: "DeepCool PK650D 650W (80 Plus Bronze)", brand: "DeepCool", wattageOutput: 650, cert: "80 Plus Bronze", price: 4400, image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80" },
@@ -86,6 +89,14 @@ export const PC_PARTS = {
     { id: "case-2", name: "Lian Li O11 Dynamic EVO (Dual Chamber Tempered Glass)", brand: "Lian Li", type: "Panoramic Glass", price: 13900, popular: true, image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80" },
     { id: "case-3", name: "NZXT H6 Flow RGB Dual Chamber (Angled Front Airflow)", brand: "NZXT", type: "Dual Chamber Mesh", price: 11900, image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80" },
     { id: "case-4", name: "Antec C8 Curve Dual Chamber (Curved Seamless Glass)", brand: "Antec", type: "Curved Glass", price: 10500, image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80" }
+  ],
+  monitors: [
+    { id: "mon-0", name: "Tower Only (No Monitor Included)", brand: "None", size: "N/A", resolution: "N/A", refreshRate: "N/A", panel: "N/A", price: 0, wattage: 0, image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80" },
+    { id: "mon-1", name: "LG UltraGear 27GR83Q-B (27\" 1440p 240Hz 1ms IPS)", brand: "LG", size: "27 Inch", resolution: "2560x1440 QHD", refreshRate: "240Hz", panel: "Fast IPS", price: 28990, wattage: 45, popular: true, image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&auto=format&fit=crop&q=80" },
+    { id: "mon-2", name: "Samsung Odyssey G7 G70B (28\" 4K UHD 144Hz 1ms IPS HDR400)", brand: "Samsung", size: "28 Inch", resolution: "3840x2160 4K", refreshRate: "144Hz", panel: "IPS", price: 44990, wattage: 65, popular: true, image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&auto=format&fit=crop&q=80" },
+    { id: "mon-3", name: "BenQ ZOWIE XL2546K (24.5\" 1080p 240Hz DyAc+ Esports)", brand: "BenQ", size: "24.5 Inch", resolution: "1920x1080 FHD", refreshRate: "240Hz", panel: "Fast TN DyAc+", price: 34500, wattage: 40, image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&auto=format&fit=crop&q=80" },
+    { id: "mon-4", name: "ASUS ROG Swift OLED PG27AQDM (27\" 1440p 240Hz 0.03ms)", brand: "ASUS", size: "27 Inch", resolution: "2560x1440 QHD", refreshRate: "240Hz", panel: "OLED", price: 79990, wattage: 50, image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&auto=format&fit=crop&q=80" },
+    { id: "mon-5", name: "Acer Nitro VG270 S (27\" 1080p 165Hz 0.5ms IPS)", brand: "Acer", size: "27 Inch", resolution: "1920x1080 FHD", refreshRate: "165Hz", panel: "IPS", price: 12490, wattage: 30, image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&auto=format&fit=crop&q=80" }
   ]
 };
 
