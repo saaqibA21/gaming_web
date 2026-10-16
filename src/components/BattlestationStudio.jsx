@@ -589,6 +589,12 @@ export default function BattlestationStudio({
     glassGroup.add(glassPanel);
 
     // Glass Mounting Screws (4 corners)
+    const brushedSilverMat = new THREE.MeshStandardMaterial({
+      color: 0x94a3b8,
+      roughness: 0.3,
+      metalness: 0.8
+    });
+
     for (const [y, z] of [[-1.05, -0.75], [1.05, -0.75], [-1.05, 0.75], [1.05, 0.75]]) {
       const screwGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.06, 16);
       const screw = new THREE.Mesh(screwGeo, brushedSilverMat);
