@@ -159,15 +159,16 @@ export default function BattlestationStudio({
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     rendererRef.current = renderer;
 
-    // CONTROLS - Static stable camera (no auto-rotation, smooth manual orbit if desired)
+    // CONTROLS - Fixed solid battlestation view (zero rotation, zero pan)
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.08;
     controls.target.set(0.1, 1.25, 0);
-    controls.minDistance = 3.0;
-    controls.maxDistance = 10.0;
-    controls.maxPolarAngle = Math.PI / 2 - 0.02;
-    controls.autoRotate = false; // NO ROTATION
+    controls.minDistance = 3.5;
+    controls.maxDistance = 8.5;
+    controls.enableRotate = false; // NO ROTATION
+    controls.autoRotate = false;   // NO AUTO-ROTATION
+    controls.enablePan = false;    // NO PANNING
     controlsRef.current = controls;
 
     // LIGHTING: Dramatic Solid PBR Studio Lighting
@@ -735,11 +736,6 @@ export default function BattlestationStudio({
     const animate = () => {
       animId = requestAnimationFrame(animate);
 
-      // Rotate cooling fan blades
-      for (const fan of rotatingFans) {
-        fan.rotation.z += 0.05;
-      }
-
       // Explode / Assemble interpolation
       const factor = explodeFactorRef.current;
       for (const [key, partData] of Object.entries(partGroups)) {
@@ -860,7 +856,7 @@ export default function BattlestationStudio({
       {/* 3D WebGL Canvas - Large, Solid, Clean with ZERO Floating Tags! */}
       <div 
         ref={containerRef}
-        className="relative w-full h-[520px] sm:h-[640px] select-none overflow-hidden cursor-grab active:cursor-grabbing bg-[#05060a]"
+        className="relative w-full h-[520px] sm:h-[640px] select-none overflow-hidden cursor-default bg-[#05060a]"
       >
         <canvas ref={canvasRef} className="w-full h-full block" />
 
