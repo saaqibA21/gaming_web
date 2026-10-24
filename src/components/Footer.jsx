@@ -12,7 +12,7 @@ import {
   Quote
 } from 'lucide-react';
 
-export default function Footer({ onOpenConsultation, onOpenAdmin }) {
+export default function Footer({ onOpenConsultation }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -221,14 +221,8 @@ export default function Footer({ onOpenConsultation, onOpenAdmin }) {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40 font-sans">
-          <div className="flex items-center gap-4">
-            <span>© {new Date().getFullYear()} <span className="text-soft-mist font-bold">GAMES WORLD</span>. All Rights Reserved.</span>
-            <button
-              onClick={onOpenAdmin}
-              className="text-white/40 hover:text-primary transition-colors font-tech text-[11px] uppercase tracking-wider underline underline-offset-4"
-            >
-              Admin Portal
-            </button>
+          <div>
+            © {new Date().getFullYear()} <span className="text-soft-mist font-bold">GAMES WORLD</span>. All Rights Reserved.
           </div>
 
           <button

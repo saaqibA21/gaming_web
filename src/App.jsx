@@ -12,7 +12,6 @@ import HologramFlowBg from './components/HologramFlowBg';
 import AdminPage from './components/AdminPage';
 import { adminStorage } from './utils/adminStorage';
 import { initGlobalAssemblyObserver } from './utils/useAssemble';
-import { Sparkles, Tag, ArrowRight } from 'lucide-react';
 
 export default function App() {
   const [isAdminView, setIsAdminView] = useState(() => {
@@ -22,10 +21,6 @@ export default function App() {
   const [cartOpen, setCartOpen] = useState(false);
   const [consultationOpen, setConsultationOpen] = useState(false);
   const [packs, setPacks] = useState(() => adminStorage.getPacks());
-  const [activeOffer, setActiveOffer] = useState(() => {
-    const offers = adminStorage.getOffers();
-    return offers.find(o => o.active) || null;
-  });
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -42,10 +37,8 @@ export default function App() {
 
   useEffect(() => {
     if (!isAdminView) {
-      // Refresh packs and active offers whenever switching back to storefront
+      // Refresh packs whenever switching back to storefront
       setPacks(adminStorage.getPacks());
-      const offers = adminStorage.getOffers();
-      setActiveOffer(offers.find(o => o.active) || null);
     }
   }, [isAdminView]);
 
@@ -53,12 +46,6 @@ export default function App() {
     const cleanup = initGlobalAssemblyObserver();
     return cleanup;
   }, []);
-
-  const handleOpenAdmin = () => {
-    window.location.hash = '#admin';
-    setIsAdminView(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   const handleBackToStore = () => {
     window.location.hash = '#hero';
@@ -79,7 +66,7 @@ export default function App() {
     setCartItems([]);
   };
 
-  // If in Admin view, render full Admin Portal
+  // If in secret Admin view (via URL #admin or /admin), render full Admin Portal
   if (isAdminView) {
     return (
       <AdminPage onBackToStore={handleBackToStore} />
@@ -89,17 +76,6 @@ export default function App() {
   return (
     <div className="min-h-screen bg-mode-black text-soft-mist flex flex-col font-sans relative selection:bg-primary selection:text-white">
       
-      {/* Active Promotional Offer Top Ribbon */}
-      {activeOffer && (
-        <div className="bg-gradient-to-r from-primary/90 via-primary to-primary-hover text-white text-xs py-2 px-4 text-center font-tech font-bold uppercase tracking-wider relative z-50 flex items-center justify-center gap-2 shadow-md">
-          <Tag className="w-3.5 h-3.5 shrink-0" />
-          <span>{activeOffer.badgeText}: {activeOffer.title} — {activeOffer.tagline}</span>
-          <span className="hidden sm:inline bg-black text-primary px-2 py-0.5 rounded text-[10px] font-mono font-bold tracking-normal">
-            USE CODE: {activeOffer.code}
-          </span>
-        </div>
-      )}
-
       {/* Hologram Flow Canvas Background from video frames */}
       <HologramFlowBg />
 
@@ -108,7 +84,6 @@ export default function App() {
         cartItems={cartItems}
         onOpenCart={() => setCartOpen(true)}
         onOpenConsultation={() => setConsultationOpen(true)}
-        onOpenAdmin={handleOpenAdmin}
       />
 
       {/* Main Content Sections: Strictly focused on the Purpose-Built Machines & Services */}
@@ -136,7 +111,6 @@ export default function App() {
       <div className="relative z-10">
         <Footer 
           onOpenConsultation={() => setConsultationOpen(true)}
-          onOpenAdmin={handleOpenAdmin}
         />
       </div>
 
