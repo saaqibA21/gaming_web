@@ -4,13 +4,15 @@ import {
   ShoppingBag, 
   Menu, 
   X, 
-  Sparkles 
+  Sparkles,
+  ShieldAlert
 } from 'lucide-react';
 
 export default function Navbar({ 
   cartItems = [], 
   onOpenCart, 
-  onOpenConsultation
+  onOpenConsultation,
+  onOpenAdmin
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -78,6 +80,16 @@ export default function Navbar({
               <span>Get Free Quote</span>
             </button>
 
+            {/* Admin Console Quick Trigger */}
+            <button
+              onClick={onOpenAdmin}
+              className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/[0.03] border border-white/10 hover:border-primary/40 text-white/60 hover:text-primary text-xs font-tech font-bold uppercase tracking-wider transition-colors"
+              title="Open Admin Console"
+            >
+              <ShieldAlert className="w-3.5 h-3.5 text-primary" />
+              <span>Admin</span>
+            </button>
+
             {/* Cart Trigger */}
             <button
               onClick={onOpenCart}
@@ -132,6 +144,17 @@ export default function Navbar({
             >
               <Sparkles className="w-4 h-4" />
               <span>Book Free Consultation</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenAdmin();
+              }}
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white/70 font-tech font-bold tracking-wider uppercase text-xs hover:border-primary/40 hover:text-primary transition-colors"
+            >
+              <ShieldAlert className="w-4 h-4 text-primary" />
+              <span>Admin Console (Quotes, Pricing & Deals)</span>
             </button>
           </div>
         </div>

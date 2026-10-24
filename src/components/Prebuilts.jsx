@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PREBUILT_PCS, DECLARATION_INFO } from '../data/mockData';
+import { adminStorage } from '../utils/adminStorage';
 import { 
   Zap, 
   ShieldCheck, 
@@ -21,12 +22,14 @@ import {
 import confetti from 'canvas-confetti';
 import { playClickSound, playMountSound } from '../utils/audioEffects';
 
-export default function Prebuilts({ onAddToCart }) {
+export default function Prebuilts({ onAddToCart, packs: customPacks }) {
   const [activeCategory, setActiveCategory] = useState('all');
   const [expandedBuild, setExpandedBuild] = useState(null);
 
+  const displayPacks = customPacks && customPacks.length > 0 ? customPacks : adminStorage.getPacks();
+
   const categories = [
-    { id: 'all', label: 'All 5 Machines', count: '05' },
+    { id: 'all', label: `All Machines (${displayPacks.length})`, count: `0${displayPacks.length}` },
     { id: 'office', label: '01. Workhorse (Office)', count: '₹49.9k' },
     { id: 'gaming', label: '02. Striker (Esports)', count: '₹72.9k' },
     { id: 'hybrid', label: '03. Monster (Hybrid)', count: '₹1.19L' },
@@ -35,8 +38,8 @@ export default function Prebuilts({ onAddToCart }) {
   ];
 
   const filteredPcs = activeCategory === 'all' 
-    ? PREBUILT_PCS 
-    : PREBUILT_PCS.filter(pc => pc.category === activeCategory);
+    ? displayPacks 
+    : displayPacks.filter(pc => pc.category === activeCategory);
 
   const handleCategorySelect = (id) => {
     playClickSound();

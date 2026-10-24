@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { LAPTOP_SERVICES, COMPANY_INFO } from '../data/mockData';
+import { adminStorage } from '../utils/adminStorage';
 import { 
   Laptop, 
   Flame, 
@@ -74,6 +75,19 @@ export default function LaptopService() {
   const handleSubmit = (e) => {
     e.preventDefault();
     playMountSound();
+
+    adminStorage.addQuote({
+      type: 'diagnostic',
+      customerName: formData.name,
+      phone: formData.phone,
+      targetBudget: 'Service Diagnostic',
+      machinePurpose: `${formData.laptopModel} (${formData.issue})`,
+      consultationMode: 'Lab Walk-in Diagnostic',
+      notes: formData.notes ? `${formData.issue} - Notes: ${formData.notes}` : formData.issue,
+      amount: 1500,
+      status: 'Pending'
+    });
+
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);

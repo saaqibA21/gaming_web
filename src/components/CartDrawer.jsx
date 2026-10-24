@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { adminStorage } from '../utils/adminStorage';
 import { X, Trash2, ShoppingBag, CheckCircle2, Send, MessageSquare } from 'lucide-react';
 
 export default function CartDrawer({ isOpen, onClose, cartItems = [], onRemoveItem, onClearCart }) {
@@ -9,6 +10,19 @@ export default function CartDrawer({ isOpen, onClose, cartItems = [], onRemoveIt
   const totalAmount = cartItems.reduce((acc, item) => acc + (item.price || 0), 0);
 
   const handleCheckout = () => {
+    const itemsList = cartItems.map(item => item.name).join(', ');
+    adminStorage.addQuote({
+      type: 'order',
+      customerName: 'Online Cart Checkout',
+      phone: 'Direct Web Order',
+      targetBudget: `₹${totalAmount.toLocaleString('en-IN')}`,
+      machinePurpose: itemsList || 'Custom Cart Machine Order',
+      consultationMode: 'Web Direct Checkout',
+      notes: `Cart Items: ${cartItems.map(i => `${i.name} (₹${i.price})`).join('; ')}`,
+      amount: totalAmount,
+      status: 'Pending'
+    });
+
     setOrderSubmitted(true);
     setTimeout(() => {
       onClearCart();
@@ -19,6 +33,18 @@ export default function CartDrawer({ isOpen, onClose, cartItems = [], onRemoveIt
 
   const handleWhatsAppOrder = () => {
     const itemsList = cartItems.map(item => `• ${item.name} - ₹${item.price.toLocaleString('en-IN')}`).join('\n');
+    adminStorage.addQuote({
+      type: 'order',
+      customerName: 'WhatsApp Order Buyer',
+      phone: 'Via WhatsApp Direct',
+      targetBudget: `₹${totalAmount.toLocaleString('en-IN')}`,
+      machinePurpose: cartItems.map(item => item.name).join(', '),
+      consultationMode: 'WhatsApp Inquiry',
+      notes: `Order transferred to WhatsApp with ${cartItems.length} items. Total: ₹${totalAmount.toLocaleString('en-IN')}`,
+      amount: totalAmount,
+      status: 'Quote Sent'
+    });
+
     const message = encodeURIComponent(
       `*GAMES WORLD - ORDER INQUIRY*\n\nSelected Machines:\n${itemsList}\n\n*Total Estimate: ₹${totalAmount.toLocaleString('en-IN')}*\n\nHello Games World, I would like to confirm availability and dispatch for this build!`
     );

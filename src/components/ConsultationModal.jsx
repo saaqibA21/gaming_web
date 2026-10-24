@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { COMPANY_INFO, DECLARATION_INFO } from '../data/mockData';
+import { adminStorage } from '../utils/adminStorage';
 import { Sparkles, Phone, Video, Send, CheckCircle2, X } from 'lucide-react';
 
 export default function ConsultationModal({ isOpen, onClose }) {
@@ -17,6 +18,21 @@ export default function ConsultationModal({ isOpen, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Parse numeric amount from budget
+    const numericMatch = formData.budget.replace(/[^0-9]/g, '');
+    const amount = numericMatch ? Number(numericMatch) : 72999;
+
+    adminStorage.addQuote({
+      type: 'consultation',
+      customerName: formData.name,
+      phone: formData.phone,
+      targetBudget: formData.budget,
+      machinePurpose: formData.primaryUse,
+      consultationMode: formData.consultationType,
+      notes: `Requested ${formData.consultationType} for ${formData.primaryUse}`,
+      amount
+    });
+
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
