@@ -530,7 +530,11 @@ export default function AdminPage({ onBackToStore }) {
               <div className="p-16 rounded-2xl animate-glass border border-white/[0.08] text-center space-y-3">
                 <FileText className="w-12 h-12 text-white/20 mx-auto" />
                 <h3 className="text-lg font-tech font-bold text-soft-mist uppercase">No Inquiries Found</h3>
-                <p className="text-xs text-white/50">Try adjusting your search query or status filter.</p>
+                <p className="text-xs text-white/50">
+                  {quotes.length === 0
+                    ? 'New customer quote requests and consultation bookings will appear here automatically.'
+                    : 'Try adjusting your search query or status filter.'}
+                </p>
               </div>
             ) : (
               <div className="space-y-4">
@@ -822,37 +826,47 @@ export default function AdminPage({ onBackToStore }) {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-white/[0.04]">
-                    {parts.map((part) => (
-                      <tr key={part.id} className="hover:bg-white/[0.02] transition-colors">
-                        <td className="p-4 font-semibold text-soft-mist">
-                          {part.name}
-                        </td>
-                        <td className="p-4 font-tech text-primary">
-                          {part.category}
-                        </td>
-                        <td className="p-4 font-tech text-white/70">
-                          {part.brand || 'Retail'}
-                        </td>
-                        <td className="p-4 font-tech text-white/50">
-                          {part.wattage ? `${part.wattage}W` : '—'}
-                        </td>
-                        <td className="p-4 font-tech font-bold text-soft-mist">
-                          ₹{part.price.toLocaleString('en-IN')}
-                        </td>
-                        <td className="p-4 text-white/50 text-[11px]">
-                          {part.compatibility || 'Universal'}
-                        </td>
-                        <td className="p-4 text-right">
-                          <button
-                            onClick={() => handleDeletePart(part.id)}
-                            className="p-1.5 rounded-lg text-white/40 hover:text-red-400 hover:bg-red-500/10 transition-colors"
-                            title="Delete Part"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
+                    {parts.length === 0 ? (
+                      <tr>
+                        <td colSpan="7" className="p-12 text-center text-white/40">
+                          <Cpu className="w-8 h-8 text-white/20 mx-auto mb-2" />
+                          <p className="font-tech uppercase tracking-wider text-sm font-semibold">No hardware parts added yet</p>
+                          <p className="text-xs text-white/40 mt-1">Click &quot;Add Upgrade Part&quot; above to list hardware components and custom upgrades.</p>
                         </td>
                       </tr>
-                    ))}
+                    ) : (
+                      parts.map((part) => (
+                        <tr key={part.id} className="hover:bg-white/[0.02] transition-colors">
+                          <td className="p-4 font-semibold text-soft-mist">
+                            {part.name}
+                          </td>
+                          <td className="p-4 font-tech text-primary">
+                            {part.category}
+                          </td>
+                          <td className="p-4 font-tech text-white/70">
+                            {part.brand || 'Retail'}
+                          </td>
+                          <td className="p-4 font-tech text-white/50">
+                            {part.wattage ? `${part.wattage}W` : '—'}
+                          </td>
+                          <td className="p-4 font-tech font-bold text-soft-mist">
+                            ₹{part.price.toLocaleString('en-IN')}
+                          </td>
+                          <td className="p-4 text-white/50 text-[11px]">
+                            {part.compatibility || 'Universal'}
+                          </td>
+                          <td className="p-4 text-right">
+                            <button
+                              onClick={() => handleDeletePart(part.id)}
+                              className="p-1.5 rounded-lg text-white/40 hover:text-red-400 hover:bg-red-500/10 transition-colors"
+                              title="Delete Part"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -887,84 +901,92 @@ export default function AdminPage({ onBackToStore }) {
             </div>
 
             {/* Offers Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {offers.map((offer) => (
-                <div 
-                  key={offer.id}
-                  className={`p-6 rounded-2xl animate-glass border transition-all flex flex-col justify-between ${
-                    offer.active 
-                      ? 'border-primary/50 shadow-nuke-glow' 
-                      : 'border-white/[0.08] opacity-60'
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-tech font-bold uppercase bg-primary/10 text-primary border border-primary/30">
-                        {offer.badgeText || 'PROMO DEAL'}
-                      </span>
-                      
-                      <div className="flex items-center gap-1.5 text-[11px] font-tech">
-                        <span className={offer.active ? 'text-emerald-400 font-bold' : 'text-white/40'}>
-                          {offer.active ? 'ACTIVE' : 'INACTIVE'}
+            {offers.length === 0 ? (
+              <div className="p-16 rounded-2xl animate-glass border border-white/[0.08] text-center space-y-3">
+                <Tag className="w-12 h-12 text-white/20 mx-auto" />
+                <h3 className="text-lg font-tech font-bold text-soft-mist uppercase">No Promotional Offers Active</h3>
+                <p className="text-xs text-white/50">Click &quot;Create New Offer&quot; above to publish discount codes, deals, and festive promos.</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {offers.map((offer) => (
+                  <div 
+                    key={offer.id}
+                    className={`p-6 rounded-2xl animate-glass border transition-all flex flex-col justify-between ${
+                      offer.active 
+                        ? 'border-primary/50 shadow-nuke-glow' 
+                        : 'border-white/[0.08] opacity-60'
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-tech font-bold uppercase bg-primary/10 text-primary border border-primary/30">
+                          {offer.badgeText || 'PROMO DEAL'}
                         </span>
-                        <input
-                          type="checkbox"
-                          checked={offer.active}
-                          onChange={() => handleToggleOffer(offer.id)}
-                          className="accent-[#FF5123] cursor-pointer"
-                        />
+                        
+                        <div className="flex items-center gap-1.5 text-[11px] font-tech">
+                          <span className={offer.active ? 'text-emerald-400 font-bold' : 'text-white/40'}>
+                            {offer.active ? 'ACTIVE' : 'INACTIVE'}
+                          </span>
+                          <input
+                            type="checkbox"
+                            checked={offer.active}
+                            onChange={() => handleToggleOffer(offer.id)}
+                            className="accent-[#FF5123] cursor-pointer"
+                          />
+                        </div>
+                      </div>
+
+                      <h4 className="text-2xl font-display tracking-wider text-soft-mist">
+                        {offer.title}
+                      </h4>
+
+                      <div className="text-lg font-tech font-bold text-primary mt-1">
+                        {offer.discountAmount}
+                      </div>
+
+                      <p className="text-xs text-white/70 font-sans mt-2 leading-relaxed">
+                        {offer.tagline}
+                      </p>
+
+                      <div className="mt-4 pt-3 border-t border-white/[0.06] space-y-1.5 text-xs font-sans">
+                        <div>
+                          <span className="text-white/40 font-tech">Coupon Code:</span>{' '}
+                          <span className="font-mono font-bold text-soft-mist px-2 py-0.5 rounded bg-black/60 border border-white/10">
+                            {offer.code}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="text-white/40 font-tech">Applicable:</span>{' '}
+                          <span className="text-white/80">{offer.applicableOn}</span>
+                        </div>
+                        <div>
+                          <span className="text-white/40 font-tech">Valid Until:</span>{' '}
+                          <span className="text-white/80">{offer.validUntil}</span>
+                        </div>
                       </div>
                     </div>
 
-                    <h4 className="text-2xl font-display tracking-wider text-soft-mist">
-                      {offer.title}
-                    </h4>
-
-                    <div className="text-lg font-tech font-bold text-primary mt-1">
-                      {offer.discountAmount}
+                    <div className="pt-4 mt-4 border-t border-white/[0.06] flex items-center justify-between">
+                      <button
+                        onClick={() => handleToggleOffer(offer.id)}
+                        className="text-xs font-tech text-white/60 hover:text-white transition-colors"
+                      >
+                        {offer.active ? 'Pause Campaign' : 'Enable Campaign'}
+                      </button>
+                      <button
+                        onClick={() => handleDeleteOffer(offer.id)}
+                        className="text-xs text-red-400 hover:text-red-300 font-tech uppercase flex items-center gap-1 transition-colors"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                        <span>Delete</span>
+                      </button>
                     </div>
 
-                    <p className="text-xs text-white/70 font-sans mt-2 leading-relaxed">
-                      {offer.tagline}
-                    </p>
-
-                    <div className="mt-4 pt-3 border-t border-white/[0.06] space-y-1.5 text-xs font-sans">
-                      <div>
-                        <span className="text-white/40 font-tech">Coupon Code:</span>{' '}
-                        <span className="font-mono font-bold text-soft-mist px-2 py-0.5 rounded bg-black/60 border border-white/10">
-                          {offer.code}
-                        </span>
-                      </div>
-                      <div>
-                        <span className="text-white/40 font-tech">Applicable:</span>{' '}
-                        <span className="text-white/80">{offer.applicableOn}</span>
-                      </div>
-                      <div>
-                        <span className="text-white/40 font-tech">Valid Until:</span>{' '}
-                        <span className="text-white/80">{offer.validUntil}</span>
-                      </div>
-                    </div>
                   </div>
-
-                  <div className="pt-4 mt-4 border-t border-white/[0.06] flex items-center justify-between">
-                    <button
-                      onClick={() => handleToggleOffer(offer.id)}
-                      className="text-xs font-tech text-white/60 hover:text-white transition-colors"
-                    >
-                      {offer.active ? 'Pause Campaign' : 'Enable Campaign'}
-                    </button>
-                    <button
-                      onClick={() => handleDeleteOffer(offer.id)}
-                      className="text-xs text-red-400 hover:text-red-300 font-tech uppercase flex items-center gap-1 transition-colors"
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                      <span>Delete</span>
-                    </button>
-                  </div>
-
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
 
           </div>
         )}
