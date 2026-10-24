@@ -13,16 +13,24 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0e;
+  background: #0a0e17;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2a1114;
+  background: #1e293b;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #e50914;
+  background: #2dd4bf;
+}
+
+.glow-text-cyan {
+  text-shadow: 0 0 16px rgba(45, 212, 191, 0.6);
+}
+
+.glow-border-cyan {
+  box-shadow: 0 0 20px rgba(45, 212, 191, 0.35);
 }
 
 .glow-text-red {
@@ -85,8 +93,8 @@
   left: -1px;
   width: 8px;
   height: 8px;
-  border-top: 2px solid #e50914;
-  border-left: 2px solid #e50914;
+  border-top: 2px solid #2dd4bf;
+  border-left: 2px solid #2dd4bf;
 }
 
 .corner-tick-tr {
@@ -95,8 +103,8 @@
   right: -1px;
   width: 8px;
   height: 8px;
-  border-top: 2px solid #e50914;
-  border-right: 2px solid #e50914;
+  border-top: 2px solid #2dd4bf;
+  border-right: 2px solid #2dd4bf;
 }
 
 .corner-tick-bl {
@@ -105,8 +113,8 @@
   left: -1px;
   width: 8px;
   height: 8px;
-  border-bottom: 2px solid #e50914;
-  border-left: 2px solid #e50914;
+  border-bottom: 2px solid #2dd4bf;
+  border-left: 2px solid #2dd4bf;
 }
 
 .corner-tick-br {
@@ -115,8 +123,8 @@
   right: -1px;
   width: 8px;
   height: 8px;
-  border-bottom: 2px solid #e50914;
-  border-right: 2px solid #e50914;
+  border-bottom: 2px solid #2dd4bf;
+  border-right: 2px solid #2dd4bf;
 }
 
 /* ========================================================================= */

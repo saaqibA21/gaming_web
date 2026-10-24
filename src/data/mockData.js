@@ -100,114 +100,209 @@ export const PC_PARTS = {
   ]
 };
 
+export const DECLARATION_INFO = {
+  title: "A DECLARATION, NOT A BUSINESS PLAN",
+  tagline: "Somewhere between a soldering iron and a dream, an empire gets built one machine at a time.",
+  mantra: "FIVE MACHINES. FIVE PURPOSES. ONE VISION.",
+  author: "WRITTEN & BUILT BY RAAKESH · SEPTEMBER 2026",
+  quotePrimary: "Everyone sells a computer. Nobody sells a purpose.",
+  manifestoBody: "A box of silicon means nothing until it means something to the person carrying it home. Games World does not move components. It hands people the tool their ambition has been waiting for -- whether that ambition is a spreadsheet, a scoreboard, a timeline, or a model that thinks.",
+  corePillars: [
+    "Five machines. Five identities. Zero confusion.",
+    "Every build named, not numbered -- tools with names get trusted.",
+    "Built local. Priced fair. Sold with conviction."
+  ],
+  quoteSecondary: "A machine sells itself the moment the customer understands what it's for.",
+  principles: [
+    "No jargon at the counter. Just five names and five purposes.",
+    "Let the work speak -- reels, benchmarks, builds filmed start to finish.",
+    "Every custom order beyond these five is proof the shop can build anything.",
+    "Trust compounds faster than any advertisement."
+  ],
+  closingWord: "This is not a shop that assembles parts. This is a shop that assembles ambition -- one build, one customer, one purpose at a time.",
+  authorSignature: "— RAAKESH"
+};
+
 export const PREBUILT_PCS = [
   {
-    id: "pb-1",
-    name: "GAMES WORLD CYBER-X1",
-    category: "budget",
-    badge: "1080p Esports Starter",
-    subtitle: "Solid 240+ FPS Competitive Rig",
-    price: 64990,
-    originalPrice: 72000,
+    id: "pb-workhorse",
+    number: "01",
+    name: "WORKHORSE",
+    category: "office",
+    badge: "01 // OFFICE & CORPORATE",
+    subtitle: "OFFICE & CORPORATE",
+    purpose: "Billing, Office, Corporate Management & Multi-Display Productivity",
+    quote: "Not every soldier carries a sword. Some carry the numbers that keep the empire funded.",
+    price: 49999,
+    displayPrice: "Rs. 49,999",
     specs: {
-      cpu: "Intel Core i5 14400F",
-      gpu: "NVIDIA GeForce RTX 4060 8GB",
-      ram: "16GB DDR5 5200MHz Corsair",
-      storage: "1TB NVMe PCIe 4.0 SSD",
-      motherboard: "MSI B760M-A WiFi DDR5",
-      cooler: "DeepCool AG400 ARGB",
-      psu: "DeepCool 650W 80+ Bronze",
-      cabinet: "Ant Esports ICE-112 Mesh (4 Fans)"
+      cpu: "AMD Ryzen 5 5600G (6C / 12T with Radeon Graphics)",
+      gpu: "Integrated AMD Radeon Vega Graphics",
+      ram: "16GB DDR4 High-Frequency Memory",
+      storage: "500GB NVMe Ultra-Fast SSD",
+      motherboard: "A520M / B450 Ultra Durable Motherboard",
+      psu: "450W 80+ Certified Power Supply",
+      cooler: "AMD Wraith Stealth Silent Thermal Solution",
+      cabinet: "Compact Acoustic-Dampened Black Chassis"
     },
+    tableSpecs: [
+      { label: "PROCESSOR", value: "Ryzen 5 5600G" },
+      { label: "MEMORY", value: "16GB DDR4" },
+      { label: "STORAGE", value: "500GB NVMe" },
+      { label: "BUILT FOR", value: "Billing, Office, Calls" }
+    ],
     fps: {
-      "Valorant (1080p High)": "380+ FPS",
-      "CS2 (1080p Competitive)": "260+ FPS",
-      "GTA V (1080p Ultra)": "145+ FPS",
-      "Cyberpunk 2077 (1080p DLSS)": "85+ FPS"
+      "Office & ERP Workflows": "Instant Snappiness",
+      "Multi-Tab Chrome & Excel": "Smooth Zero-Lag",
+      "Dual Display Video Calls": "1080p Crystal Clear",
+      "System Cold Boot": "6 Seconds"
     },
-    warranty: "3 Years Hardware Warranty",
+    warranty: "3 Years Games World Local Warranty",
+    image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    id: "pb-striker",
+    number: "02",
+    name: "STRIKER",
+    category: "gaming",
+    badge: "02 // ENTRY GAMING & ESPORTS",
+    subtitle: "ENTRY GAMING & ESPORTS",
+    purpose: "Esports Domination, High Refresh Rates & Competitive Gaming",
+    quote: "First blood belongs to the fast. Every frame is a fraction of a second you refuse to lose.",
+    price: 72999,
+    displayPrice: "Rs. 72,999",
+    specs: {
+      cpu: "AMD Ryzen 5 5600 (6C / 12T 4.4GHz Boost)",
+      gpu: "NVIDIA GeForce RTX 4060 8GB GDDR6",
+      ram: "16GB DDR4 High-Performance Gaming RAM",
+      storage: "1TB NVMe PCIe 4.0 Fast SSD",
+      motherboard: "B550M Gaming Motherboard with PCIe 4.0",
+      psu: "550W 80+ Bronze Certified PSU",
+      cooler: "DeepCool High-Efficiency Tower Air Cooler",
+      cabinet: "Airflow Mesh Case with 4 ARGB Fans"
+    },
+    tableSpecs: [
+      { label: "PROCESSOR", value: "Ryzen 5 5600" },
+      { label: "GRAPHICS", value: "RTX 4060 8GB" },
+      { label: "MEMORY", value: "16GB DDR4" },
+      { label: "BUILT FOR", value: "Valorant, BGMI, CS2" }
+    ],
+    fps: {
+      "Valorant (1080p Competitive)": "320+ FPS",
+      "CS2 (1080p High)": "220+ FPS",
+      "BGMI / Emulator (120FPS)": "Locked 120 FPS",
+      "Apex Legends (1080p Max)": "145+ FPS"
+    },
+    warranty: "3 Years Comprehensive Hardware Warranty",
     image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&auto=format&fit=crop&q=80"
   },
   {
-    id: "pb-2",
-    name: "GAMES WORLD VALKYRIE 1440P",
-    category: "mid",
-    badge: "Most Popular 1440p",
-    subtitle: "High-Refresh 1440p Ray-Tracing Gaming Rig",
-    price: 124990,
-    originalPrice: 139000,
+    id: "pb-monster",
+    number: "03",
+    name: "MONSTER",
+    category: "hybrid",
+    badge: "03 // GAMING + EDITING HYBRID",
+    subtitle: "GAMING + EDITING HYBRID",
+    purpose: "1440p High-FPS Gaming, Video Editing & Creative Multitasking",
+    quote: "It does not choose between war and art. It commands both before breakfast.",
+    price: 119999,
+    displayPrice: "Rs. 1,19,999",
     popular: true,
     specs: {
-      cpu: "AMD Ryzen 7 7800X3D (3D V-Cache)",
-      gpu: "NVIDIA GeForce RTX 4070 Super 12GB GDDR6X",
-      ram: "32GB (2x16GB) G.Skill DDR5 6000MHz CL30",
-      storage: "1TB Samsung 980 Pro Gen4 NVMe (7000MB/s)",
-      motherboard: "MSI B650 Gaming Plus WiFi",
-      cooler: "DeepCool LS720 SE 360mm Liquid AIO",
-      psu: "Corsair RM750e 750W 80+ Gold ATX 3.0",
-      cabinet: "NZXT H6 Flow Dual Chamber"
+      cpu: "AMD Ryzen 5 9600 (Next-Gen Zen 5 Architecture)",
+      gpu: "NVIDIA GeForce RTX 5060 Ti 16GB (or RTX 4060 Ti 16GB)",
+      ram: "32GB DDR5 High-Speed Memory",
+      storage: "1TB Gen4 NVMe M.2 SSD",
+      motherboard: "AMD B650 / B850 Next-Gen Motherboard",
+      psu: "650W 80+ Gold Certified Modular PSU",
+      cooler: "240mm ARGB Liquid AIO Thermal System",
+      cabinet: "Dual Chamber Panoramic Tempered Glass Chassis"
     },
+    tableSpecs: [
+      { label: "PROCESSOR", value: "Ryzen 5 9600" },
+      { label: "GRAPHICS", value: "RTX 5060 Ti 16GB" },
+      { label: "MEMORY", value: "32GB DDR5" },
+      { label: "BUILT FOR", value: "1440p Gaming, Editing" }
+    ],
     fps: {
-      "Cyberpunk 2077 (1440p Ultra RT)": "110+ FPS",
-      "Black Myth: Wukong (1440p High)": "95+ FPS",
-      "Call of Duty Warzone (1440p)": "165+ FPS",
-      "Valorant (1440p Max)": "550+ FPS"
+      "1440p Ultra Gaming": "110+ FPS",
+      "Premiere Pro 4K Editing": "Real-Time Playback",
+      "DaVinci Resolve Color Grade": "60 FPS Fluid",
+      "Valorant / CS2": "450+ FPS"
     },
-    warranty: "3 Years Comprehensive Warranty",
+    warranty: "3 Years Games World VIP Build Warranty",
     image: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=600&auto=format&fit=crop&q=80"
   },
   {
-    id: "pb-3",
-    name: "GAMES WORLD DOMINATOR 4K",
-    category: "high",
-    badge: "Native 4K Ultra",
-    subtitle: "Ultra High Settings 4K Beast",
-    price: 219990,
-    originalPrice: 245000,
+    id: "pb-forge",
+    number: "04",
+    name: "FORGE",
+    category: "creation",
+    badge: "04 // CONTENT CREATION & 3D",
+    subtitle: "CONTENT CREATION & 3D",
+    purpose: "Heavy Video Editing, Blender 3D Rendering, Unreal Engine & Architectural Viz",
+    quote: "Where raw ideas get hammered into something the world remembers.",
+    price: 154999,
+    displayPrice: "Rs. 1,54,999",
     specs: {
-      cpu: "AMD Ryzen 7 9800X3D / 7800X3D",
-      gpu: "NVIDIA GeForce RTX 4080 Super 16GB GDDR6X",
-      ram: "32GB Corsair Dominator Titanium DDR5 6000MHz",
-      storage: "2TB Samsung 990 PRO Gen4 NVMe (7450MB/s)",
-      motherboard: "ASUS ROG STRIX B650-A Gaming WiFi",
-      cooler: "Lian Li Galahad II 360mm ARGB AIO",
-      psu: "Corsair RM850x 850W Gold Fully Modular",
-      cabinet: "Lian Li O11 Dynamic EVO Tempered Glass"
+      cpu: "AMD Ryzen 7 9700X (8C / 16T High-Frequency Zen 5)",
+      gpu: "NVIDIA GeForce RTX 4070 12GB GDDR6X Studio",
+      ram: "32GB DDR5 Low Latency High-Speed RAM",
+      storage: "2TB Gen4 Ultra-Speed NVMe SSD",
+      motherboard: "Creator Pro B650-A WiFi Motherboard",
+      psu: "750W 80+ Gold Certified Modular ATX 3.0",
+      cooler: "360mm High-Performance Liquid AIO Cooler",
+      cabinet: "Creator Acoustically-Tuned High-Airflow Studio Tower"
     },
+    tableSpecs: [
+      { label: "PROCESSOR", value: "Ryzen 7 9700X" },
+      { label: "GRAPHICS", value: "RTX 4070 12GB" },
+      { label: "MEMORY", value: "32GB DDR5" },
+      { label: "BUILT FOR", value: "Editing, Blender, Viz" }
+    ],
     fps: {
-      "Cyberpunk 2077 (4K Ultra Path Tracing)": "85+ FPS (DLSS 3.5)",
-      "Forza Horizon 5 (4K Extreme)": "140+ FPS",
-      "Red Dead Redemption 2 (4K Ultra)": "115+ FPS",
-      "Apex Legends (4K Max)": "220+ FPS"
+      "Blender 4.0 OptiX Cycles": "Lightning Fast Renders",
+      "4K 10-bit Video Timeline": "Zero Dropped Frames",
+      "Unreal Engine 5 Viewport": "90+ FPS Realtime",
+      "Cyberpunk 2077 (1440p RT)": "120+ FPS (DLSS 3.5)"
     },
-    warranty: "3 Years Priority Support",
+    warranty: "3 Years Comprehensive Hardware Warranty",
     image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&auto=format&fit=crop&q=80"
   },
   {
-    id: "pb-4",
-    name: "GAMES WORLD TITAN RTX 4090",
-    category: "ultra",
-    badge: "Flagship 24GB VRAM",
-    subtitle: "Heavy 4K Gaming, 3D Rendering & Local AI",
-    price: 349900,
-    originalPrice: 380000,
+    id: "pb-oracle",
+    number: "05",
+    name: "ORACLE",
+    category: "ai",
+    badge: "05 // LOCAL AI & LLM WORKSTATION",
+    subtitle: "LOCAL AI & LLM WORKSTATION",
+    purpose: "Local LLM Inference, Deep Learning, AI Engineering & Extreme Workstation Workloads",
+    quote: "It does not wait for the future. It computes it, locally, on your desk.",
+    price: 209999,
+    displayPrice: "Rs. 2,09,999",
     specs: {
-      cpu: "Intel Core i9 14900K (24C / 32T Up to 6.0GHz)",
-      gpu: "NVIDIA GeForce RTX 4090 24GB GDDR6X",
-      ram: "64GB (2x32GB) Kingston Fury Beast DDR5 6000MHz",
-      storage: "4TB (2x 2TB) Samsung 990 PRO Gen4 NVMe",
-      motherboard: "ASUS ROG STRIX Z790-F Gaming WiFi II",
-      cooler: "Lian Li Galahad II LCD 360mm Liquid Cooler",
-      psu: "MSI 1000W 80+ Gold PCIe 5.0 ATX 3.0",
-      cabinet: "Lian Li O11 Dynamic EVO RGB Dual Chamber"
+      cpu: "AMD Ryzen 9 9900X (12C / 24T Multi-Thread Workstation)",
+      gpu: "NVIDIA GeForce RTX 4070 Ti Super 16GB GDDR6X (Tensor Cores)",
+      ram: "64GB DDR5 High-Capacity Workstation Memory",
+      storage: "2TB Samsung 990 PRO Gen4 NVMe (7450MB/s)",
+      motherboard: "Workstation Grade X670E / B650 Studio Board",
+      psu: "850W 80+ Gold Fully Modular ATX 3.0 PCIe 5.0",
+      cooler: "Flagship 360mm Liquid Cooler with Realtime Telemetry",
+      cabinet: "Dual Chamber Stealth Blackout AI Workstation Chassis"
     },
+    tableSpecs: [
+      { label: "PROCESSOR", value: "Ryzen 9 9900X" },
+      { label: "GRAPHICS", value: "RTX 4070 Ti Super 16GB" },
+      { label: "MEMORY", value: "64GB DDR5" },
+      { label: "BUILT FOR", value: "Local LLMs, AI Dev" }
+    ],
     fps: {
-      "Cyberpunk 2077 (4K Psycho RT)": "115+ FPS",
-      "Alan Wake 2 (4K Max Ray Tracing)": "100+ FPS",
-      "GTA V (4K Ultra Enhanced)": "180+ FPS",
-      "Blender 4.0 Classroom Render": "8.4 Seconds"
+      "Local LLM Inference (Llama-3 8B / 70B)": "45+ Tokens/Sec",
+      "Stable Diffusion XL Image Gen": "1.2s per 1024x1024 Image",
+      "PyTorch Model Fine-Tuning": "Full Tensor FP16/BF16 Support",
+      "4K Gaming Max Settings": "140+ FPS Ultra"
     },
-    warranty: "3 Years Direct VIP Replacement Support",
+    warranty: "3 Years Priority On-Site & Direct Replacement Support",
     image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&auto=format&fit=crop&q=80"
   }
 ];

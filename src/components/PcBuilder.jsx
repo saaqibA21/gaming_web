@@ -11,7 +11,6 @@ import {
   Box, 
   Check, 
   AlertTriangle, 
-  Share2, 
   Printer, 
   ShoppingBag, 
   RotateCcw, 
@@ -19,18 +18,15 @@ import {
   Gamepad2,
   ChevronRight,
   ShieldCheck,
-  Flame,
   Wrench,
   Power,
-  Sliders,
   CheckCircle2,
   FileText,
   X,
-  ExternalLink
+  Plus
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { playClickSound, playMountSound, playBootSound } from '../utils/audioEffects';
-import BattlestationStudio from './BattlestationStudio';
 
 const CATEGORIES = [
   { id: 'monitors', label: '1. Gaming Screen', slotName: 'DISPLAY SCREEN', icon: Monitor },
@@ -60,10 +56,9 @@ export default function PcBuilder({ onAddToCart }) {
 
   const [activeTab, setActiveTab] = useState('processors');
   const [copiedQuote, setCopiedQuote] = useState(false);
-  const [lastMountedSlot, setLastMountedSlot] = useState('processors');
   const [benchmarking, setBenchmarking] = useState(false);
   const [systemFired, setSystemFired] = useState(false);
-  const [targetResolution, setTargetResolution] = useState('1440p'); // '1080p', '1440p', '4k'
+  const [targetResolution, setTargetResolution] = useState('1440p');
   const [blueprintModalOpen, setBlueprintModalOpen] = useState(false);
 
   // Calculations
@@ -123,7 +118,6 @@ export default function PcBuilder({ onAddToCart }) {
 
   const handleSelectPart = (category, part) => {
     playMountSound();
-    setLastMountedSlot(category);
     setSelectedParts(prev => ({
       ...prev,
       [category]: part
@@ -138,50 +132,52 @@ export default function PcBuilder({ onAddToCart }) {
   const handleReset = () => {
     playClickSound();
     setSelectedParts({
-      monitors: PC_PARTS.monitors[0],
-      processors: PC_PARTS.processors[0],
-      motherboards: PC_PARTS.motherboards[0],
-      graphicsCards: PC_PARTS.graphicsCards[0],
-      rams: PC_PARTS.rams[0],
-      storages: PC_PARTS.storages[0],
-      coolers: PC_PARTS.coolers[0],
-      powerSupplies: PC_PARTS.powerSupplies[0],
-      cabinets: PC_PARTS.cabinets[0]
+      monitors: null,
+      processors: null,
+      motherboards: null,
+      graphicsCards: null,
+      rams: null,
+      storages: null,
+      coolers: null,
+      powerSupplies: null,
+      cabinets: null
     });
     setSystemFired(false);
   };
 
   const handleLoadFlagship = () => {
-    playMountSound();
+    playBootSound();
     setSelectedParts({
-      monitors: PC_PARTS.monitors[2], // 4K Samsung Odyssey G7
-      processors: PC_PARTS.processors[2], // 9800X3D
-      motherboards: PC_PARTS.motherboards[1],
+      monitors: PC_PARTS.monitors[2], // Samsung 4K 144Hz
+      processors: PC_PARTS.processors[2], // Ryzen 7 9800X3D
+      motherboards: PC_PARTS.motherboards[1], // ASUS ROG B650-A
       graphicsCards: PC_PARTS.graphicsCards[4], // RTX 4080 Super
-      rams: PC_PARTS.rams[2],
-      storages: PC_PARTS.storages[3],
-      coolers: PC_PARTS.coolers[3],
-      powerSupplies: PC_PARTS.powerSupplies[2],
-      cabinets: PC_PARTS.cabinets[1]
+      rams: PC_PARTS.rams[2], // Corsair Titanium 32GB
+      storages: PC_PARTS.storages[3], // 2TB Samsung 990 Pro
+      coolers: PC_PARTS.coolers[3], // Lian Li LCD 360mm
+      powerSupplies: PC_PARTS.powerSupplies[2], // Corsair RM850x
+      cabinets: PC_PARTS.cabinets[1] // Lian Li O11 EVO
     });
-    confetti({ particleCount: 40, spread: 60, origin: { y: 0.6 } });
+    confetti({ particleCount: 60, spread: 80, origin: { y: 0.6 } });
   };
 
   const handleFireUpBench = () => {
-    playBootSound();
+    if (benchmarking) return;
     setBenchmarking(true);
+    playBootSound();
+
     setTimeout(() => {
       setBenchmarking(false);
       setSystemFired(true);
-      confetti({ particleCount: 70, spread: 80, origin: { y: 0.5 } });
-    }, 2200);
+      confetti({ particleCount: 75, spread: 90, origin: { y: 0.6 } });
+    }, 1800);
   };
 
   const generateSpecText = () => {
     return `*GAMES WORLD CHENNAI - HARDWARE ASSEMBLY QUOTATION*
 Date: ${new Date().toLocaleDateString('en-IN')}
 ---------------------------------
-[BATTLESTATION DESKTOP SPECIFICATION]
+[CUSTOM BATTLESTATION SPECIFICATION]
 • 01. Screen / Monitor: ${selectedParts.monitors?.name || 'Tower Only'}
 • 02. CPU: ${selectedParts.processors?.name || 'Not mounted'}
 • 03. Motherboard: ${selectedParts.motherboards?.name || 'Not mounted'}
@@ -214,7 +210,7 @@ Official Hardware Specification Sheet`;
     if (onAddToCart) {
       onAddToCart({
         id: `custom-build-${Date.now()}`,
-        name: `Custom PC: ${selectedParts.processors?.name?.split(' ')[2] || 'Custom'} + ${selectedParts.graphicsCards?.name?.split(' ')[3] || 'RTX'}${selectedParts.monitors?.price > 0 ? ` + ${selectedParts.monitors?.brand} Screen` : ''}`,
+        name: `Custom Rig: ${selectedParts.processors?.name?.split(' ')[2] || 'Custom'} + ${selectedParts.graphicsCards?.name?.split(' ')[3] || 'RTX'}${selectedParts.monitors?.price > 0 ? ` + ${selectedParts.monitors?.brand} Screen` : ''}`,
         price: totalPrice,
         specs: selectedParts,
         image: selectedParts.cabinets?.image || "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400"
@@ -224,54 +220,111 @@ Official Hardware Specification Sheet`;
   };
 
   return (
-    <section id="pc-builder" className="py-16 sm:py-24 bg-[#070709] border-b border-gw-border relative assemble-on-scroll">
+    <section id="pc-builder" className="py-20 sm:py-28 bg-[#0a0e17] border-b border-slate-800/80 relative assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header with Assembly Bay Branding */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-700/60 text-red-400 text-xs font-tech font-bold tracking-widest-plus uppercase mb-2 assemble-down assemble-delay-1">
-            <Wrench className="w-3.5 h-3.5 text-red-500 animate-pulse" />
-            <span>INTERACTIVE HARDWARE ASSEMBLY BAY</span>
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-950/70 border border-teal-500/30 text-teal-300 text-xs font-tech font-bold tracking-widest-plus uppercase mb-2 assemble-down assemble-delay-1">
+            <Wrench className="w-3.5 h-3.5 text-teal-400 animate-pulse" />
+            <span>CUSTOM HARDWARE CONFIGURATOR</span>
           </div>
 
           <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-white assemble-down assemble-delay-2">
-            ASSEMBLE YOUR <span className="text-red-600">BATTLE RIG</span>
+            ASSEMBLE YOUR <span className="text-teal-400">HARDWARE RIG</span>
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-gray-300 font-sans assemble-down assemble-delay-3">
-            Slot in each component step-by-step. Our engine validates pinout socket matching, power rail wattage headroom, and real-world frame rates in real time.
+          <p className="mt-2 text-sm sm:text-base text-slate-300 font-sans assemble-down assemble-delay-3">
+            Select individual components from our verified catalog. Real-time pinout socket matching, power rail headroom calculations, and frame rate estimations.
           </p>
 
           {/* Quick Presets */}
           <div className="flex flex-wrap items-center justify-center gap-3 mt-5 assemble-up assemble-delay-4">
             <button
               onClick={handleReset}
-              className="px-4 py-2 rounded-lg bg-gw-card hover:bg-gw-card-hover border border-gw-border text-xs font-tech font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1.5 transition-colors"
+              className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-tech font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5 transition-colors"
             >
-              <RotateCcw className="w-3.5 h-3.5 text-gray-400" />
+              <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
               <span>Clear Workbench</span>
             </button>
             <button
               onClick={handleLoadFlagship}
-              className="px-4 py-2 rounded-lg bg-red-950/80 hover:bg-red-900 border border-red-600/50 text-xs font-tech font-bold uppercase tracking-wider text-red-300 flex items-center gap-1.5 transition-colors"
+              className="px-4 py-2 rounded-xl bg-teal-950/80 hover:bg-teal-900 border border-teal-500/40 text-xs font-tech font-bold uppercase tracking-wider text-teal-300 flex items-center gap-1.5 transition-colors"
             >
-              <Sparkles className="w-3.5 h-3.5 text-red-400" />
+              <Sparkles className="w-3.5 h-3.5 text-teal-400" />
               <span>Load 4K Flagship Preset</span>
             </button>
           </div>
         </div>
 
         {/* ========================================================================= */}
-        {/* 3D INTERACTIVE BATTLESTATION: DESKTOP SCREEN & CPU TOWER */}
+        {/* INTERACTIVE 2D BLUEPRINT RACK (REPLACES 3D VIEW) */}
         {/* ========================================================================= */}
-        <BattlestationStudio 
-          selectedParts={selectedParts}
-          activeTab={activeTab}
-          onSelectCategory={handleTabChange}
-          totalPrice={totalPrice}
-          estimatedWattage={estimatedWattage}
-          gameFps={gameFps}
-          targetResolution={targetResolution}
-        />
+        <div className="mb-12 rounded-2xl bg-slate-900/90 border border-slate-800 p-6 shadow-xl relative overflow-hidden">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-800 mb-6">
+            <div className="flex items-center gap-2.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-teal-400 animate-pulse"></span>
+              <span className="text-xs font-tech font-bold uppercase tracking-widest text-teal-400">
+                ACTIVE BLUEPRINT RACK // {installedCount} OF 9 SLOTS MOUNTED
+              </span>
+            </div>
+            <div className="flex items-center gap-4 text-xs font-tech">
+              <span className="text-slate-400">Total TDP: <strong className="text-white">~{estimatedWattage}W</strong></span>
+              <span className="text-slate-400">Estimate: <strong className="text-teal-300 font-display text-base">₹{totalPrice.toLocaleString('en-IN')}</strong></span>
+            </div>
+          </div>
+
+          {/* 9 Component Slots Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {CATEGORIES.map((cat, idx) => {
+              const part = selectedParts[cat.id];
+              const isSelected = activeTab === cat.id;
+              const Icon = cat.icon;
+              return (
+                <div
+                  key={cat.id}
+                  onClick={() => handleTabChange(cat.id)}
+                  className={`p-3.5 rounded-xl border cursor-pointer transition-all duration-200 flex items-center gap-3 relative group ${
+                    isSelected
+                      ? 'bg-teal-950/40 border-teal-400 ring-2 ring-teal-400/20 shadow-cyan-glow'
+                      : part
+                        ? 'bg-slate-950/60 border-slate-800 hover:border-slate-700'
+                        : 'bg-slate-950/30 border-dashed border-slate-800 hover:border-teal-500/40 opacity-70'
+                  }`}
+                >
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 border ${
+                    isSelected
+                      ? 'bg-teal-500 text-slate-950 border-teal-400'
+                      : part
+                        ? 'bg-slate-800 text-teal-400 border-slate-700'
+                        : 'bg-slate-900 text-slate-600 border-slate-800'
+                  }`}>
+                    <Icon className="w-5 h-5" />
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-tech font-bold text-slate-400 uppercase tracking-wider">
+                        {cat.label}
+                      </span>
+                      {part && (
+                        <span className="text-[10px] font-tech text-teal-400 font-bold">
+                          ₹{part.price.toLocaleString('en-IN')}
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-xs font-semibold text-white truncate font-sans mt-0.5">
+                      {part ? part.name : <span className="text-slate-500 font-normal italic">Empty — click to select</span>}
+                    </div>
+                  </div>
+
+                  {isSelected && (
+                    <span className="w-1.5 h-6 rounded-full bg-teal-400 shrink-0"></span>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
         {/* ========================================================================= */}
         {/* MAIN BUILDER WORKSPACE: Component Picker & Summary Telemetry */}
@@ -293,16 +346,16 @@ Official Hardware Specification Sheet`;
                     onClick={() => handleTabChange(cat.id)}
                     className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-tech font-bold uppercase whitespace-nowrap transition-all border ${
                       isSelected 
-                        ? 'bg-red-600 text-white border-red-600 shadow-md' 
+                        ? 'bg-teal-500 text-slate-950 border-teal-400 font-extrabold shadow-cyan-glow' 
                         : isFilled 
-                          ? 'bg-gw-card text-gray-200 border-gw-border hover:border-gray-500' 
-                          : 'bg-black/50 text-gray-500 border-gw-border/50'
+                          ? 'bg-slate-900 text-slate-200 border-slate-800 hover:border-teal-500/50' 
+                          : 'bg-slate-950/60 text-slate-500 border-slate-800/60'
                     }`}
                   >
                     <Icon className="w-4 h-4" />
                     <span>{cat.label.split('. ')[1]}</span>
                     {isFilled && (
-                      <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                      <span className="w-2 h-2 rounded-full bg-teal-400"></span>
                     )}
                   </button>
                 );
@@ -310,20 +363,20 @@ Official Hardware Specification Sheet`;
             </div>
 
             {/* Selected Component Header in Active Tab */}
-            <div className="p-4 rounded-xl bg-gw-card border border-gw-border flex items-center justify-between">
+            <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-between">
               <div>
-                <span className="text-[10px] text-gray-400 uppercase tracking-widest font-tech">Mounting Into Slot</span>
+                <span className="text-[10px] text-teal-400 uppercase tracking-widest font-tech font-bold">Mounting Into Slot</span>
                 <h3 className="text-xl font-display tracking-wider text-white">
                   {CATEGORIES.find(c => c.id === activeTab)?.label}
                 </h3>
               </div>
               {selectedParts[activeTab] && (
                 <div className="text-right">
-                  <span className="text-[10px] text-emerald-400 font-tech uppercase font-bold flex items-center gap-1 justify-end">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                    Slot Latched
+                  <span className="text-[10px] text-teal-400 font-tech uppercase font-bold flex items-center gap-1 justify-end">
+                    <CheckCircle2 className="w-3 h-3 text-teal-400" />
+                    Mounted
                   </span>
-                  <div className="text-xs font-bold text-red-400 font-sans truncate max-w-[200px] sm:max-w-xs">
+                  <div className="text-xs font-bold text-slate-200 font-sans truncate max-w-[200px] sm:max-w-xs">
                     {selectedParts[activeTab].name}
                   </div>
                 </div>
@@ -341,8 +394,8 @@ Official Hardware Specification Sheet`;
                     onClick={() => handleSelectPart(activeTab, item)}
                     className={`p-4 rounded-xl cursor-pointer transition-all duration-200 border relative group assemble-card assemble-up ${delayClass} ${
                       isCurrentChoice
-                        ? 'bg-[#181116] border-red-600 shadow-md'
-                        : 'bg-gw-card hover:bg-gw-card-hover border-gw-border hover:border-gray-600'
+                        ? 'bg-teal-950/30 border-teal-400 shadow-cyan-glow'
+                        : 'bg-slate-900/80 hover:bg-slate-800 border-slate-800 hover:border-teal-500/50'
                     }`}
                   >
                     {item.popular && (
@@ -352,7 +405,7 @@ Official Hardware Specification Sheet`;
                     )}
 
                     <div className="flex items-start gap-3">
-                      <div className="w-14 h-14 rounded-lg bg-black/60 overflow-hidden flex-shrink-0 border border-gw-border">
+                      <div className="w-14 h-14 rounded-lg bg-slate-950 overflow-hidden flex-shrink-0 border border-slate-800">
                         <img 
                           src={item.image} 
                           alt={item.name} 
@@ -360,46 +413,46 @@ Official Hardware Specification Sheet`;
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-[10px] text-red-500 font-tech font-bold uppercase tracking-wider">{item.brand}</div>
-                        <h4 className="text-sm font-bold text-white leading-snug group-hover:text-red-300 transition-colors font-sans">
+                        <div className="text-[10px] text-teal-400 font-tech font-bold uppercase tracking-wider">{item.brand}</div>
+                        <h4 className="text-sm font-bold text-white leading-snug group-hover:text-teal-300 transition-colors font-sans">
                           {item.name}
                         </h4>
                         
                         {/* Specs badge list */}
-                        <div className="flex flex-wrap gap-1.5 mt-2 text-[10px] font-tech text-gray-300">
-                          {item.cores && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">{item.cores}</span>}
-                          {item.socket && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">Socket {item.socket}</span>}
-                          {item.vram && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">{item.vram}</span>}
-                          {item.capacity && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">{item.capacity}</span>}
-                          {item.size && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">{item.size}</span>}
-                          {item.resolution && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">{item.resolution}</span>}
-                          {item.refreshRate && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-red-900/50 text-red-400 font-bold">{item.refreshRate}</span>}
-                          {item.panel && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">{item.panel}</span>}
-                          {item.type && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">{item.type}</span>}
-                          {item.wattage && item.wattage > 0 && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">~{item.wattage}W</span>}
-                          {item.wattageOutput && <span className="px-1.5 py-0.5 bg-black/50 rounded border border-gw-border">{item.wattageOutput}W Output</span>}
+                        <div className="flex flex-wrap gap-1.5 mt-2 text-[10px] font-tech text-slate-300">
+                          {item.cores && <span className="px-1.5 py-0.5 bg-slate-950 rounded border border-slate-800">{item.cores}</span>}
+                          {item.socket && <span className="px-1.5 py-0.5 bg-slate-950 rounded border border-slate-800">Socket {item.socket}</span>}
+                          {item.vram && <span className="px-1.5 py-0.5 bg-slate-950 rounded border border-slate-800">{item.vram}</span>}
+                          {item.capacity && <span className="px-1.5 py-0.5 bg-slate-950 rounded border border-slate-800">{item.capacity}</span>}
+                          {item.size && <span className="px-1.5 py-0.5 bg-slate-950 rounded border border-slate-800">{item.size}</span>}
+                          {item.resolution && <span className="px-1.5 py-0.5 bg-slate-950 rounded border border-slate-800">{item.resolution}</span>}
+                          {item.refreshRate && <span className="px-1.5 py-0.5 bg-teal-950/80 rounded border border-teal-800/50 text-teal-300 font-bold">{item.refreshRate}</span>}
+                          {item.panel && <span className="px-1.5 py-0.5 bg-slate-950 rounded border border-slate-800">{item.panel}</span>}
+                          {item.type && <span className="px-1.5 py-0.5 bg-slate-950 rounded border border-slate-800">{item.type}</span>}
+                          {item.wattage && item.wattage > 0 && <span className="px-1.5 py-0.5 bg-slate-950 rounded border border-slate-800">~{item.wattage}W</span>}
+                          {item.wattageOutput && <span className="px-1.5 py-0.5 bg-slate-950 rounded border border-slate-800">{item.wattageOutput}W Output</span>}
                         </div>
                       </div>
                     </div>
 
-                    <div className="mt-3 pt-3 border-t border-gw-border/50 flex items-center justify-between">
+                    <div className="mt-3 pt-3 border-t border-slate-800 flex items-center justify-between">
                       <div className="text-xl font-display tracking-wider text-white">
                         ₹{item.price.toLocaleString('en-IN')}
                       </div>
                       <button
                         className={`px-3 py-1 rounded-lg text-xs font-tech font-bold uppercase tracking-wider transition-colors flex items-center gap-1 ${
                           isCurrentChoice
-                            ? 'bg-red-600 text-white'
-                            : 'bg-black/60 text-gray-300 group-hover:bg-red-600 group-hover:text-white'
+                            ? 'bg-teal-500 text-slate-950 font-bold'
+                            : 'bg-slate-800 text-slate-300 group-hover:bg-teal-500 group-hover:text-slate-950'
                         }`}
                       >
                         {isCurrentChoice ? (
                           <>
                             <Check className="w-3.5 h-3.5" />
-                            <span>Slot Latched</span>
+                            <span>Mounted</span>
                           </>
                         ) : (
-                          <span>Slot In</span>
+                          <span>Select Component</span>
                         )}
                       </button>
                     </div>
@@ -410,7 +463,7 @@ Official Hardware Specification Sheet`;
 
             {/* Next Category Quick Advance */}
             <div className="flex justify-between items-center pt-2">
-              <span className="text-xs text-gray-400 font-sans">Zero assembly charge • 100% Genuine sealed parts</span>
+              <span className="text-xs text-slate-400 font-sans">Zero assembly fee • 100% Genuine sealed retail parts</span>
               {activeTab !== 'cabinets' && (
                 <button
                   onClick={() => {
@@ -420,9 +473,9 @@ Official Hardware Specification Sheet`;
                       setActiveTab(CATEGORIES[currentIndex + 1].id);
                     }
                   }}
-                  className="flex items-center gap-1 px-4 py-2 rounded-lg bg-gw-card hover:bg-gw-card-hover border border-gw-border text-xs font-tech font-bold uppercase text-gray-200 hover:text-white"
+                  className="flex items-center gap-1 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-tech font-bold uppercase text-slate-200 hover:text-white"
                 >
-                  <span>Next Assembly Step</span>
+                  <span>Next Step</span>
                   <ChevronRight className="w-4 h-4" />
                 </button>
               )}
@@ -434,18 +487,18 @@ Official Hardware Specification Sheet`;
           <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-24 assemble-right assemble-delay-3">
             
             {/* Summary Box */}
-            <div className="bg-gw-card rounded-2xl p-6 border border-gw-border shadow-xl space-y-5">
+            <div className="bg-slate-900/90 rounded-2xl p-6 border border-slate-800 shadow-xl space-y-5">
               
-              <div className="flex items-center justify-between border-b border-gw-border pb-4">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-4">
                 <div>
-                  <h3 className="text-xl font-display tracking-wider text-white">ASSEMBLY TELEMETRY</h3>
-                  <p className="text-xs text-gray-400 font-sans">Zero Assembly Fee Included</p>
+                  <h3 className="text-xl font-display tracking-wider text-white">SYSTEM TELEMETRY</h3>
+                  <p className="text-xs text-slate-400 font-sans">Zero Assembly Fee Included</p>
                 </div>
                 <div className="text-right">
-                  <div className="text-3xl font-display tracking-wider text-red-500">
+                  <div className="text-3xl font-display tracking-wider text-teal-400">
                     ₹{totalPrice.toLocaleString('en-IN')}
                   </div>
-                  <span className="text-[10px] text-gray-400 font-tech uppercase">GST & Invoice Included</span>
+                  <span className="text-[10px] text-slate-400 font-tech uppercase">GST & Invoice Included</span>
                 </div>
               </div>
 
@@ -455,7 +508,7 @@ Official Hardware Specification Sheet`;
                   <Check className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <div className="text-xs font-tech font-bold uppercase text-emerald-400">100% Circuit Compatibility</div>
-                    <div className="text-[11px] text-gray-300 font-sans">Socket pinout, VRM power delivery, and cooling are fully matched.</div>
+                    <div className="text-[11px] text-slate-300 font-sans">Socket pinout, VRM power delivery, and cooling are fully matched.</div>
                   </div>
                 </div>
               ) : (
@@ -473,9 +526,9 @@ Official Hardware Specification Sheet`;
               )}
 
               {/* Power Consumption Meter */}
-              <div className="p-4 rounded-xl bg-black/50 border border-gw-border space-y-2">
+              <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2">
                 <div className="flex justify-between items-center text-xs font-tech">
-                  <span className="text-gray-400 flex items-center gap-1.5 uppercase">
+                  <span className="text-slate-400 flex items-center gap-1.5 uppercase">
                     <Zap className="w-3.5 h-3.5 text-amber-400" />
                     System Power Load:
                   </span>
@@ -483,24 +536,24 @@ Official Hardware Specification Sheet`;
                 </div>
 
                 {/* Progress bar */}
-                <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
+                <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
                   <div 
-                    className="bg-gradient-to-r from-emerald-500 via-amber-500 to-red-500 h-2 rounded-full transition-all duration-300"
+                    className="bg-gradient-to-r from-teal-500 via-amber-500 to-red-500 h-2 rounded-full transition-all duration-300"
                     style={{ width: `${Math.min(100, (estimatedWattage / (selectedParts.powerSupplies?.wattageOutput || 750)) * 100)}%` }}
                   ></div>
                 </div>
 
-                <div className="flex justify-between text-[10px] font-tech text-gray-400">
+                <div className="flex justify-between text-[10px] font-tech text-slate-400">
                   <span>PSU Output: {selectedParts.powerSupplies?.wattageOutput || 0}W</span>
-                  <span className="text-emerald-400 font-bold">Recommended: {recommendedPsu}W+</span>
+                  <span className="text-teal-400 font-bold">Recommended: {recommendedPsu}W+</span>
                 </div>
               </div>
 
               {/* Real-time Estimated Gaming FPS with Resolution Switcher */}
-              <div className="p-4 rounded-xl bg-black/50 border border-gw-border space-y-3">
-                <div className="flex items-center justify-between text-xs font-tech font-bold uppercase text-gray-200">
+              <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-3">
+                <div className="flex items-center justify-between text-xs font-tech font-bold uppercase text-slate-200">
                   <div className="flex items-center gap-1.5">
-                    <Gamepad2 className="w-4 h-4 text-red-500" />
+                    <Gamepad2 className="w-4 h-4 text-teal-400" />
                     <span>ESTIMATED FRAME RATES</span>
                   </div>
 
@@ -515,8 +568,8 @@ Official Hardware Specification Sheet`;
                         }}
                         className={`px-1.5 py-0.5 rounded text-[9px] font-tech font-bold uppercase transition-colors ${
                           targetResolution === res 
-                            ? 'bg-red-600 text-white' 
-                            : 'bg-gw-card text-gray-400 hover:text-white'
+                            ? 'bg-teal-500 text-slate-950 font-bold' 
+                            : 'bg-slate-800 text-slate-400 hover:text-white'
                         }`}
                       >
                         {res}
@@ -526,20 +579,20 @@ Official Hardware Specification Sheet`;
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 text-xs font-tech">
-                  <div className="p-2 rounded bg-[#111118] border border-gw-border flex justify-between items-center">
-                    <span className="text-gray-400">Valorant:</span>
-                    <span className="font-bold text-emerald-400 font-mono">{gameFps.valorant}+ FPS</span>
+                  <div className="p-2 rounded bg-slate-900 border border-slate-800 flex justify-between items-center">
+                    <span className="text-slate-400">Valorant:</span>
+                    <span className="font-bold text-teal-300 font-mono">{gameFps.valorant}+ FPS</span>
                   </div>
-                  <div className="p-2 rounded bg-[#111118] border border-gw-border flex justify-between items-center">
-                    <span className="text-gray-400">Cyberpunk:</span>
+                  <div className="p-2 rounded bg-slate-900 border border-slate-800 flex justify-between items-center">
+                    <span className="text-slate-400">Cyberpunk:</span>
                     <span className="font-bold text-amber-400 font-mono">{gameFps.cyberpunk}+ FPS</span>
                   </div>
-                  <div className="p-2 rounded bg-[#111118] border border-gw-border flex justify-between items-center">
-                    <span className="text-gray-400">GTA V:</span>
-                    <span className="font-bold text-emerald-400 font-mono">{gameFps.gta5}+ FPS</span>
+                  <div className="p-2 rounded bg-slate-900 border border-slate-800 flex justify-between items-center">
+                    <span className="text-slate-400">GTA V:</span>
+                    <span className="font-bold text-teal-300 font-mono">{gameFps.gta5}+ FPS</span>
                   </div>
-                  <div className="p-2 rounded bg-[#111118] border border-gw-border flex justify-between items-center">
-                    <span className="text-gray-400">Warzone:</span>
+                  <div className="p-2 rounded bg-slate-900 border border-slate-800 flex justify-between items-center">
+                    <span className="text-slate-400">Warzone:</span>
                     <span className="font-bold text-amber-400 font-mono">{gameFps.warzone}+ FPS</span>
                   </div>
                 </div>
@@ -553,11 +606,11 @@ Official Hardware Specification Sheet`;
                   benchmarking 
                     ? 'bg-amber-950 text-amber-300 border-amber-600 animate-pulse' 
                     : systemFired
-                      ? 'bg-emerald-950/80 text-emerald-400 border-emerald-600 shadow-lg shadow-emerald-950/40'
-                      : 'bg-black/60 hover:bg-black text-gray-200 hover:text-white border-gw-border'
+                      ? 'bg-teal-950/80 text-teal-300 border-teal-500 shadow-cyan-glow'
+                      : 'bg-slate-950 hover:bg-slate-800 text-slate-200 hover:text-white border-slate-800'
                 }`}
               >
-                <Power className="w-4 h-4 text-red-500" />
+                <Power className="w-4 h-4 text-teal-400" />
                 <span>
                   {benchmarking 
                     ? "RUNNING BENCHMARK SIMULATION..." 
@@ -572,9 +625,9 @@ Official Hardware Specification Sheet`;
                 {/* Add to Cart */}
                 <button
                   onClick={handleAddToCartClick}
-                  className="w-full flex items-center justify-center gap-2 py-4 px-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider shadow-md transition-all transform hover:-translate-y-0.5"
+                  className="w-full flex items-center justify-center gap-2 py-4 px-4 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-tech font-extrabold text-xs uppercase tracking-wider shadow-cyan-glow transition-all transform hover:-translate-y-0.5"
                 >
-                  <ShoppingBag className="w-4 h-4" />
+                  <ShoppingBag className="w-4 h-4 text-slate-950" />
                   <span>Add Assembled Rig to Cart</span>
                 </button>
 
@@ -584,9 +637,9 @@ Official Hardware Specification Sheet`;
                     playMountSound();
                     setBlueprintModalOpen(true);
                   }}
-                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-red-950 via-[#181822] to-black hover:border-red-500 border border-red-800/60 text-white font-tech font-bold text-xs uppercase tracking-wider transition-all shadow-md group"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white font-tech font-bold text-xs uppercase tracking-wider transition-all shadow-md group"
                 >
-                  <FileText className="w-4 h-4 text-red-500 group-hover:scale-110 transition-transform" />
+                  <FileText className="w-4 h-4 text-teal-400 group-hover:scale-110 transition-transform" />
                   <span>Open Official Blueprint & Quotation (PDF)</span>
                 </button>
 
@@ -594,9 +647,9 @@ Official Hardware Specification Sheet`;
                 <div className="flex gap-2">
                   <button
                     onClick={handleCopySpec}
-                    className="flex-1 py-2.5 px-3 rounded-lg bg-gw-card hover:bg-gw-card-hover border border-gw-border text-xs font-tech font-bold uppercase tracking-wider text-gray-300 flex items-center justify-center gap-1.5 transition-colors"
+                    className="flex-1 py-2.5 px-3 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-xs font-tech font-bold uppercase tracking-wider text-slate-300 flex items-center justify-center gap-1.5 transition-colors"
                   >
-                    <Printer className="w-3.5 h-3.5 text-gray-400" />
+                    <Printer className="w-3.5 h-3.5 text-slate-400" />
                     <span>{copiedQuote ? "Copied Spec Sheet!" : "Quick Copy Spec Sheet"}</span>
                   </button>
                 </div>
@@ -604,18 +657,18 @@ Official Hardware Specification Sheet`;
               </div>
 
               {/* Included Services Badges */}
-              <div className="border-t border-gw-border/60 pt-3 text-[11px] text-gray-300 font-sans space-y-1.5">
+              <div className="border-t border-slate-800 pt-3 text-[11px] text-slate-300 font-sans space-y-1.5">
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span>Free Assembly & Master Cable Management</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-teal-400 shrink-0" />
+                  <span>Free Assembly & Cable Grooming</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-teal-400 shrink-0" />
                   <span>24-Hour Stress Testing & OS Configuration</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span>3-Year Hardware Warranty + Safe Transit Packaging</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-teal-400 shrink-0" />
+                  <span>3-Year Hardware Warranty + Pan-India Shipping</span>
                 </div>
               </div>
 
@@ -634,44 +687,44 @@ Official Hardware Specification Sheet`;
         <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 animate-fadeIn overflow-y-auto">
           <div 
             id="blueprint-quotation-print"
-            className="bg-[#0e0e14] border border-red-600/60 rounded-2xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative text-white my-auto"
+            className="bg-slate-900 border border-teal-500/50 rounded-2xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative text-white my-auto"
           >
-            {/* Top Close Bar (hidden on print) */}
-            <div className="flex items-center justify-between pb-4 border-b border-gw-border mb-6 print-hide">
+            {/* Top Close Bar */}
+            <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-6 print-hide">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
-                <span className="text-xs font-tech font-bold uppercase tracking-widest text-red-500">
+                <span className="w-2.5 h-2.5 rounded-full bg-teal-400 animate-ping"></span>
+                <span className="text-xs font-tech font-bold uppercase tracking-widest text-teal-400">
                   OFFICIAL STORE BLUEPRINT SPECIFICATION
                 </span>
               </div>
               <button 
                 onClick={() => setBlueprintModalOpen(false)}
-                className="w-8 h-8 rounded-lg bg-gw-card hover:bg-red-600/30 text-gray-400 hover:text-white flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Document Header */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-gray-800">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
               <div className="space-y-1">
                 <div className="text-2xl sm:text-3xl font-display tracking-wider text-white flex items-center gap-2">
                   <span>GAMES WORLD</span>
-                  <span className="text-red-600 text-xs px-2 py-0.5 rounded bg-red-950/80 border border-red-800 font-tech font-bold uppercase">
+                  <span className="text-teal-400 text-xs px-2 py-0.5 rounded bg-teal-950/80 border border-teal-800 font-tech font-bold uppercase">
                     CHENNAI
                   </span>
                 </div>
-                <p className="text-xs text-gray-400 font-sans">
+                <p className="text-xs text-slate-400 font-sans">
                   Athipatten Street, 3rd Floor, Landmark - Bharat Petroleum Back Side, Chennai
                 </p>
-                <p className="text-xs text-gray-400 font-tech">
+                <p className="text-xs text-slate-400 font-tech">
                   Store Hours: {COMPANY_INFO.hours}
                 </p>
               </div>
 
               <div className="text-left sm:text-right space-y-1 font-tech text-xs">
-                <div className="text-red-400 font-bold">DOC REF: GW-{Date.now().toString().slice(-6)}</div>
-                <div className="text-gray-400">DATE: {new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
+                <div className="text-teal-400 font-bold">DOC REF: GW-{Date.now().toString().slice(-6)}</div>
+                <div className="text-slate-400">DATE: {new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
                 <div className="text-emerald-400 font-bold uppercase">BURN-IN: CERTIFIED 24-HR</div>
               </div>
             </div>
@@ -680,26 +733,26 @@ Official Hardware Specification Sheet`;
             <div className="my-6 overflow-x-auto">
               <table className="w-full text-left text-xs font-sans">
                 <thead>
-                  <tr className="border-b border-gray-800 text-[11px] font-tech uppercase text-gray-400">
+                  <tr className="border-b border-slate-800 text-[11px] font-tech uppercase text-slate-400">
                     <th className="pb-2">Assembly Slot</th>
                     <th className="pb-2">Component Model</th>
                     <th className="pb-2 text-center">Load</th>
                     <th className="pb-2 text-right">Price</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-800/60">
+                <tbody className="divide-y divide-slate-800">
                   {CATEGORIES.map((cat) => {
                     const part = selectedParts[cat.id];
                     if (!part) return null;
                     return (
                       <tr key={cat.id} className="text-xs">
-                        <td className="py-2.5 font-tech font-bold text-red-400 whitespace-nowrap">
+                        <td className="py-2.5 font-tech font-bold text-teal-400 whitespace-nowrap">
                           {cat.slotName}
                         </td>
-                        <td className="py-2.5 text-gray-200 font-medium">
+                        <td className="py-2.5 text-slate-200 font-medium">
                           {part.name}
                         </td>
-                        <td className="py-2.5 text-center font-mono text-gray-400">
+                        <td className="py-2.5 text-center font-mono text-slate-400">
                           {part.wattage ? `${part.wattage}W` : '—'}
                         </td>
                         <td className="py-2.5 text-right font-display text-base text-white tracking-wider">
@@ -713,56 +766,56 @@ Official Hardware Specification Sheet`;
             </div>
 
             {/* Total Wattage and Pricing Summary */}
-            <div className="p-4 rounded-xl bg-black/60 border border-gw-border space-y-2 mb-6">
+            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 mb-6">
               <div className="flex justify-between items-center text-xs font-tech">
-                <span className="text-gray-400">Total System TDP Load:</span>
+                <span className="text-slate-400">Total System TDP Load:</span>
                 <span className="font-bold text-white font-mono">~{estimatedWattage} W (Recommended PSU: {recommendedPsu}W+)</span>
               </div>
               <div className="flex justify-between items-center text-xs font-tech">
-                <span className="text-gray-400">Professional Bench Assembly:</span>
+                <span className="text-slate-400">Professional Bench Assembly:</span>
                 <span className="font-bold text-emerald-400 uppercase">FREE (₹0)</span>
               </div>
               <div className="flex justify-between items-center text-xs font-tech">
-                <span className="text-gray-400">Thermal Grizzly Kryonaut TIM Application:</span>
+                <span className="text-slate-400">Thermal Grizzly Kryonaut TIM Application:</span>
                 <span className="font-bold text-emerald-400 uppercase">INCLUDED</span>
               </div>
-              <div className="pt-2 border-t border-gray-800 flex justify-between items-baseline">
+              <div className="pt-2 border-t border-slate-800 flex justify-between items-baseline">
                 <span className="text-sm font-tech font-bold text-white uppercase tracking-wider">Total Quotation Value:</span>
-                <div className="text-3xl font-display tracking-wider text-red-500">
+                <div className="text-3xl font-display tracking-wider text-teal-400">
                   ₹{totalPrice.toLocaleString('en-IN')}
                 </div>
               </div>
             </div>
 
             {/* QA Verification Seal */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl bg-red-950/20 border border-red-900/40 text-xs text-gray-300">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl bg-teal-950/30 border border-teal-800/40 text-xs text-slate-300">
               <div className="space-y-0.5">
                 <div className="font-tech font-bold text-white uppercase flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-emerald-400" />
                   <span>3-YEAR ON-SITE HARDWARE WARRANTY COVERAGE</span>
                 </div>
-                <p className="text-[11px] text-gray-400 font-sans">
-                  Official GST invoice provided for individual brand warranties (Intel/AMD, NVIDIA, Corsair, Samsung).
+                <p className="text-[11px] text-slate-400 font-sans">
+                  Official GST invoice provided for individual brand warranties.
                 </p>
               </div>
-              <div className="text-[10px] font-tech text-red-400 font-bold uppercase whitespace-nowrap border border-red-800/80 px-2.5 py-1 rounded">
+              <div className="text-[10px] font-tech text-teal-400 font-bold uppercase whitespace-nowrap border border-teal-800 px-2.5 py-1 rounded">
                 GAMES WORLD QA PASSED
               </div>
             </div>
 
-            {/* Action Bar (hidden on print) */}
-            <div className="mt-6 pt-4 border-t border-gw-border flex flex-wrap items-center justify-end gap-3 print-hide">
+            {/* Action Bar */}
+            <div className="mt-6 pt-4 border-t border-slate-800 flex flex-wrap items-center justify-end gap-3 print-hide">
               <button
                 onClick={() => window.print()}
-                className="px-5 py-2.5 rounded-xl bg-gw-card hover:bg-gw-card-hover border border-gw-border text-white text-xs font-tech font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors"
+                className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-xs font-tech font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors"
               >
-                <Printer className="w-4 h-4 text-red-500" />
+                <Printer className="w-4 h-4 text-teal-400" />
                 <span>Print Document (PDF)</span>
               </button>
 
               <button
                 onClick={handleCopySpec}
-                className="px-5 py-2.5 rounded-xl bg-gw-card hover:bg-gw-card-hover border border-gw-border text-white text-xs font-tech font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors"
+                className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-xs font-tech font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors"
               >
                 <span>{copiedQuote ? "Copied to Clipboard!" : "Copy Text"}</span>
               </button>

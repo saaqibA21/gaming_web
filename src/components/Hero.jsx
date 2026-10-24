@@ -1,20 +1,15 @@
 import React from 'react';
-import { COMPANY_INFO, PILLARS } from '../data/mockData';
+import { COMPANY_INFO, PILLARS, DECLARATION_INFO } from '../data/mockData';
 import { 
   Gamepad2, 
   Cpu, 
   Laptop, 
   ShieldCheck, 
   ArrowRight, 
-  CheckCircle2, 
-  Sparkles, 
-  MessageSquare, 
   ChevronDown, 
-  Wrench, 
-  Layers, 
-  Flame, 
-  Zap, 
-  MapPin 
+  MapPin,
+  Sparkles,
+  CheckCircle2
 } from 'lucide-react';
 import { playClickSound } from '../utils/audioEffects';
 
@@ -36,24 +31,24 @@ export default function Hero({ onOpenConsultation }) {
 
   return (
     <>
-      {/* 1. Cinematic Interactive Assembly Stage - Clean video without HUD overlays */}
+      {/* 1. Cinematic Interactive Assembly Stage */}
       <section id="hero" className="relative h-[300vh]">
         <div className="sticky top-0 h-screen w-full flex flex-col justify-end items-center pb-8 select-none pointer-events-none">
           <button
             onClick={scrollToContent}
-            className="group pointer-events-auto flex items-center gap-2 px-6 py-2.5 rounded-full bg-black/80 hover:bg-black border border-red-700/60 shadow-xl transition-all cursor-pointer hover:border-red-500"
+            className="group pointer-events-auto flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-950/80 hover:bg-slate-900 border border-teal-500/40 shadow-cyan-glow transition-all cursor-pointer hover:border-teal-400"
             aria-label="Skip to details"
           >
-            <span className="text-xs font-tech font-bold uppercase tracking-widest text-gray-200 group-hover:text-white">
-              EXPLORE WORKBENCH
+            <span className="text-xs font-tech font-bold uppercase tracking-widest text-teal-300 group-hover:text-white">
+              EXPLORE THE MANIFESTO & MACHINES
             </span>
-            <ChevronDown className="w-4 h-4 text-red-500 group-hover:translate-y-0.5 transition-transform" />
+            <ChevronDown className="w-4 h-4 text-teal-400 group-hover:translate-y-0.5 transition-transform" />
           </button>
         </div>
       </section>
 
       {/* 2. All Hero Details Below the Video Screen - Solid Workbench Overview */}
-      <section id="hero-details" className="relative py-16 sm:py-24 border-b border-gw-border bg-[#070709] assemble-on-scroll">
+      <section id="hero-details" className="relative py-20 sm:py-28 border-b border-slate-800/80 bg-[#0a0e17] assemble-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           
           {/* Main Grid: Left Ad Copy, Right Hardware Showcase */}
@@ -64,29 +59,30 @@ export default function Hero({ onOpenConsultation }) {
               
               {/* Big Impact Headline using Bebas Neue / Space Grotesk */}
               <div>
-                <div className="text-red-500 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2 assemble-down assemble-delay-1">
-                  // WORKBENCH SPECIFICATION OVERVIEW
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-950/60 border border-teal-500/30 text-teal-300 font-tech font-bold tracking-widest-plus text-[11px] uppercase mb-3 assemble-down assemble-delay-1">
+                  <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                  {DECLARATION_INFO.title}
                 </div>
                 <h1 className="text-5xl sm:text-7xl lg:text-8xl font-display tracking-tight leading-[0.92] text-white assemble-left assemble-delay-2">
-                  CUSTOM GAMING RIGS. <br />
-                  <span className="text-red-600">
-                    BUILT TO DOMINATE.
+                  FIVE MACHINES. <br />
+                  <span className="text-teal-400">
+                    FIVE PURPOSES.
                   </span>
                 </h1>
               </div>
 
               {/* Clear, Solid Subhead */}
-              <p className="text-base sm:text-lg text-gray-200 font-sans max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal assemble-left assemble-delay-3">
-                High-performance custom gaming PCs and chip-level laptop repairs. Hand-assembled with sealed brand-new components, 24-hour benchmarked, and backed by a 3-year warranty with zero build fee.
+              <p className="text-base sm:text-lg text-slate-300 font-sans max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal assemble-left assemble-delay-3">
+                "{DECLARATION_INFO.tagline}" Games World does not move generic components. We build the exact machine your ambition demands — whether that is a spreadsheet, a scoreboard, a timeline, or an AI model that thinks.
               </p>
 
               {/* Slogan Banner */}
-              <div className="p-4 rounded-xl bg-[#0d0d14] border border-red-900/60 shadow-solid-dark space-y-1 assemble-left assemble-delay-4">
-                <div className="text-sm sm:text-base font-tech font-bold text-red-400 uppercase tracking-wide">
+              <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 shadow-xl space-y-1 assemble-left assemble-delay-4">
+                <div className="text-sm sm:text-base font-tech font-bold text-teal-300 uppercase tracking-wide">
                   "{COMPANY_INFO.slogan}"
                 </div>
-                <div className="text-xs text-gray-400 font-sans flex items-center gap-1.5 truncate">
-                  <MapPin className="w-3.5 h-3.5 text-red-500 flex-shrink-0" />
+                <div className="text-xs text-slate-400 font-sans flex items-center gap-1.5 truncate">
+                  <MapPin className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
                   <span>{COMPANY_INFO.address}</span>
                 </div>
               </div>
@@ -94,41 +90,41 @@ export default function Hero({ onOpenConsultation }) {
               {/* Solid CTAs */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2 assemble-up assemble-delay-5">
                 <a
-                  href="#pc-builder"
+                  href="#prebuilts"
                   onClick={() => playClickSound()}
-                  className="flex items-center gap-2.5 px-7 py-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-sm tracking-wider uppercase shadow-md transition-all transform hover:-translate-y-0.5"
+                  className="flex items-center gap-2.5 px-7 py-4 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-tech font-extrabold text-sm tracking-wider uppercase shadow-cyan-glow transition-all transform hover:-translate-y-0.5"
                 >
-                  <Cpu className="w-5 h-5" />
-                  <span>Enter Assembly Bay (PC Builder)</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <Cpu className="w-5 h-5 text-slate-950" />
+                  <span>Explore The 5 Machines</span>
+                  <ArrowRight className="w-4 h-4 text-slate-950" />
                 </a>
 
                 <a
-                  href="#prebuilts"
+                  href="#pc-builder"
                   onClick={() => playClickSound()}
-                  className="flex items-center gap-2 px-6 py-4 rounded-xl bg-gw-card hover:bg-gw-card-hover border border-gw-border hover:border-red-600/60 text-gray-100 hover:text-white font-tech font-bold text-sm tracking-wider uppercase transition-all"
+                  className="flex items-center gap-2 px-6 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-teal-500/50 text-slate-100 hover:text-white font-tech font-bold text-sm tracking-wider uppercase transition-all"
                 >
-                  <span>Factory Prebuilts</span>
+                  <span>Custom Parts Configurator</span>
                 </a>
               </div>
 
               {/* 4 Solid Guarantees */}
               <div className="pt-2 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center assemble-socket assemble-delay-6 assemble-card">
+                <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-center assemble-socket assemble-delay-6 assemble-card">
                   <div className="font-tech font-bold text-white text-xs">ZERO BUILD FEE</div>
-                  <div className="text-[10px] text-gray-400 mt-0.5 font-sans">Pay only for parts</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5 font-sans">Pay only for parts</div>
                 </div>
-                <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center assemble-socket assemble-delay-7 assemble-card">
-                  <div className="font-tech font-bold text-white text-xs">24-HR STRESS TEST</div>
-                  <div className="text-[10px] text-gray-400 mt-0.5 font-sans">FurMark logs provided</div>
+                <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-center assemble-socket assemble-delay-7 assemble-card">
+                  <div className="font-tech font-bold text-teal-400 text-xs">24-HR STRESS TEST</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5 font-sans">FurMark verified</div>
                 </div>
-                <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center assemble-socket assemble-delay-8 assemble-card">
+                <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-center assemble-socket assemble-delay-8 assemble-card">
                   <div className="font-tech font-bold text-white text-xs">3-YR WARRANTY</div>
-                  <div className="text-[10px] text-gray-400 mt-0.5 font-sans">Local walk-in RMA</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5 font-sans">Walk-in local RMA</div>
                 </div>
-                <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border text-center assemble-socket assemble-delay-9 assemble-card">
-                  <div className="font-tech font-bold text-white text-xs">SAME-DAY SERVICE</div>
-                  <div className="text-[10px] text-gray-400 mt-0.5 font-sans">Laptop repasting</div>
+                <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-center assemble-socket assemble-delay-9 assemble-card">
+                  <div className="font-tech font-bold text-teal-400 text-xs">FIVE IDENTITIES</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5 font-sans">Zero confusion</div>
                 </div>
               </div>
 
@@ -139,10 +135,10 @@ export default function Hero({ onOpenConsultation }) {
               <div className="relative w-full max-w-md">
                 
                 {/* Solid Card container */}
-                <div className="rounded-2xl bg-[#0d0d14] p-6 border border-red-600/50 shadow-2xl space-y-5">
+                <div className="rounded-2xl bg-slate-900 p-6 border border-slate-800 hover:border-teal-500/50 shadow-2xl space-y-5 transition-all">
                   
                   {/* Header row with Logo and Live Status */}
-                  <div className="flex items-center justify-between border-b border-gw-border pb-4">
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-4">
                     <div className="flex items-center gap-3">
                       <img 
                         src={COMPANY_INFO.logo} 
@@ -152,42 +148,47 @@ export default function Hero({ onOpenConsultation }) {
                       <div className="flex flex-col">
                         <div className="flex items-center gap-1 font-display tracking-wider text-lg leading-none">
                           <span className="text-white">GAMES</span>
-                          <span className="text-red-600">WORLD</span>
+                          <span className="text-red-500">WORLD</span>
                         </div>
-                        <span className="text-[9px] text-gray-400 font-tech tracking-widest uppercase font-bold mt-0.5">
+                        <span className="text-[9px] text-teal-400 font-tech tracking-widest uppercase font-bold mt-0.5">
                           PLAY • CONNECT • COMPETE
                         </span>
                       </div>
                     </div>
-                    <span className="px-2.5 py-1 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 text-[10px] font-tech font-bold uppercase">
+                    <span className="px-2.5 py-1 rounded bg-teal-950 text-teal-400 border border-teal-800 text-[10px] font-tech font-bold uppercase">
                       OPEN 7 DAYS
                     </span>
                   </div>
 
                   {/* Flagship Rig Picture with concrete specifications */}
-                  <div className="relative rounded-xl overflow-hidden group border border-gw-border">
+                  <div className="relative rounded-xl overflow-hidden group border border-slate-800">
                     <img 
-                      src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=800&auto=format&fit=crop&q=80" 
+                      src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&auto=format&fit=crop&q=80" 
                       alt="Games World Gaming PC Build" 
                       className="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-500" 
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                    <div className="absolute top-3 left-3">
+                      <span className="px-2.5 py-1 rounded text-[10px] font-tech font-bold uppercase bg-teal-500 text-slate-950">
+                        FEATURED BUILD // 03
+                      </span>
+                    </div>
                     <div className="absolute bottom-3 left-3 right-3">
-                      <div className="text-[10px] font-tech font-bold text-red-400 uppercase tracking-wider">SAMPLE BENCH SPECIFICATION</div>
-                      <div className="text-xl font-display tracking-wider text-white">VALKYRIE 1440P EDITION</div>
-                      <div className="text-xs text-gray-200 font-sans">Ryzen 7 7800X3D • RTX 4070 Super 12GB • 32GB DDR5 6000MHz</div>
+                      <div className="text-[10px] font-tech font-bold text-teal-400 uppercase tracking-wider">HYBRID POWERHOUSE</div>
+                      <div className="text-xl font-display tracking-wider text-white">03. MONSTER (HYBRID)</div>
+                      <div className="text-xs text-slate-300 font-sans">Ryzen 5 9600 • RTX 5060 Ti 16GB • 32GB DDR5 • From Rs. 1,19,999</div>
                     </div>
                   </div>
 
                   {/* Store Services Quick List */}
                   <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border">
-                      <div className="text-[10px] text-gray-400 font-tech uppercase">Custom PC Assembly</div>
-                      <div className="font-bold text-white font-sans mt-0.5">Zero Build Fee</div>
+                    <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
+                      <div className="text-[10px] text-slate-400 font-tech uppercase">Assembly Policy</div>
+                      <div className="font-bold text-teal-400 font-sans mt-0.5">Zero Build Fee</div>
                     </div>
-                    <div className="p-2.5 rounded-lg bg-black/60 border border-gw-border">
-                      <div className="text-[10px] text-gray-400 font-tech uppercase">Laptop Repaste</div>
-                      <div className="font-bold text-red-400 font-sans mt-0.5">Thermal Grizzly Kryonaut</div>
+                    <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
+                      <div className="text-[10px] text-slate-400 font-tech uppercase">Laptop Repaste</div>
+                      <div className="font-bold text-white font-sans mt-0.5">Thermal Grizzly Kryonaut</div>
                     </div>
                   </div>
 
@@ -198,7 +199,7 @@ export default function Hero({ onOpenConsultation }) {
                         playClickSound();
                         onOpenConsultation();
                       }}
-                      className="w-full py-3 px-4 rounded-lg bg-red-600 hover:bg-red-500 text-white font-tech font-bold text-xs uppercase tracking-wider transition-colors shadow-md"
+                      className="w-full py-3.5 px-4 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-tech font-extrabold text-xs uppercase tracking-wider transition-all shadow-cyan-glow"
                     >
                       Request Free Hardware Consultation
                     </button>
@@ -211,12 +212,12 @@ export default function Hero({ onOpenConsultation }) {
           </div>
 
           {/* Core Hardware Pillars Section */}
-          <div className="mt-16 pt-12 border-t border-gw-border/60 assemble-on-scroll">
-            <div className="text-center mb-8 assemble-down assemble-delay-1">
-              <h3 className="text-xs uppercase tracking-widest-plus font-tech font-bold text-red-500">
+          <div className="mt-20 pt-16 border-t border-slate-800/80 assemble-on-scroll">
+            <div className="text-center mb-10 assemble-down assemble-delay-1">
+              <h3 className="text-xs uppercase tracking-widest-plus font-tech font-bold text-teal-400">
                 OUR CORE DIVISIONS
               </h3>
-              <p className="text-3xl sm:text-4xl font-display tracking-wider text-white mt-1">
+              <p className="text-3xl sm:text-5xl font-display tracking-wider text-white mt-1">
                 THE PILLARS OF GAMES WORLD
               </p>
             </div>
@@ -228,18 +229,18 @@ export default function Hero({ onOpenConsultation }) {
                 return (
                   <div 
                     key={pillar.id}
-                    className={`p-5 rounded-2xl bg-gw-card border border-gw-border hover:border-red-600/60 transition-all duration-300 assemble-up ${delayClass} assemble-card`}
+                    className={`p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-teal-500/50 transition-all duration-300 assemble-up ${delayClass} assemble-card`}
                   >
-                    <div className="w-12 h-12 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-teal-500/10 text-teal-400 border border-teal-500/30 flex items-center justify-center mb-4">
                       <IconComp className="w-6 h-6" />
                     </div>
-                    <h4 className="text-xl font-display tracking-wider text-white">
+                    <h4 className="text-2xl font-display tracking-wider text-white">
                       {pillar.title}
                     </h4>
-                    <div className="text-[11px] font-tech font-bold text-red-400 uppercase tracking-wider mb-2">
+                    <div className="text-[11px] font-tech font-bold text-teal-400 uppercase tracking-wider mb-2">
                       {pillar.sub}
                     </div>
-                    <p className="text-xs text-gray-300 leading-relaxed font-sans">
+                    <p className="text-xs text-slate-300 leading-relaxed font-sans">
                       {pillar.desc}
                     </p>
                   </div>
