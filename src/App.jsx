@@ -13,26 +13,30 @@ import { adminStorage } from './utils/adminStorage';
 import { initGlobalAssemblyObserver } from './utils/useAssemble';
 
 export default function App() {
-  const [isAdminView, setIsAdminView] = useState(() => {
-    return window.location.hash === '#admin' || window.location.pathname === '/admin';
-  });
+  const checkIsAdmin = () => {
+    const hash = window.location.hash.toLowerCase();
+    const path = window.location.pathname.toLowerCase().replace(/\/+$/, '');
+    return hash === '#admin' || path === '/admin';
+  };
+
+  const [isAdminView, setIsAdminView] = useState(checkIsAdmin);
   const [cartItems, setCartItems] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [consultationOpen, setConsultationOpen] = useState(false);
   const [packs, setPacks] = useState(() => adminStorage.getPacks());
 
   useEffect(() => {
-    const handleHashChange = () => {
-      if (window.location.hash === '#admin') {
-        setIsAdminView(true);
-      } else if (isAdminView && window.location.hash !== '#admin') {
-        setIsAdminView(false);
-      }
+    const handleLocationChange = () => {
+      setIsAdminView(checkIsAdmin());
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [isAdminView]);
+    window.addEventListener('hashchange', handleLocationChange);
+    window.addEventListener('popstate', handleLocationChange);
+    return () => {
+      window.removeEventListener('hashchange', handleLocationChange);
+      window.removeEventListener('popstate', handleLocationChange);
+    };
+  }, []);
 
   useEffect(() => {
     if (!isAdminView) {
@@ -47,6 +51,10 @@ export default function App() {
   }, []);
 
   const handleBackToStore = () => {
+    const path = window.location.pathname.toLowerCase().replace(/\/+$/, '');
+    if (path === '/admin') {
+      window.history.pushState(null, '', '/');
+    }
     window.location.hash = '#hero';
     setIsAdminView(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
