@@ -62,7 +62,7 @@ export default function Footer({ onOpenConsultation }) {
               <div className="rounded-2xl border border-white/[0.08] p-6 animate-glass space-y-4">
                 <div className="border-b border-white/[0.08] pb-3 flex items-center justify-between">
                   <div>
-                    <div className="text-xs font-tech font-bold text-primary uppercase tracking-widest-plus">THE MANIFEST</div>
+                    <div className="text-xs font-tech font-bold text-primary uppercase tracking-widest-plus">PURPOSE-BUILT RIGS</div>
                     <h4 className="text-xl font-display tracking-wider text-soft-mist mt-0.5">FIVE MACHINES • FIVE PURPOSES</h4>
                   </div>
                   <span className="text-[10px] font-tech font-bold uppercase px-2.5 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/30">

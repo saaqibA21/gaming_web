@@ -40,7 +40,7 @@ export default function Hero({ onOpenConsultation }) {
             aria-label="Skip to details"
           >
             <span className="text-xs font-tech font-bold uppercase tracking-widest text-soft-mist group-hover:text-primary">
-              EXPLORE THE MANIFEST & 5 MACHINES
+              EXPLORE THE 5 MACHINES
             </span>
             <ChevronDown className="w-4 h-4 text-primary group-hover:translate-y-0.5 transition-transform" />
           </button>
