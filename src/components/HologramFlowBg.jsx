@@ -157,8 +157,8 @@ export default function HologramFlowBg() {
         ref={canvasRef}
         className="w-full h-full object-cover"
       />
-      {/* Crisp light vignette at base matching light theme */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-slate-50 via-slate-50/90 to-transparent pointer-events-none"></div>
+      {/* Crisp dark vignette matching NukePC deep black theme */}
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-mode-black via-mode-black/85 to-transparent pointer-events-none"></div>
     </div>
   );
 }

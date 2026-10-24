@@ -56,18 +56,19 @@ export default function WhyUs() {
   ];
 
   return (
-    <section id="why-us" className="py-20 sm:py-28 bg-slate-50 border-b border-slate-200 relative assemble-on-scroll">
+    <section id="why-us" className="py-20 sm:py-28 bg-mode-black border-b border-white/[0.08] relative assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="text-red-600 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2 assemble-down assemble-delay-1">
-            HARDWARE INTEGRITY & STANDARDS
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-tech font-bold tracking-widest-plus text-xs uppercase mb-3 assemble-down assemble-delay-1">
+            <Sparkles className="w-3.5 h-3.5 text-primary" />
+            <span>HARDWARE INTEGRITY & STANDARDS</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-slate-900 assemble-down assemble-delay-2">
-            THE GAMES WORLD <span className="text-red-600">DIFFERENCE</span>
+          <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-soft-mist assemble-down assemble-delay-2">
+            THE GAMES WORLD <span className="text-primary">DIFFERENCE</span>
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-slate-600 font-sans assemble-down assemble-delay-3">
+          <p className="mt-3 text-sm sm:text-base text-white/60 font-sans assemble-down assemble-delay-3">
             Every build that leaves our workbench is treated as a tournament machine. Here is how we build differently.
           </p>
         </div>
@@ -80,15 +81,15 @@ export default function WhyUs() {
             return (
               <div 
                 key={idx}
-                className={`p-6 rounded-2xl bg-white border border-slate-200 hover:border-red-300 transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md assemble-card assemble-up ${delayClass}`}
+                className={`p-6 rounded-2xl animate-glass border border-white/[0.08] hover:border-primary/40 transition-all duration-300 hover:-translate-y-1 assemble-card assemble-up ${delayClass}`}
               >
-                <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center mb-4 border border-red-200">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 border border-primary/20">
                   <Icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-display tracking-wider text-slate-900 mb-2 leading-snug">
+                <h3 className="text-xl font-display tracking-wider text-soft-mist mb-2 leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                <p className="text-xs text-white/60 font-sans leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -99,10 +100,10 @@ export default function WhyUs() {
         {/* Frequently Asked Questions */}
         <div className="max-w-4xl mx-auto space-y-3">
           <div className="text-center mb-8">
-            <h3 className="text-3xl sm:text-4xl font-display tracking-wider text-slate-900">
+            <h3 className="text-3xl sm:text-4xl font-display tracking-wider text-soft-mist">
               FREQUENTLY ASKED QUESTIONS
             </h3>
-            <p className="text-xs text-red-600 font-tech uppercase tracking-widest-plus mt-1">
+            <p className="text-xs text-primary font-tech uppercase tracking-widest-plus mt-1">
               Clear answers before you buy
             </p>
           </div>
@@ -110,19 +111,19 @@ export default function WhyUs() {
           {faqs.map((faq, idx) => (
             <div 
               key={idx}
-              className="rounded-2xl border border-slate-200 bg-white overflow-hidden transition-all duration-200 shadow-sm"
+              className="rounded-2xl border border-white/[0.08] animate-glass overflow-hidden transition-all duration-200"
             >
               <button
                 onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
-                className="w-full p-4 sm:p-5 text-left flex items-center justify-between text-sm sm:text-base font-tech font-bold text-slate-900 hover:text-red-600 transition-colors"
+                className="w-full p-4 sm:p-5 text-left flex items-center justify-between text-sm sm:text-base font-tech font-bold text-soft-mist hover:text-primary transition-colors"
               >
                 <span>{faq.q}</span>
-                <span className="text-red-600 ml-4 font-mono font-bold text-lg">
+                <span className="text-primary ml-4 font-mono font-bold text-lg">
                   {activeFaq === idx ? '−' : '+'}
                 </span>
               </button>
               {activeFaq === idx && (
-                <div className="p-5 pt-0 text-xs sm:text-sm text-slate-600 font-sans leading-relaxed border-t border-slate-100">
+                <div className="p-5 pt-0 text-xs sm:text-sm text-white/70 font-sans leading-relaxed border-t border-white/[0.06]">
                   {faq.a}
                 </div>
               )}

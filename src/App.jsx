@@ -35,7 +35,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans relative selection:bg-red-600 selection:text-white">
+    <div className="min-h-screen bg-mode-black text-soft-mist flex flex-col font-sans relative selection:bg-primary selection:text-white">
       
       {/* Hologram Flow Canvas Background from video frames */}
       <HologramFlowBg />

@@ -23,7 +23,7 @@ export default function Navbar({
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <header className="sticky top-0 z-50 bg-[rgb(0,0,0)]/85 backdrop-blur-lg border-b border-[rgba(255,255,255,0.08)]">
       {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -39,10 +39,10 @@ export default function Navbar({
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-1 font-display tracking-wider text-xl sm:text-2xl lg:text-3xl leading-none">
-                <span className="text-slate-900 font-black">GAMES</span>
-                <span className="text-red-600 group-hover:text-red-700 transition-colors">WORLD</span>
+                <span className="text-soft-mist font-bold">GAMES</span>
+                <span className="text-primary group-hover:text-primary-hover transition-colors font-bold">WORLD</span>
               </div>
-              <span className="text-[9px] sm:text-[10px] text-slate-500 font-tech tracking-widest-plus uppercase font-bold mt-0.5">
+              <span className="text-[9px] sm:text-[10px] text-[rgba(255,255,255,0.5)] font-tech tracking-widest-plus uppercase font-bold mt-0.5">
                 FIVE MACHINES • FIVE PURPOSES
               </span>
             </div>
@@ -54,15 +54,15 @@ export default function Navbar({
               <a
                 key={link.name}
                 href={link.href}
-                className="relative px-3.5 py-2 text-xs font-tech font-bold uppercase tracking-wider text-slate-700 hover:text-red-600 transition-colors duration-200 group"
+                className="relative px-3.5 py-2 text-xs font-tech font-bold uppercase tracking-wider text-[rgba(255,255,255,0.7)] hover:text-primary transition-colors duration-200 group"
               >
                 <span>{link.name}</span>
                 {link.badge && (
-                  <span className="ml-1.5 px-2 py-0.5 text-[9px] font-tech font-bold uppercase rounded-full bg-red-50 text-red-600 border border-red-200 tracking-wider">
+                  <span className="ml-1.5 px-2 py-0.5 text-[9px] font-tech font-bold uppercase rounded-full bg-primary/10 text-primary border border-primary/30 tracking-wider">
                     {link.badge}
                   </span>
                 )}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
               </a>
             ))}
           </nav>
@@ -72,7 +72,7 @@ export default function Navbar({
             {/* Free Consultation Button */}
             <button
               onClick={onOpenConsultation}
-              className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-tech font-extrabold uppercase tracking-wider shadow-md hover:shadow-red-btn transition-all transform hover:-translate-y-0.5"
+              className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-tech font-extrabold uppercase tracking-wider shadow-nuke-glow transition-all transform hover:-translate-y-0.5"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>Get Free Quote</span>
@@ -81,12 +81,12 @@ export default function Navbar({
             {/* Cart Trigger */}
             <button
               onClick={onOpenCart}
-              className="relative p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 hover:text-red-600 transition-colors group"
+              className="relative p-2.5 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] hover:border-primary/50 text-soft-mist hover:text-primary transition-colors group"
               title="View Cart"
             >
               <ShoppingBag className="w-5 h-5 group-hover:scale-105 transition-transform" />
               {cartItems.length > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-[10px] font-extrabold text-white shadow-md animate-bounce">
+                <span className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-extrabold text-white shadow-md animate-bounce">
                   {cartItems.length}
                 </span>
               )}
@@ -95,7 +95,7 @@ export default function Navbar({
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 hover:text-slate-900"
+              className="lg:hidden p-2 rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] text-soft-mist"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -106,29 +106,29 @@ export default function Navbar({
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-2 shadow-xl">
+        <div className="lg:hidden bg-[rgb(0,0,0)]/95 backdrop-blur-xl border-b border-[rgba(255,255,255,0.08)] px-4 pt-2 pb-6 space-y-2">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-between px-3.5 py-3 rounded-xl text-sm font-tech font-bold text-slate-800 hover:text-red-600 hover:bg-slate-50 border border-transparent hover:border-slate-200"
+              className="flex items-center justify-between px-3.5 py-3 rounded-xl text-sm font-tech font-bold text-soft-mist hover:text-primary hover:bg-[rgba(255,255,255,0.04)] border border-transparent hover:border-[rgba(255,255,255,0.08)]"
             >
               <span>{link.name}</span>
               {link.badge && (
-                <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-red-50 text-red-600 border border-red-200">
+                <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-primary/10 text-primary border border-primary/30">
                   {link.badge}
                 </span>
               )}
             </a>
           ))}
-          <div className="pt-4 border-t border-slate-200 flex flex-col gap-2">
+          <div className="pt-4 border-t border-[rgba(255,255,255,0.08)] flex flex-col gap-2">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenConsultation();
               }}
-              className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-red-600 text-white font-tech font-extrabold tracking-wider uppercase text-xs shadow-md"
+              className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-primary text-white font-tech font-extrabold tracking-wider uppercase text-xs shadow-nuke-glow"
             >
               <Sparkles className="w-4 h-4" />
               <span>Book Free Consultation</span>
