@@ -88,19 +88,19 @@ export default function LaptopService() {
   };
 
   return (
-    <section id="laptop-service" className="py-20 sm:py-28 bg-[#0a0e17] border-b border-slate-800/80 relative assemble-on-scroll">
+    <section id="laptop-service" className="py-20 sm:py-28 bg-slate-50 border-b border-slate-200 relative assemble-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-950/70 border border-teal-500/30 text-teal-300 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2 assemble-down assemble-delay-1">
-            <Microscope className="w-3.5 h-3.5 text-teal-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-red-600 font-tech font-bold tracking-widest-plus text-xs uppercase mb-2 assemble-down assemble-delay-1">
+            <Microscope className="w-3.5 h-3.5 text-red-600" />
             <span>CHIP-LEVEL MOTHERBOARD & THERMAL REPAIR LAB</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-white assemble-down assemble-delay-2">
-            SURGICAL TEARDOWN & <span className="text-teal-400">REBUILD BAY</span>
+          <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-slate-900 assemble-down assemble-delay-2">
+            SURGICAL TEARDOWN & <span className="text-red-600">REBUILD BAY</span>
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-slate-300 font-sans assemble-down assemble-delay-3">
+          <p className="mt-2 text-sm sm:text-base text-slate-600 font-sans assemble-down assemble-delay-3">
             Thermal throttling? Artifacting GPU? Dead power rail? Microscopic chip-level repair and liquid metal repasting for ASUS ROG, Lenovo Legion, Dell Alienware, MSI, HP Omen, and Acer Predator.
           </p>
         </div>
@@ -108,24 +108,24 @@ export default function LaptopService() {
         {/* ========================================================================= */}
         {/* SURGICAL TEARDOWN PIPELINE SCHEMATIC */}
         {/* ========================================================================= */}
-        <div className="mb-14 p-5 sm:p-7 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl relative overflow-hidden assemble-down assemble-delay-3">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-slate-800 mb-6">
+        <div className="mb-14 p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-md relative overflow-hidden assemble-down assemble-delay-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-slate-100 mb-6">
             <div className="flex items-center gap-3">
-              <span className="w-2.5 h-2.5 rounded-full bg-teal-400 animate-pulse"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span>
               <div>
-                <h3 className="text-xl font-display tracking-wider text-white flex items-center gap-2">
+                <h3 className="text-xl font-display tracking-wider text-slate-900 flex items-center gap-2">
                   <span>CLEAN-ROOM REBUILD PROTOCOL</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-teal-950 text-teal-300 border border-teal-800 font-tech font-bold uppercase">
+                  <span className="text-[10px] px-2 py-0.5 rounded bg-red-50 text-red-600 border border-red-200 font-tech font-bold uppercase">
                     STAGE {TEARDOWN_STEPS[activeTeardownStep].step} ACTIVE
                   </span>
                 </h3>
-                <p className="text-[11px] text-slate-400 font-sans">
+                <p className="text-[11px] text-slate-500 font-sans">
                   Click any stage below to inspect the microscopic teardown process.
                 </p>
               </div>
             </div>
-            <div className="text-xs font-tech text-slate-400">
-              LAB ENVIRONMENT: <span className="text-teal-400 font-bold">ESD CLASS 1 • ISO CLASS 7</span>
+            <div className="text-xs font-tech text-slate-500">
+              LAB ENVIRONMENT: <span className="text-emerald-700 font-bold">ESD CLASS 1 • ISO CLASS 7</span>
             </div>
           </div>
 
@@ -142,19 +142,19 @@ export default function LaptopService() {
                     playClickSound();
                     setActiveTeardownStep(idx);
                   }}
-                  className={`p-3.5 rounded-xl border text-left transition-all relative assemble-socket ${delayClass} ${
+                  className={`p-4 rounded-xl border text-left transition-all relative assemble-socket ${delayClass} ${
                     isActive
-                      ? 'bg-teal-950/40 border-teal-400 shadow-cyan-glow text-white'
-                      : 'bg-slate-950 border-slate-800 hover:border-slate-700 text-slate-400'
+                      ? 'bg-red-50 border-red-500 shadow-sm text-slate-900 ring-1 ring-red-500/20'
+                      : 'bg-slate-50 border-slate-200 hover:border-slate-300 text-slate-600'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-tech font-bold text-teal-400">
+                    <span className="text-xs font-tech font-bold text-red-600">
                       STEP {step.step}
                     </span>
-                    <StepIcon className={`w-4 h-4 ${isActive ? 'text-teal-400' : 'text-slate-500'}`} />
+                    <StepIcon className={`w-4 h-4 ${isActive ? 'text-red-600' : 'text-slate-400'}`} />
                   </div>
-                  <div className="text-xs font-display tracking-wider text-white font-bold leading-tight">
+                  <div className="text-xs font-display tracking-wider text-slate-900 font-bold leading-tight">
                     {step.title}
                   </div>
                 </button>
@@ -163,17 +163,17 @@ export default function LaptopService() {
           </div>
 
           {/* Active Step Deep Dive Panel */}
-          <div className="p-4 sm:p-5 rounded-xl bg-slate-950 border border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div className="p-4 sm:p-5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="space-y-1">
-              <div className="text-xs font-tech font-bold text-teal-400 uppercase tracking-wider">
+              <div className="text-xs font-tech font-bold text-red-600 uppercase tracking-wider">
                 STAGE SPECIFICATION // {TEARDOWN_STEPS[activeTeardownStep].title}
               </div>
-              <p className="text-xs sm:text-sm text-slate-200 font-sans">
+              <p className="text-xs sm:text-sm text-slate-700 font-sans">
                 {TEARDOWN_STEPS[activeTeardownStep].detail}
               </p>
             </div>
-            <div className="whitespace-nowrap px-3.5 py-2 rounded-xl bg-teal-950/60 border border-teal-800/40 text-[11px] font-tech text-teal-300">
-              TOLERANCE: <span className="font-bold text-white">{TEARDOWN_STEPS[activeTeardownStep].spec}</span>
+            <div className="whitespace-nowrap px-3.5 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-[11px] font-tech text-slate-800">
+              TOLERANCE: <span className="font-bold text-red-600">{TEARDOWN_STEPS[activeTeardownStep].spec}</span>
             </div>
           </div>
         </div>
@@ -190,26 +190,26 @@ export default function LaptopService() {
                 <div 
                   key={srv.id}
                   onClick={playClickSound}
-                  className={`p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-teal-500/50 transition-all duration-300 flex flex-col justify-between group hover:shadow-lg cursor-pointer assemble-card assemble-up ${delayClass}`}
+                  className={`p-5 rounded-2xl bg-white border border-slate-200 hover:border-red-300 transition-all duration-300 flex flex-col justify-between group hover:shadow-md cursor-pointer assemble-card assemble-up ${delayClass}`}
                 >
                   <div>
-                    <div className="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform border border-teal-500/30">
+                    <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform border border-red-200">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="text-lg font-display tracking-wider text-white leading-snug group-hover:text-teal-300 transition-colors">
+                    <h3 className="text-lg font-display tracking-wider text-slate-900 leading-snug group-hover:text-red-600 transition-colors">
                       {srv.title}
                     </h3>
-                    <p className="text-xs text-slate-300 font-sans mt-2 leading-relaxed">
+                    <p className="text-xs text-slate-600 font-sans mt-2 leading-relaxed">
                       {srv.desc}
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs font-tech">
-                    <span className="flex items-center gap-1 text-slate-400">
-                      <Clock className="w-3.5 h-3.5 text-teal-400" />
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-tech">
+                    <span className="flex items-center gap-1 text-slate-500 font-semibold">
+                      <Clock className="w-3.5 h-3.5 text-slate-400" />
                       {srv.time}
                     </span>
-                    <span className="font-bold text-teal-400">
+                    <span className="font-bold text-red-600">
                       {srv.price}
                     </span>
                   </div>
@@ -219,69 +219,69 @@ export default function LaptopService() {
           </div>
 
           {/* Service Booking Card (Right 5 Cols) */}
-          <div className="lg:col-span-5 bg-slate-900 rounded-2xl p-6 sm:p-8 border border-slate-800 relative shadow-xl assemble-right assemble-delay-4">
+          <div className="lg:col-span-5 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 relative shadow-xl assemble-right assemble-delay-4">
             <div className="space-y-1 mb-6">
-              <span className="text-[10px] font-tech font-bold uppercase text-teal-400 tracking-widest-plus">Direct Diagnostics</span>
-              <h3 className="text-3xl font-display tracking-wider text-white">
+              <span className="text-[10px] font-tech font-bold uppercase text-red-600 tracking-widest-plus">Direct Diagnostics</span>
+              <h3 className="text-3xl font-display tracking-wider text-slate-900">
                 BOOK A DIAGNOSTIC
               </h3>
-              <p className="text-xs text-slate-400 font-sans">
+              <p className="text-xs text-slate-500 font-sans">
                 Free initial diagnosis. Walk-in at Athipatten Street, Chennai or talk to our technician.
               </p>
             </div>
 
             {submitted ? (
-              <div className="p-8 text-center space-y-3 bg-teal-950/40 rounded-xl border border-teal-800/40">
-                <CheckCircle2 className="w-12 h-12 text-teal-400 mx-auto" />
-                <h4 className="text-lg font-tech font-bold text-white uppercase">SERVICE TICKET LOGGED!</h4>
-                <p className="text-xs text-slate-300">
+              <div className="p-8 text-center space-y-3 bg-red-50 rounded-xl border border-red-200">
+                <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
+                <h4 className="text-lg font-tech font-bold text-slate-900 uppercase">SERVICE TICKET LOGGED!</h4>
+                <p className="text-xs text-slate-600">
                   Our lab diagnostic technician will inspect your ticket and prepare testing apparatus prior to your store visit.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4 text-xs font-sans">
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Full Name</label>
+                  <label className="block text-slate-700 font-semibold mb-1">Full Name</label>
                   <input 
                     type="text" 
                     required
                     placeholder="e.g. Anand Kumar"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-400 text-xs font-sans"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:outline-none focus:border-red-600 text-xs font-sans"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Contact Phone Number</label>
+                  <label className="block text-slate-700 font-semibold mb-1">Contact Phone Number</label>
                   <input 
                     type="tel" 
                     required
                     placeholder="+91 9876543210"
                     value={formData.phone}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-400 text-xs font-sans"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:outline-none focus:border-red-600 text-xs font-sans"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Laptop Model & Brand</label>
+                  <label className="block text-slate-700 font-semibold mb-1">Laptop Model & Brand</label>
                   <input 
                     type="text" 
                     required
                     placeholder="e.g. ASUS ROG Strix G15 / Lenovo Legion 5"
                     value={formData.laptopModel}
                     onChange={(e) => setFormData({...formData, laptopModel: e.target.value})}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-400 text-xs font-sans"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:outline-none focus:border-red-600 text-xs font-sans"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Primary Problem</label>
+                  <label className="block text-slate-700 font-semibold mb-1">Primary Problem</label>
                   <select 
                     value={formData.issue}
                     onChange={(e) => setFormData({...formData, issue: e.target.value})}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-400 text-xs font-sans"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:outline-none focus:border-red-600 text-xs font-sans"
                   >
                     <option>Overheating & Thermal Throttling (Thermal Repaste)</option>
                     <option>Dead Laptop / Not Powering On (Motherboard Repair)</option>
@@ -294,33 +294,33 @@ export default function LaptopService() {
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Additional Symptoms (Optional)</label>
+                  <label className="block text-slate-700 font-semibold mb-1">Additional Symptoms (Optional)</label>
                   <textarea 
                     rows={2}
                     placeholder="Describe when the issue occurs..."
                     value={formData.notes}
                     onChange={(e) => setFormData({...formData, notes: e.target.value})}
-                    className="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-400 text-xs resize-none font-sans"
+                    className="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:outline-none focus:border-red-600 text-xs resize-none font-sans"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-tech font-extrabold uppercase tracking-wider text-xs shadow-cyan-glow transition-all flex items-center justify-center gap-2"
+                  className="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-tech font-extrabold uppercase tracking-wider text-xs shadow-md hover:shadow-red-btn transition-all flex items-center justify-center gap-2"
                 >
-                  <Send className="w-3.5 h-3.5 text-slate-950" />
+                  <Send className="w-3.5 h-3.5 text-white" />
                   <span>Submit Diagnostic Request</span>
                 </button>
               </form>
             )}
 
-            <div className="mt-6 pt-4 border-t border-slate-800 space-y-1.5 text-[11px] text-slate-300 font-sans">
+            <div className="mt-6 pt-4 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-600 font-sans">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-teal-400" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Genuine Thermal Grizzly Kryonaut & OEM thermal pads</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-teal-400" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Up to 90 days repair warranty on motherboard fixes</span>
               </div>
             </div>

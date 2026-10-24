@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import PcBuilder from './components/PcBuilder';
 import Prebuilts from './components/Prebuilts';
 import LaptopService from './components/LaptopService';
 import WhyUs from './components/WhyUs';
@@ -36,11 +35,10 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0e17] text-slate-100 flex flex-col font-sans relative selection:bg-teal-500 selection:text-black">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans relative selection:bg-red-600 selection:text-white">
       
       {/* Hologram Flow Canvas Background from video frames */}
       <HologramFlowBg />
-
 
       {/* Navigation Bar */}
       <Navbar 
@@ -49,15 +47,12 @@ export default function App() {
         onOpenConsultation={() => setConsultationOpen(true)}
       />
 
-      {/* Main Content Sections with depth layering */}
+      {/* Main Content Sections: Strictly focused on the 5 Machines & Services */}
       <main className="flex-1 relative z-10">
-        {/* Hero Section: Live Assembly Bay 01 & Workbench Overview */}
+        {/* Hero Section */}
         <Hero onOpenConsultation={() => setConsultationOpen(true)} />
 
-        {/* Custom PC Builder: Interactive Hardware Assembly Bench */}
-        <PcBuilder onAddToCart={handleAddToCart} />
-
-        {/* Prebuilt Systems: Factory-Assembled Rigs */}
+        {/* Five Machines: The Core Manifest */}
         <Prebuilts onAddToCart={handleAddToCart} />
 
         {/* Laptop Service: Microscopic Chip-Level Overhaul Lab */}
