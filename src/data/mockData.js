@@ -104,7 +104,7 @@ export const DECLARATION_INFO = {
   title: "A DECLARATION, NOT A BUSINESS PLAN",
   tagline: "Somewhere between a soldering iron and a dream, an empire gets built one machine at a time.",
   mantra: "FIVE MACHINES. FIVE PURPOSES. ONE VISION.",
-  author: "WRITTEN & BUILT BY RAAKESH · SEPTEMBER 2026",
+  author: "GAMES WORLD CHENNAI · SEPTEMBER 2026",
   quotePrimary: "Everyone sells a computer. Nobody sells a purpose.",
   manifestoBody: "A box of silicon means nothing until it means something to the person carrying it home. Games World does not move components. It hands people the tool their ambition has been waiting for -- whether that ambition is a spreadsheet, a scoreboard, a timeline, or a model that thinks.",
   corePillars: [
@@ -120,7 +120,7 @@ export const DECLARATION_INFO = {
     "Trust compounds faster than any advertisement."
   ],
   closingWord: "This is not a shop that assembles parts. This is a shop that assembles ambition -- one build, one customer, one purpose at a time.",
-  authorSignature: "— RAAKESH"
+  authorSignature: "— GAMES WORLD"
 };
 
 export const PREBUILT_PCS = [

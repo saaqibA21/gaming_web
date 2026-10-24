@@ -47,7 +47,7 @@ export default function WhyUs() {
     },
     {
       q: "What warranty and after-sales support do you provide?",
-      a: "All builds include individual brand component warranties (ranging from 3 to 10 years on RAM & PSUs), plus Games World's 3-year build warranty and dedicated hardware support directly with Raakesh."
+      a: "All builds include individual brand component warranties (ranging from 3 to 10 years on RAM & PSUs), plus Games World's 3-year build warranty and dedicated hardware support directly from our Chennai lab."
     },
     {
       q: "Can I visit your physical store in Chennai?",

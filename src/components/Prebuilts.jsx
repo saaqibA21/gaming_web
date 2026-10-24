@@ -299,7 +299,7 @@ export default function Prebuilts({ onAddToCart }) {
         </div>
 
         {/* ========================================================================= */}
-        {/* CLOSING MANIFESTO CALLOUT: Raakesh's Closing Words from PDF */}
+        {/* CLOSING MANIFESTO CALLOUT: Games World Manifesto */}
         {/* ========================================================================= */}
         <div className="mt-16 p-8 sm:p-10 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-teal-950/40 border border-slate-800 flex flex-col lg:flex-row items-center justify-between gap-8 assemble-up assemble-delay-3">
           <div className="space-y-3 text-center lg:text-left max-w-2xl">
@@ -320,7 +320,7 @@ export default function Prebuilts({ onAddToCart }) {
               onClick={() => playClickSound()}
               className="px-7 py-3.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-tech font-extrabold text-xs tracking-wider uppercase transition-all shadow-cyan-glow flex items-center gap-2"
             >
-              <span>Speak with Raakesh</span>
+              <span>Speak with a Build Specialist</span>
               <ArrowRight className="w-4 h-4" />
             </a>
             <a

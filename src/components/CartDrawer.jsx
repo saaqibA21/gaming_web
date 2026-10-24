@@ -20,7 +20,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems = [], onRemoveIt
   const handleWhatsAppOrder = () => {
     const itemsList = cartItems.map(item => `• ${item.name} - ₹${item.price.toLocaleString('en-IN')}`).join('\n');
     const message = encodeURIComponent(
-      `*GAMES WORLD - ORDER INQUIRY*\n\nItems in Cart:\n${itemsList}\n\n*Total Estimate: ₹${totalAmount.toLocaleString('en-IN')}*\n\nHello Raakesh, I would like to confirm availability and dispatch for this build!`
+      `*GAMES WORLD - ORDER INQUIRY*\n\nItems in Cart:\n${itemsList}\n\n*Total Estimate: ₹${totalAmount.toLocaleString('en-IN')}*\n\nHello Games World, I would like to confirm availability and dispatch for this build!`
     );
     window.open(`https://wa.me/919840000000?text=${message}`, '_blank');
   };

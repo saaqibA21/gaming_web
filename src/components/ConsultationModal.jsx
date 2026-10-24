@@ -43,7 +43,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
           DISCUSS YOUR MACHINE PURPOSE
         </h3>
         <p className="text-xs text-slate-300 font-sans mt-1 mb-6">
-          "Everyone sells a computer. Nobody sells a purpose." Connect directly with Raakesh and get verified hardware guidance with zero assembly charge.
+          "Everyone sells a computer. Nobody sells a purpose." Connect directly with our build team and get verified hardware guidance with zero assembly charge.
         </p>
 
         {submitted ? (
@@ -51,7 +51,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
             <CheckCircle2 className="w-12 h-12 text-teal-400 mx-auto" />
             <h4 className="text-lg font-tech font-bold text-white uppercase">REQUEST RECEIVED</h4>
             <p className="text-xs text-slate-300">
-              Raakesh and our senior build technicians have received your purpose and will call you with your exact machine breakdown.
+              Our senior build technicians have received your purpose and will call you with your exact machine breakdown.
             </p>
           </div>
         ) : (

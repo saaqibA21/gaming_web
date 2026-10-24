@@ -34,7 +34,7 @@ export default function Footer({ onOpenConsultation }) {
                 VISIT GAMES WORLD IN CHENNAI
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed max-w-xl font-sans">
-                Consult directly with Raakesh and our expert hardware technicians on custom purpose-built rigs, high-FPS workstations, and chip-level motherboard service.
+                Consult directly with our expert hardware technicians on custom purpose-built rigs, high-FPS workstations, and chip-level motherboard service.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs">
@@ -222,7 +222,7 @@ export default function Footer({ onOpenConsultation }) {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-sans">
           <div>
-            © {new Date().getFullYear()} <span className="text-white font-bold">GAMES WORLD</span>. Built by Raakesh. All Rights Reserved.
+            © {new Date().getFullYear()} <span className="text-white font-bold">GAMES WORLD</span>. All Rights Reserved.
           </div>
 
           <button
