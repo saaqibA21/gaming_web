@@ -56,37 +56,37 @@ export default function WhyUs() {
   ];
 
   return (
-    <section id="why-us" className="py-20 sm:py-28 bg-mode-black border-b border-white/[0.08] relative assemble-on-scroll">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="why-us" className="py-14 sm:py-20 lg:py-28 bg-mode-black border-b border-white/[0.08] relative assemble-on-scroll">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-tech font-bold tracking-widest-plus text-xs uppercase mb-3 assemble-down assemble-delay-1">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-tech font-bold tracking-widest-plus text-[10px] sm:text-xs uppercase mb-3 assemble-down assemble-delay-1">
             <Sparkles className="w-3.5 h-3.5 text-primary" />
             <span>HARDWARE INTEGRITY & STANDARDS</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-soft-mist assemble-down assemble-delay-2">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display tracking-tight text-soft-mist assemble-down assemble-delay-2">
             THE GAMES WORLD <span className="text-primary">DIFFERENCE</span>
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-white/60 font-sans assemble-down assemble-delay-3">
+          <p className="mt-2.5 text-xs sm:text-base text-white/60 font-sans assemble-down assemble-delay-3 max-w-2xl mx-auto">
             Every build that leaves our workbench is treated as a tournament machine. Here is how we build differently.
           </p>
         </div>
 
         {/* 4 Quality Standards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5 mb-12 sm:mb-16">
           {pillarsDifference.map((item, idx) => {
             const Icon = item.icon;
             const delayClass = `assemble-delay-${idx + 1}`;
             return (
               <div 
                 key={idx}
-                className={`p-6 rounded-2xl animate-glass border border-white/[0.08] hover:border-primary/40 transition-all duration-300 hover:-translate-y-1 assemble-card assemble-up ${delayClass}`}
+                className={`p-4 sm:p-6 rounded-2xl animate-glass border border-white/[0.08] hover:border-primary/40 transition-all duration-300 hover:-translate-y-1 assemble-card assemble-up ${delayClass}`}
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 border border-primary/20">
-                  <Icon className="w-6 h-6" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-3 sm:mb-4 border border-primary/20">
+                  <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <h3 className="text-xl font-display tracking-wider text-soft-mist mb-2 leading-snug">
+                <h3 className="text-lg sm:text-xl font-display tracking-wider text-soft-mist mb-1.5 sm:mb-2 leading-snug">
                   {item.title}
                 </h3>
                 <p className="text-xs text-white/60 font-sans leading-relaxed">
@@ -98,12 +98,12 @@ export default function WhyUs() {
         </div>
 
         {/* Frequently Asked Questions */}
-        <div className="max-w-4xl mx-auto space-y-3">
-          <div className="text-center mb-8">
-            <h3 className="text-3xl sm:text-4xl font-display tracking-wider text-soft-mist">
+        <div className="max-w-4xl mx-auto space-y-2.5 sm:space-y-3">
+          <div className="text-center mb-6 sm:mb-8">
+            <h3 className="text-2xl sm:text-4xl font-display tracking-wider text-soft-mist">
               FREQUENTLY ASKED QUESTIONS
             </h3>
-            <p className="text-xs text-primary font-tech uppercase tracking-widest-plus mt-1">
+            <p className="text-[10px] sm:text-xs text-primary font-tech uppercase tracking-widest-plus mt-1">
               Clear answers before you buy
             </p>
           </div>
@@ -115,15 +115,15 @@ export default function WhyUs() {
             >
               <button
                 onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
-                className="w-full p-4 sm:p-5 text-left flex items-center justify-between text-sm sm:text-base font-tech font-bold text-soft-mist hover:text-primary transition-colors"
+                className="w-full p-3.5 sm:p-5 text-left flex items-center justify-between text-xs sm:text-base font-tech font-bold text-soft-mist hover:text-primary transition-colors min-h-[46px]"
               >
-                <span>{faq.q}</span>
-                <span className="text-primary ml-4 font-mono font-bold text-lg">
+                <span className="pr-2">{faq.q}</span>
+                <span className="text-primary ml-2 font-mono font-bold text-base sm:text-lg shrink-0">
                   {activeFaq === idx ? '−' : '+'}
                 </span>
               </button>
               {activeFaq === idx && (
-                <div className="p-5 pt-0 text-xs sm:text-sm text-white/70 font-sans leading-relaxed border-t border-white/[0.06]">
+                <div className="p-4 sm:p-5 pt-0 text-xs sm:text-sm text-white/70 font-sans leading-relaxed border-t border-white/[0.06]">
                   {faq.a}
                 </div>
               )}

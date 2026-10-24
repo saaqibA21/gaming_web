@@ -52,27 +52,27 @@ export default function CartDrawer({ isOpen, onClose, cartItems = [], onRemoveIt
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-black/75 backdrop-blur-sm animate-fadeIn">
-      <div className="absolute inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-md bg-[#0a0a0a] border-l border-white/[0.08] p-6 shadow-2xl flex flex-col justify-between font-sans">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-black/80 backdrop-blur-sm animate-fadeIn">
+      <div className="absolute inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
+        <div className="w-screen max-w-full sm:max-w-md bg-[#0a0a0a] border-l border-white/[0.08] p-4 sm:p-6 shadow-2xl flex flex-col justify-between font-sans h-full overflow-y-auto">
           
           {/* Header */}
           <div>
             <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
               <div className="flex items-center gap-2">
                 <ShoppingBag className="w-5 h-5 text-primary" />
-                <h3 className="text-2xl font-display tracking-wider text-soft-mist">YOUR CART ({cartItems.length})</h3>
+                <h3 className="text-xl sm:text-2xl font-display tracking-wider text-soft-mist">YOUR CART ({cartItems.length})</h3>
               </div>
               <button 
                 onClick={onClose}
-                className="p-1.5 rounded-lg text-white/50 hover:text-soft-mist hover:bg-white/[0.06] transition-colors"
+                className="p-2 rounded-lg text-white/50 hover:text-soft-mist hover:bg-white/[0.06] transition-colors min-h-[40px] min-w-[40px] flex items-center justify-center"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Items List */}
-            <div className="mt-6 space-y-4 max-h-[60vh] overflow-y-auto pr-1">
+            <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4 max-h-[50vh] sm:max-h-[60vh] overflow-y-auto pr-1">
               {cartItems.length === 0 ? (
                 <div className="text-center py-16 text-white/50 space-y-3">
                   <ShoppingBag className="w-12 h-12 mx-auto text-white/20" />

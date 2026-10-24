@@ -300,28 +300,28 @@ export default function AdminPage({ onBackToStore }) {
       
       {/* Top Admin Navigation Header */}
       <header className="sticky top-0 z-40 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/[0.08]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <button
               onClick={onBackToStore}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-xl animate-glass border border-white/10 hover:border-primary/50 text-xs font-tech font-bold uppercase tracking-wider text-soft-mist hover:text-primary transition-colors"
+              className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-xl animate-glass border border-white/10 hover:border-primary/50 text-[11px] sm:text-xs font-tech font-bold uppercase tracking-wider text-soft-mist hover:text-primary transition-colors min-h-[38px]"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span>Back to Storefront</span>
+              <span>Back</span>
             </button>
 
             <div className="h-5 w-px bg-white/10 hidden sm:block"></div>
 
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-              <div className="font-display tracking-wider text-xl leading-none">
-                <span>GAMES WORLD</span> <span className="text-primary">ADMIN CONSOLE</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse shrink-0"></span>
+              <div className="font-display tracking-wider text-lg sm:text-xl leading-none">
+                <span className="hidden sm:inline">GAMES WORLD </span><span className="text-primary">ADMIN CONSOLE</span>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-tech font-bold uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
               <span>LIVE STORE BENCH SYNC</span>
@@ -329,9 +329,9 @@ export default function AdminPage({ onBackToStore }) {
 
             <button
               onClick={onBackToStore}
-              className="px-3.5 py-1.5 rounded-xl bg-primary hover:bg-hover text-white text-xs font-tech font-bold uppercase tracking-wider shadow-nuke-glow flex items-center gap-1.5"
+              className="px-3 sm:px-3.5 py-1.5 rounded-xl bg-primary hover:bg-hover text-white text-[11px] sm:text-xs font-tech font-bold uppercase tracking-wider shadow-nuke-glow flex items-center gap-1.5 min-h-[38px]"
             >
-              <span>View Live Store</span>
+              <span>Live Store</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -340,7 +340,7 @@ export default function AdminPage({ onBackToStore }) {
       </header>
 
       {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-6 sm:pt-8">
         
         {/* Metric Cards Row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
@@ -400,18 +400,18 @@ export default function AdminPage({ onBackToStore }) {
         </div>
 
         {/* Admin Section Tabs */}
-        <div className="flex flex-wrap items-center gap-2 border-b border-white/[0.08] pb-4 mb-6">
+        <div className="flex items-center gap-2 border-b border-white/[0.08] pb-4 mb-6 overflow-x-auto no-scrollbar">
           
           <button
             onClick={() => setActiveTab('quotes')}
-            className={`px-4 py-2.5 rounded-xl font-tech text-xs uppercase tracking-wider font-bold transition-all flex items-center gap-2 border ${
+            className={`px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl font-tech text-[11px] sm:text-xs uppercase tracking-wider font-bold transition-all flex items-center gap-2 border shrink-0 min-h-[42px] ${
               activeTab === 'quotes'
                 ? 'bg-primary text-white border-primary shadow-nuke-glow font-extrabold'
                 : 'animate-glass text-white/60 hover:text-white border-white/[0.08]'
             }`}
           >
-            <FileText className="w-4 h-4" />
-            <span>Quotes & Customer Inquiries</span>
+            <FileText className="w-4 h-4 shrink-0" />
+            <span>Quotes & Inquiries</span>
             <span className="px-2 py-0.5 rounded-full text-[10px] bg-black text-primary font-bold">
               {quotes.length}
             </span>
@@ -419,14 +419,14 @@ export default function AdminPage({ onBackToStore }) {
 
           <button
             onClick={() => setActiveTab('packs')}
-            className={`px-4 py-2.5 rounded-xl font-tech text-xs uppercase tracking-wider font-bold transition-all flex items-center gap-2 border ${
+            className={`px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl font-tech text-[11px] sm:text-xs uppercase tracking-wider font-bold transition-all flex items-center gap-2 border shrink-0 min-h-[42px] ${
               activeTab === 'packs'
                 ? 'bg-primary text-white border-primary shadow-nuke-glow font-extrabold'
                 : 'animate-glass text-white/60 hover:text-white border-white/[0.08]'
             }`}
           >
-            <Layers className="w-4 h-4" />
-            <span>Machine Packs & Pricing</span>
+            <Layers className="w-4 h-4 shrink-0" />
+            <span>Packs & Pricing</span>
             <span className="px-2 py-0.5 rounded-full text-[10px] bg-black text-primary font-bold">
               {packs.length}
             </span>
@@ -434,14 +434,14 @@ export default function AdminPage({ onBackToStore }) {
 
           <button
             onClick={() => setActiveTab('parts')}
-            className={`px-4 py-2.5 rounded-xl font-tech text-xs uppercase tracking-wider font-bold transition-all flex items-center gap-2 border ${
+            className={`px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl font-tech text-[11px] sm:text-xs uppercase tracking-wider font-bold transition-all flex items-center gap-2 border shrink-0 min-h-[42px] ${
               activeTab === 'parts'
                 ? 'bg-primary text-white border-primary shadow-nuke-glow font-extrabold'
                 : 'animate-glass text-white/60 hover:text-white border-white/[0.08]'
             }`}
           >
-            <Cpu className="w-4 h-4" />
-            <span>Hardware Parts & Upgrades</span>
+            <Cpu className="w-4 h-4 shrink-0" />
+            <span>Hardware Parts</span>
             <span className="px-2 py-0.5 rounded-full text-[10px] bg-black text-primary font-bold">
               {parts.length}
             </span>
@@ -449,14 +449,14 @@ export default function AdminPage({ onBackToStore }) {
 
           <button
             onClick={() => setActiveTab('offers')}
-            className={`px-4 py-2.5 rounded-xl font-tech text-xs uppercase tracking-wider font-bold transition-all flex items-center gap-2 border ${
+            className={`px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl font-tech text-[11px] sm:text-xs uppercase tracking-wider font-bold transition-all flex items-center gap-2 border shrink-0 min-h-[42px] ${
               activeTab === 'offers'
                 ? 'bg-primary text-white border-primary shadow-nuke-glow font-extrabold'
                 : 'animate-glass text-white/60 hover:text-white border-white/[0.08]'
             }`}
           >
-            <Tag className="w-4 h-4" />
-            <span>Special Offers & Deals</span>
+            <Tag className="w-4 h-4 shrink-0" />
+            <span>Offers & Deals</span>
             <span className="px-2 py-0.5 rounded-full text-[10px] bg-black text-primary font-bold">
               {offers.length}
             </span>

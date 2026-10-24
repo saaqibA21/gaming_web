@@ -41,37 +41,37 @@ export default function ConsultationModal({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-[#0e0e0e] border border-white/[0.1] rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative text-soft-mist">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
+      <div className="bg-[#0e0e0e] border border-white/[0.1] rounded-2xl max-w-lg w-full p-5 sm:p-8 shadow-2xl relative text-soft-mist max-h-[92vh] overflow-y-auto">
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 text-white/40 hover:text-soft-mist transition-colors p-1"
+          className="absolute top-4 right-4 text-white/40 hover:text-soft-mist transition-colors p-1.5 rounded-lg min-h-[36px] min-w-[36px] flex items-center justify-center"
         >
           <X className="w-5 h-5" />
         </button>
 
         <div className="flex items-center gap-2 text-primary mb-1">
-          <Sparkles className="w-4 h-4 text-primary" />
-          <span className="text-xs font-tech font-bold tracking-widest-plus uppercase">Direct Hardware Consultation</span>
+          <Sparkles className="w-4 h-4 text-primary shrink-0" />
+          <span className="text-[10px] sm:text-xs font-tech font-bold tracking-widest-plus uppercase">Direct Hardware Consultation</span>
         </div>
 
-        <h3 className="text-3xl font-display tracking-wider text-soft-mist">
+        <h3 className="text-2xl sm:text-3xl font-display tracking-wider text-soft-mist">
           DISCUSS YOUR MACHINE PURPOSE
         </h3>
-        <p className="text-xs text-white/60 font-sans mt-1 mb-6">
+        <p className="text-xs text-white/60 font-sans mt-1 mb-5 sm:mb-6">
           "Everyone sells a computer. Nobody sells a purpose." Connect directly with our build team and get verified hardware guidance with zero assembly charge.
         </p>
 
         {submitted ? (
-          <div className="p-8 text-center space-y-3 bg-primary/10 rounded-xl border border-primary/30">
-            <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
-            <h4 className="text-lg font-tech font-bold text-soft-mist uppercase">REQUEST RECEIVED</h4>
+          <div className="p-6 sm:p-8 text-center space-y-3 bg-primary/10 rounded-xl border border-primary/30">
+            <CheckCircle2 className="w-10 h-10 sm:w-12 sm:h-12 text-emerald-400 mx-auto" />
+            <h4 className="text-base sm:text-lg font-tech font-bold text-soft-mist uppercase">REQUEST RECEIVED</h4>
             <p className="text-xs text-white/70">
               Our senior build technicians have received your purpose and will call you with your exact machine breakdown.
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4 text-xs font-sans">
+          <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-4 text-xs font-sans">
             <div>
               <label className="block text-white/70 font-semibold mb-1">Your Name</label>
               <input 
@@ -80,7 +80,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
                 placeholder="e.g. Pradeep"
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-soft-mist placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 text-xs"
+                className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-soft-mist placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 text-base sm:text-xs min-h-[44px]"
               />
             </div>
 
@@ -92,17 +92,17 @@ export default function ConsultationModal({ isOpen, onClose }) {
                 placeholder="+91 9876543210"
                 value={formData.phone}
                 onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-soft-mist placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 text-xs"
+                className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-soft-mist placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 text-base sm:text-xs min-h-[44px]"
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label className="block text-white/70 font-semibold mb-1">Target Budget</label>
                 <select 
                   value={formData.budget}
                   onChange={(e) => setFormData({...formData, budget: e.target.value})}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#141414] border border-white/10 text-soft-mist focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 text-xs"
+                  className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl bg-[#141414] border border-white/10 text-soft-mist focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 text-base sm:text-xs min-h-[44px]"
                 >
                   <option className="bg-[#141414] text-soft-mist">₹49,999 (01. Workhorse)</option>
                   <option className="bg-[#141414] text-soft-mist">₹72,999 (02. Striker)</option>
@@ -117,7 +117,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
                 <select 
                   value={formData.primaryUse}
                   onChange={(e) => setFormData({...formData, primaryUse: e.target.value})}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#141414] border border-white/10 text-soft-mist focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 text-xs"
+                  className="w-full px-3.5 py-3 sm:py-2.5 rounded-xl bg-[#141414] border border-white/10 text-soft-mist focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 text-base sm:text-xs min-h-[44px]"
                 >
                   <option className="bg-[#141414] text-soft-mist">01. Workhorse // Office & Corporate</option>
                   <option className="bg-[#141414] text-soft-mist">02. Striker // Entry Gaming & Esports</option>
@@ -131,7 +131,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
             <div>
               <label className="block text-white/70 font-semibold mb-1">Consultation Mode</label>
               <div className="grid grid-cols-2 gap-3">
-                <label className="flex items-center gap-2 p-2.5 rounded-xl border border-white/10 bg-white/[0.03] cursor-pointer hover:border-white/20 transition-colors">
+                <label className="flex items-center gap-2 p-3 sm:p-2.5 rounded-xl border border-white/10 bg-white/[0.03] cursor-pointer hover:border-white/20 transition-colors min-h-[44px]">
                   <input 
                     type="radio" 
                     name="mode" 
@@ -139,10 +139,10 @@ export default function ConsultationModal({ isOpen, onClose }) {
                     onChange={() => setFormData({...formData, consultationType: 'Direct Call'})}
                     className="accent-[#FF5123]"
                   />
-                  <span className="text-soft-mist font-medium">Phone Call</span>
+                  <span className="text-soft-mist font-medium text-xs sm:text-xs">Phone Call</span>
                 </label>
 
-                <label className="flex items-center gap-2 p-2.5 rounded-xl border border-white/10 bg-white/[0.03] cursor-pointer hover:border-white/20 transition-colors">
+                <label className="flex items-center gap-2 p-3 sm:p-2.5 rounded-xl border border-white/10 bg-white/[0.03] cursor-pointer hover:border-white/20 transition-colors min-h-[44px]">
                   <input 
                     type="radio" 
                     name="mode" 
@@ -150,14 +150,14 @@ export default function ConsultationModal({ isOpen, onClose }) {
                     onChange={() => setFormData({...formData, consultationType: 'Video Call Consultation'})}
                     className="accent-[#FF5123]"
                   />
-                  <span className="text-soft-mist font-medium">WhatsApp Video</span>
+                  <span className="text-soft-mist font-medium text-xs sm:text-xs">WhatsApp Video</span>
                 </label>
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full py-3.5 rounded-xl bg-primary hover:bg-hover text-white font-tech font-extrabold uppercase tracking-wider text-xs shadow-nuke-glow transition-all flex items-center justify-center gap-2"
+              className="w-full py-3.5 sm:py-4 rounded-xl bg-primary hover:bg-hover text-white font-tech font-extrabold uppercase tracking-wider text-xs sm:text-sm shadow-nuke-glow transition-all flex items-center justify-center gap-2 min-h-[46px]"
             >
               <Send className="w-3.5 h-3.5 text-white" />
               <span>Submit Consultation Request</span>
