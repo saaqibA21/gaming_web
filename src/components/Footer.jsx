@@ -6,7 +6,6 @@ import {
   Shield, 
   ArrowUp, 
   Cpu, 
-  Laptop, 
   CheckCircle2, 
   Sparkles,
   Quote
@@ -34,7 +33,7 @@ export default function Footer({ onOpenConsultation }) {
                 VISIT GAMES WORLD IN CHENNAI
               </h3>
               <p className="text-xs sm:text-sm text-white/60 leading-relaxed max-w-xl font-sans">
-                Consult directly with our expert hardware technicians on custom purpose-built rigs, high-FPS workstations, and chip-level motherboard service.
+                Consult directly with our expert hardware technicians on custom purpose-built rigs, high-FPS workstations, and tournament machines.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-1 sm:pt-2 text-xs">
@@ -119,7 +118,7 @@ export default function Footer({ onOpenConsultation }) {
               "{COMPANY_INFO.slogan}"
             </p>
             <p className="text-xs text-white/40 leading-relaxed font-sans">
-              Custom purpose-built gaming rigs and chip-level laptop repairs. Athipatten Street, Chennai.
+              Custom purpose-built gaming rigs and high-performance workstations. Athipatten Street, Chennai.
             </p>
           </div>
 

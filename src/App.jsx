@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Prebuilts from './components/Prebuilts';
-import LaptopService from './components/LaptopService';
 import WhyUs from './components/WhyUs';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
@@ -96,9 +95,6 @@ export default function App() {
           packs={packs} 
           onAddToCart={handleAddToCart} 
         />
-
-        {/* Laptop Service: Microscopic Chip-Level Overhaul Lab */}
-        <LaptopService />
 
         {/* Why Games World: 24-Hr Benchmark & Assembly Standards */}
         <WhyUs />

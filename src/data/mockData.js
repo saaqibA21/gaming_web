@@ -16,11 +16,11 @@ export const PILLARS = [
     desc: "Built with sealed brand-new components. Every build includes cable grooming, BIOS flashing, memory EXPO/XMP tuning, and 24-hour FurMark stress testing.",
   },
   {
-    id: "laptop-service",
-    title: "CHIP-LEVEL LAPTOP SERVICE",
-    sub: "SAME-DAY REPAIRS • 90-DAY WARRANTY",
-    icon: "Laptop",
-    desc: "Thermal Grizzly Kryonaut repasting, dead motherboard diagnosis, power rail troubleshooting, dedicated GPU reballing, and screen replacements.",
+    id: "rigorous-testing",
+    title: "24-HOUR BENCHMARK BURN-IN",
+    sub: "FURMARK • CINEBENCH • MEMTEST86",
+    icon: "Flame",
+    desc: "Every PC undergoes continuous 24-hour thermal and stability benchmarking before packing to guarantee absolute zero crashes out of the box.",
   },
   {
     id: "trusted-partner",
@@ -363,8 +363,8 @@ export const TESTIMONIALS = [
     name: "Karthik Subramanian",
     role: "CS2 & Valorant Player",
     rating: 5,
-    text: "Had terrible thermal throttling on my ASUS ROG Strix (CPU hitting 96°C in CS2). Brought it to Games World Chennai; their technicians repasted it with Thermal Grizzly Kryonaut and cleaned the copper fins. Temps dropped to 72°C flat. Collected the laptop in 2 hours.",
-    build: "Laptop Thermal Overhaul",
+    text: "Bought the 02. Striker machine from Games World. Getting locked 300+ FPS in competitive Valorant with zero frame drops. Temps stay under 65°C during continuous tournament matches. The wooden crate packaging for transit was top notch.",
+    build: "02. Striker Esports Rig",
     city: "Chennai"
   },
   {

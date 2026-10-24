@@ -3,7 +3,7 @@ import { COMPANY_INFO, PILLARS, DECLARATION_INFO } from '../data/mockData';
 import { 
   Gamepad2, 
   Cpu, 
-  Laptop, 
+  Flame, 
   ShieldCheck, 
   ArrowRight, 
   ChevronDown, 
@@ -16,7 +16,7 @@ import { playClickSound } from '../utils/audioEffects';
 const iconMap = {
   Gamepad2: Gamepad2,
   Cpu: Cpu,
-  Laptop: Laptop,
+  Flame: Flame,
   ShieldCheck: ShieldCheck
 };
 
@@ -103,14 +103,16 @@ export default function Hero({ onOpenConsultation }) {
                   <ArrowRight className="w-4 h-4 text-white shrink-0" />
                 </a>
 
-                <a
-                  href="#laptop-service"
-                  onClick={() => playClickSound()}
+                <button
+                  onClick={() => {
+                    playClickSound();
+                    onOpenConsultation();
+                  }}
                   className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 sm:py-4 rounded-xl bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255,255,255,0.08)] border border-[rgba(255,255,255,0.1)] text-soft-mist hover:text-primary font-tech font-bold text-xs sm:text-sm tracking-wider uppercase transition-all"
                 >
-                  <Laptop className="w-4 h-4 text-primary shrink-0" />
-                  <span>Chip-Level Laptop Repair</span>
-                </a>
+                  <Sparkles className="w-4 h-4 text-primary shrink-0" />
+                  <span>Free Hardware Consultation</span>
+                </button>
               </div>
 
               {/* 4 Solid Guarantees */}
@@ -192,8 +194,8 @@ export default function Hero({ onOpenConsultation }) {
                       <div className="font-bold text-primary font-sans mt-0.5">Zero Build Fee</div>
                     </div>
                     <div className="p-3 rounded-xl bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)]">
-                      <div className="text-[10px] text-[rgba(255,255,255,0.5)] font-tech uppercase font-bold">Laptop Repaste</div>
-                      <div className="font-bold text-soft-mist font-sans mt-0.5">Thermal Grizzly TIM</div>
+                      <div className="text-[10px] text-[rgba(255,255,255,0.5)] font-tech uppercase font-bold">Tested Reliability</div>
+                      <div className="font-bold text-soft-mist font-sans mt-0.5">24h Stress Loop</div>
                     </div>
                   </div>
 

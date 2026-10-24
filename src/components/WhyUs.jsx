@@ -51,7 +51,7 @@ export default function WhyUs() {
     },
     {
       q: "Can I visit your physical store in Chennai?",
-      a: `Yes! You are welcome to visit Games World at ${COMPANY_INFO.address}. Consult directly with our build team in person or bring your gaming laptop in for same-day diagnostic service.`
+      a: `Yes! You are welcome to visit Games World at ${COMPANY_INFO.address}. Consult directly with our build team in person or experience our purpose-built machines on the test bench.`
     }
   ];
 

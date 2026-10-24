@@ -17,7 +17,6 @@ export default function Navbar({
   const navLinks = [
     { name: "Home", href: "#hero" },
     { name: "Five Machines", href: "#prebuilts" },
-    { name: "Laptop Service", href: "#laptop-service" },
     { name: "Why Games World", href: "#why-us" },
     { name: "Store & Contact", href: "#contact" },
   ];

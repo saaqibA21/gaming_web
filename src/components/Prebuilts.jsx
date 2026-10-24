@@ -331,11 +331,11 @@ export default function Prebuilts({ onAddToCart, packs: customPacks }) {
               <ArrowRight className="w-4 h-4" />
             </a>
             <a
-              href="#laptop-service"
+              href="#why-us"
               onClick={() => playClickSound()}
               className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255,255,255,0.08)] border border-[rgba(255,255,255,0.1)] text-soft-mist font-tech font-bold text-xs tracking-wider uppercase transition-all flex items-center justify-center min-h-[44px]"
             >
-              Laptop Service Lab
+              Hardware Standards & FAQ
             </a>
           </div>
         </div>
